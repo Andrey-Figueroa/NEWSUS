@@ -1,0 +1,292 @@
+:root {
+    --color-1: #BFA125;
+    --color-2: #D9BA40;
+    --color-3: #BAB7B1;
+    --color-4: #F2F2F2;
+    --color-5: #0D0A0D;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    background-color: var(--color-5);
+    color: var(--color-4);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background-color: #000000;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    border-bottom: 2px solid #7A6510;
+}
+
+.navbar-logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Pastilla dorada derecha */
+.navbar-pill {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: rgba(191, 161, 37, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(191, 161, 37, 0.5);
+    border-radius: 999px;
+    padding: 6px 8px;
+    box-shadow: 0 0 16px rgba(191, 161, 37, 0.2);
+}
+
+.pill-icon-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #BFA125;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.pill-icon-btn:hover {
+    background: rgba(191, 161, 37, 0.25);
+    color: #D9BA40;
+}
+
+.pill-divider {
+    width: 1px;
+    height: 22px;
+    background: rgba(191, 161, 37, 0.4);
+    margin: 0 2px;
+}
+
+.pill-icon-img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(68%) sepia(55%) saturate(500%) hue-rotate(5deg) brightness(90%);
+    transition: filter 0.2s ease;
+}
+
+.pill-icon-btn:hover .pill-icon-img {
+    filter: brightness(0) saturate(100%) invert(78%) sepia(55%) saturate(600%) hue-rotate(5deg) brightness(100%);
+}
+
+#pill-btn-instagram .pill-icon-img {
+    width: 24px;
+    height: 24px;
+}
+
+/* ===== WHATSAPP FLOTANTE ===== */
+.whatsapp-widget {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.whatsapp-label {
+    background-color: #25D366;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    white-space: nowrap;
+    box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4);
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.whatsapp-widget:hover .whatsapp-label {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+.whatsapp-icon {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    drop-shadow: 0 4px 20px rgba(37, 211, 102, 0.55);
+    transition: transform 0.25s ease, filter 0.25s ease;
+    filter: drop-shadow(0 4px 16px rgba(37, 211, 102, 0.55));
+}
+
+.whatsapp-widget:hover .whatsapp-icon {
+    transform: scale(1.08);
+    filter: drop-shadow(0 6px 22px rgba(37, 211, 102, 0.85));
+}
+
+/* Hero section with background image */
+.hero-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* Usamos la imagen FondoHero.jpg como fondo */
+    background-image: url('images/FondoHero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Oscurecemos un poco la imagen para que el texto resalte */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(13, 10, 13, 0.4) 0%, rgba(13, 10, 13, 0.8) 100%);
+    z-index: 1;
+}
+
+/* CONTENIDO TEXTUAL */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 5rem;
+    line-height: 1.1;
+    color: var(--color-4);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-title .highlight {
+    color: var(--color-2);
+    text-shadow: 0 0 20px rgba(217, 186, 64, 0.5);
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-3);
+    font-weight: 400;
+    letter-spacing: 2px;
+    animation: fadeInUp 1.2s ease-out;
+}
+
+/* GLASSMORPHISM CARDS */
+.glass-card {
+    position: absolute;
+    z-index: 5;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 3px solid var(--color-1);
+    padding: 20px;
+    border-radius: 8px;
+    width: 250px;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.glass-card h3 {
+    font-family: 'Outfit', sans-serif;
+    color: var(--color-1);
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+
+.glass-card p {
+    font-size: 0.9rem;
+    color: var(--color-4);
+    line-height: 1.4;
+}
+
+.left-card {
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.right-card {
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Media Queries para móviles */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .glass-card {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        transform: none;
+        margin-top: 20px;
+        width: 80%;
+    }
+}
