@@ -525,3 +525,9 @@ button { font-family: inherit; cursor: pointer; }
 
     .navbar-logo { height: 44px; }
 }
+
+/* Bloque temporal para scroll */
+.scroll-block {
+    height: 100vh;
+    background-color: #050505;
+}
