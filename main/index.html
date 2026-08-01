@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sus Amigos – Centro Automotriz Premium</title>
+    <meta name="description"
+        content="Sus Amigos Detailers Center — Detailing, mecánica y servicio a domicilio de alta calidad en Costa Rica.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=2">
+</head>
+
+<body>
+    <!-- ===== BUBBLE CURSOR CANVAS ===== -->
+    <canvas id="bubble-canvas" class="bubble-canvas" aria-hidden="true"></canvas>
+
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+        <div class="navbar-inner">
+
+            <!-- IZQUIERDA: Logo -->
+            <div class="navbar-left">
+                <a href="#" class="navbar-logo-link" aria-label="Sus Amigos – Inicio">
+                    <img src="../images/Logos/SusAmigosLogotipo.png" alt="Sus Amigos Logo" class="navbar-logo">
+                </a>
+            </div>
+
+            <!-- CENTRO: Menú de navegación -->
+            <ul class="navbar-menu" id="navbar-menu" role="menubar">
+                <li role="none"><a href="#" data-target="inicio" class="nav-link" role="menuitem">Inicio</a></li>
+                <li role="none"><a href="#" data-target="about" class="nav-link" role="menuitem">¿Quiénes Somos?</a></li>
+
+                <!-- Dropdown Servicios -->
+                <li class="nav-item--dropdown" role="none">
+                    <button class="nav-link nav-link--dropdown" aria-haspopup="true" aria-expanded="false"
+                        id="servicios-btn" role="menuitem">
+                        Servicios
+                        <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none"
+                            aria-hidden="true">
+                            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <ul class="dropdown-menu" id="dropdown-menu" role="menu" aria-labelledby="servicios-btn">
+                        <li role="none"><a href="#" data-page="detailing" class="dropdown-item"
+                                role="menuitem">Detailing</a></li>
+                        <li role="none"><a href="#" data-page="mecanica" class="dropdown-item"
+                                role="menuitem">Mecánica</a></li>
+                        <li role="none"><a href="#" data-page="domicilio" class="dropdown-item" role="menuitem">Servicio a domicilio</a></li>
+                        <li role="none"><a href="#" data-page="productos" class="dropdown-item" role="menuitem">Productos</a></li>
+                        <li role="none"><a href="#" data-page="promociones" class="dropdown-item" role="menuitem">Promociones</a></li>
+                    </ul>
+                </li>
+
+                <li role="none"><a href="#" data-target="sucursal" class="nav-link" role="menuitem">Sucursal</a></li>
+                <li role="none"><a href="#" data-target="horario" class="nav-link" role="menuitem">Horario</a></li>
+
+            </ul>
+
+            <!-- DERECHA: Redes + CTA -->
+            <div class="navbar-right">
+                <a href="https://www.facebook.com/SusAmigos.DetailersCenter" target="_blank" rel="noopener noreferrer"
+                    class="nav-social-btn" id="nav-facebook" aria-label="Facebook">
+                    <img src="../images/Iconos/facebook.svg" alt="Facebook" class="nav-social-icon">
+                </a>
+                <a href="https://www.instagram.com/susamigos.centrodeservicios/" target="_blank"
+                    rel="noopener noreferrer" class="nav-social-btn" id="nav-instagram" aria-label="Instagram">
+                    <img src="../images/Iconos/instagram.svg" alt="Instagram" class="nav-social-icon">
+                </a>
+                <a href="#" data-target="contacto" class="nav-cta" id="nav-cta">Agendar Cita</a>
+
+                <!-- Hamburguesa (móvil) -->
+                <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false"
+                    aria-controls="mobile-menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- ===== MENÚ MÓVIL ===== -->
+    <div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
+    <aside class="mobile-menu" id="mobile-menu" aria-label="Menú móvil" aria-hidden="true">
+        <button class="mobile-menu__close" id="mobile-close" aria-label="Cerrar menú">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+        </button>
+        <nav class="mobile-menu__nav">
+            <a href="#" data-target="inicio" class="mobile-link">Inicio</a>
+            <a href="#" data-target="about" class="mobile-link">¿Quiénes Somos?</a>
+            <div class="mobile-link mobile-link--parent">Servicios</div>
+            <div class="mobile-submenu">
+                <a href="#" data-page="detailing" class="mobile-sublink">Detailing</a>
+                <a href="#" data-page="mecanica" class="mobile-sublink">Mecánica</a>
+                <a href="#" data-page="domicilio" class="mobile-sublink">Servicio a domicilio</a>
+                <a href="#" data-page="productos" class="mobile-sublink">Productos</a>
+                <a href="#" data-page="promociones" class="mobile-sublink">Promociones</a>
+            </div>
+            <a href="#" data-target="sucursal" class="mobile-link">Sucursal</a>
+            <a href="#" data-target="horario" class="mobile-link">Horario</a>
+
+            <a href="#" data-target="contacto" class="mobile-cta">Agendar Cita</a>
+        </nav>
+    </aside>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero-container" id="inicio">
+        <div class="hero-overlay"></div>
+
+        <!-- ── TOP: 2 columnas ── -->
+        <div class="hero-top">
+
+            <!-- Columna izquierda: H1 grande -->
+            <div class="hero-left">
+                <h1 class="hero-headline">
+                    <span data-es="El Cuidado que" data-en="The Care">El Cuidado que</span><br>
+                    <span data-es="tu Vehículo" data-en="Your Vehicle">tu Vehículo</span><br>
+                    <span class="hero-headline__accent" data-es="Merece." data-en="Deserves.">Merece.</span>
+                </h1>
+
+                <!-- NEW: Rotator -->
+                <div class="hero-rotator">
+                    <div class="rotator-window">
+                        <ul class="rotator-list" id="rotator-list">
+                            <li>Precisión</li>
+                            <li>Brillo</li>
+                            <li>Confianza</li>
+                            <li>Rendimiento</li>
+                            <li>Rapidez</li>
+                            <li>Garantía Impecable</li>
+                            <li>Cartago, Taras</li>
+                            <li>Los Mejores Precios</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ── BOTTOM: Eyebrow + subtítulo ── -->
+        <div class="hero-bottom">
+            <div class="hero-right">
+                <div class="hero-eyebrow">
+                    <span class="hero-eyebrow__brand">Sus Amigos</span>
+                    <span class="hero-eyebrow__sub" data-es="Centro de Servicios Automotrices"
+                        data-en="Automotive Service Center">Centro de Servicios Automotrices</span>
+                </div>
+                <p class="hero-subtitle"
+                    data-es="Mecánica especializada, lavado premium, detailing profesional y servicio a domicilio para mantener tu vehículo en las mejores condiciones."
+                    data-en="Specialized mechanics, premium washing, professional detailing and home service to keep your vehicle in top condition.">
+                    Mecánica especializada, lavado premium, detailing profesional y servicio a domicilio para mantener
+                    tu vehículo en las mejores condiciones.
+                </p>
+            </div>
+        </div>
+        <!-- ===== STATS SEPARATOR ===== -->
+        <section class="stats-bar" id="stats-bar" aria-label="Indicadores de confianza">
+            <div class="stats-bar__inner">
+                <div class="stats-bar__stat">
+                    <span class="stats-bar__number">+500</span>
+                    <span class="stats-bar__label" data-es="Clientes satisfechos" data-en="Satisfied clients">Clientes
+                        satisfechos</span>
+                </div>
+                <div class="stats-bar__sep"></div>
+                <div class="stats-bar__stat">
+                    <span class="stats-bar__number">+1,500</span>
+                    <span class="stats-bar__label" data-es="Vehículos atendidos" data-en="Vehicles serviced">Vehículos
+                        atendidos</span>
+                </div>
+                <div class="stats-bar__sep"></div>
+                <div class="stats-bar__stat">
+                    <span class="stats-bar__number">+10</span>
+                    <span class="stats-bar__label" data-es="Años de experiencia" data-en="Years of experience">Años de
+                        experiencia</span>
+                </div>
+                <div class="stats-bar__sep"></div>
+                <div class="stats-bar__stat">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                    <span class="stats-bar__label" data-es="Garantía en nuestros trabajos"
+                        data-en="Guaranteed work">Garantía en nuestros trabajos</span>
+                </div>
+            </div>
+        </section>
+
+    </section>
+
+    <!-- ===== CAROUSEL 3D SERVICIOS ===== -->
+    <section id="servicios-carousel" class="services-3d" aria-label="Nuestros Servicios Destacados">
+        <div class="carousel-header">
+            <h2>Vive la experiencia Sus Amigos.<br>Cuidado por nosotros, brillo para tu carro.</h2>
+            <button class="btn-pill">Agendar cita</button>
+        </div>
+
+        <div class="carousel-container">
+            <div class="carousel-track" id="carousel-track">
+
+                <div class="lamina card">
+                    <div class="card-img-wrapper">
+                        <img src="../images/laminas/1.jpg" alt="Lavado Premium"
+                            onerror="this.src='../images/Logos/SusAmigosLogotipo.png'; this.classList.add('fallback-img');">
+                    </div>
+                    <div class="card-content">
+                        <h3>Lavado Premium</h3>
+                        <p>Limpieza exterior profunda con productos ecológicos y secado a mano sin rayones para un
+                            brillo inigualable.</p>
+                    </div>
+                </div>
+
+                <div class="lamina card">
+                    <div class="card-img-wrapper">
+                        <img src="../images/laminas/2.jpg" alt="Detailing Completo"
+                            onerror="this.src='../images/Logos/SusAmigosLogotipo.png'; this.classList.add('fallback-img');">
+                    </div>
+                    <div class="card-content">
+                        <h3>Detailing Completo</h3>
+                        <p>Restauración interior y exterior. Descontaminación, limpieza de tapicería y protección
+                            cerámica duradera.</p>
+                    </div>
+                </div>
+
+                <div class="lamina card">
+                    <div class="card-img-wrapper">
+                        <img src="../images/laminas/3.jpg" alt="Diagnóstico Mecánico"
+                            onerror="this.src='../images/Logos/SusAmigosLogotipo.png'; this.classList.add('fallback-img');">
+                    </div>
+                    <div class="card-content">
+                        <h3>Diagnóstico Mecánico</h3>
+                        <p>Escaneo por computadora y revisión completa para detectar fallas antes de que se conviertan
+                            en problemas graves.</p>
+                    </div>
+                </div>
+
+                <div class="lamina card">
+                    <div class="card-img-wrapper">
+                        <img src="../images/laminas/4.jpg" alt="Mantenimiento Preventivo"
+                            onerror="this.src='../images/Logos/SusAmigosLogotipo.png'; this.classList.add('fallback-img');">
+                    </div>
+                    <div class="card-content">
+                        <h3>Mantenimiento Preventivo</h3>
+                        <p>Cambio de aceite, filtros, revisión de frenos y fluidos para mantener el motor de tu vehículo
+                            como nuevo.</p>
+                    </div>
+                </div>
+
+                <div class="lamina card">
+                    <div class="card-img-wrapper">
+                        <img src="../images/laminas/5.jpg" alt="Pulido y Encerado"
+                            onerror="this.src='../images/Logos/SusAmigosLogotipo.png'; this.classList.add('fallback-img');">
+                    </div>
+                    <div class="card-content">
+                        <h3>Pulido y Encerado</h3>
+                        <p>Eliminación de micro-rayones y aplicación de ceras premium que protegen la pintura contra el
+                            clima y la suciedad.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="carousel-nav-pill">
+            <button class="nav-arrow prev-btn" id="carousel-prev" aria-label="Anterior">&lsaquo;</button>
+            <div class="carousel-dots" id="carousel-dots">
+                <!-- Dots generados por JS -->
+            </div>
+            <button class="nav-arrow next-btn" id="carousel-next" aria-label="Siguiente">&rsaquo;</button>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT US SECTION ===== -->
+    <section id="about" class="about-section" aria-label="Sobre Nosotros">
+        <h3 class="about-section-title">¿Quiénes Somos?</h3>
+        <div class="about-container">
+            <div class="about-video-wrapper">
+                <video autoplay muted loop playsinline class="about-video" poster="../images/FondoHero.jpg">
+                    <!-- El src real del video se pondrá aquí -->
+                    <source src="../images/Nosotros/videoFondo.mp4" type="video/mp4">
+                    Tu navegador no soporta el formato de video.
+                </video>
+            </div>
+            <div class="about-content">
+                <h2>Más que un taller, somos tu equipo de confianza</h2>
+                <p class="about-lead">Ofrecemos servicios de lavado, detailing y mantenimiento mecánico en Cartago,
+                    Taras, con un enfoque en calidad, precios justos y trato cercano con cada cliente.</p>
+                <div class="about-story">
+                    <p>[ Aquí va la historia real del local. Cuándo empezaron, cómo, qué los motivó, cómo han crecido.
+                        Por favor cuéntame los detalles y actualizaremos este texto para que refleje la verdadera
+                        esencia de Sus Amigos. ]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SUCURSAL / LOCATION SECTION ===== -->
+    <section id="sucursal" class="location-section" aria-label="Nuestra Ubicación">
+        <div class="location-lamina">
+            <div class="location-content-grid">
+                <!-- Columna Izquierda: Textos y CTA -->
+                <div class="location-text-side">
+                    <h2 class="location-title">Visítanos en <span class="text-gold">Cartago</span></h2>
+                    <p class="location-description">
+                        Te esperamos en nuestra sucursal en <strong>Provincia de Cartago, Taras</strong>.
+                        Ven a conocernos y descubre por qué somos el centro automotriz de confianza para cuidar,
+                        proteger y consentir tu vehículo. Nuestro equipo experto está listo para brindarte el mejor
+                        servicio.
+                    </p>
+                    <ul class="location-perks">
+                        <li><span class="gold-dot"></span> Atención personalizada y experta</li>
+                        <li><span class="gold-dot"></span> Sala de espera cómoda con Wifi</li>
+                        <li><span class="gold-dot"></span> Fácil acceso y amplio parqueo</li>
+                    </ul>
+                    <a href="https://maps.app.goo.gl/nB95Y6GsAsPxbWK47" target="_blank" rel="noopener noreferrer"
+                        class="hero-cta hero-cta--primary location-btn">
+                        Abrir en Google Maps
+                    </a>
+                </div>
+                <!-- Columna Derecha: Mapa -->
+                <div class="location-map-side">
+                    <iframe
+                        src="https://maps.google.com/maps?q=V3J8%2B84+Taras,+Provincia+de+Cartago&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HORARIO SECTION ===== -->
+    <section id="horario" class="horario-section" aria-label="Nuestro Horario">
+        <div class="horario-container">
+            <h2 class="section-title">Horario de Atención</h2>
+            <div class="horario-content">
+                <div class="horario-columns">
+                    <!-- Marcador electrónico (JS lo actualizará) -->
+                    <div class="scoreboard-container">
+                        <div class="scoreboard">
+                            <div class="scoreboard-inner">
+                                <div class="scoreboard-header" id="scoreboard-text">CARGANDO...</div>
+                                <div class="scoreboard-time" id="scoreboard-time">00:00:00</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabla de horarios -->
+                    <div class="schedule-grid">
+                        <div class="schedule-row">
+                            <span class="schedule-day">Lunes a Sábado</span>
+                            <span class="schedule-hours">7:00 a. m. – 5:00 p. m.</span>
+                        </div>
+                        <div class="schedule-row schedule-row-closed">
+                            <span class="schedule-day">Domingo</span>
+                            <span class="schedule-hours">Cerrado</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nota sobre feriados -->
+                <p class="schedule-note">
+                    <span class="gold-dot"></span> El horario puede variar por los feriados. Te recomendamos preguntar al número <a href="https://wa.me/50670491753" target="_blank" rel="noopener noreferrer" class="text-gold">+506 7049-1753</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTENEDOR DE FONDO FINAL ===== -->
+    <div class="bottom-bg-container">
+        <!-- ===== GALERÍA ===== -->
+        <section class="gallery-section">
+        <div class="gallery-header">
+            <h2>Nuestra Galería</h2>
+            <p>Conoce más sobre nuestras instalaciones y el trabajo que realizamos.</p>
+        </div>
+        <div class="gallery-grid">
+            <!-- Imagen 1: Ancha (Ocupa 2 columnas) -->
+            <div class="gallery-item item-wide">
+                <img src="../images/galeria/imagen01.jpg" alt="Próximamente Imagen 1" onerror="this.style.opacity='0'">
+                <div class="gallery-overlay"></div>
+            </div>
+            <!-- Imagen 2: Alta (Ocupa 2 filas) -->
+            <div class="gallery-item item-tall">
+                <img src="../images/galeria/imagen02.jpg" alt="Próximamente Imagen 2" onerror="this.style.opacity='0'">
+                <div class="gallery-overlay"></div>
+            </div>
+            <!-- Imagen 3: Normal -->
+            <div class="gallery-item">
+                <img src="../images/galeria/imagen03.jpg" alt="Próximamente Imagen 3" onerror="this.style.opacity='0'">
+                <div class="gallery-overlay"></div>
+            </div>
+            <!-- Imagen 4: Normal -->
+            <div class="gallery-item">
+                <img src="../images/galeria/imagen04.jpg" alt="Próximamente Imagen 4" onerror="this.style.opacity='0'">
+                <div class="gallery-overlay"></div>
+            </div>
+            <!-- Imagen 5: Normal -->
+            <div class="gallery-item">
+                <img src="../images/galeria/imagen05.jpg" alt="Próximamente Imagen 5" onerror="this.style.opacity='0'">
+                <div class="gallery-overlay"></div>
+            </div>
+            <!-- Imagen 6: Normal -->
+            <div class="gallery-item">
+                <img src="../images/galeria/imagen06.jpg" alt="Próximamente Imagen 6" onerror="this.style.opacity='0'">
+                <div class="gallery-overlay"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER (Reemplaza Contacto) ===== -->
+    <footer id="contacto" class="site-footer">
+        <div class="footer-main-row">
+            <div class="footer-brand">
+                <img src="../images/Logos/SusAmigosLogotipo.png" alt="Sus Amigos Logo" class="footer-logo">
+            </div>
+            
+            <div class="footer-grid">
+                <!-- Columna 1: WhatsApp -->
+                <div class="footer-col">
+                    <a href="https://wa.me/50670491753" target="_blank" rel="noopener noreferrer" class="footer-icon-link">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 3.825 0 6.938 3.112 6.938 6.937 0 3.825-3.113 6.938-6.938 6.938z"/>
+                        </svg>
+                    </a>
+                    <strong>(506) 7049-1753</strong>
+                    <span>WhatsApp</span>
+                </div>
+                <!-- Columna 2: Ubicación -->
+                <div class="footer-col">
+                    <span class="footer-icon-link">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </span>
+                    <strong>Taras, Cartago</strong>
+                    <span>V3J8+84, Provincia de Cartago</span>
+                </div>
+                <!-- Columna 3: Correo -->
+                <div class="footer-col">
+                    <span class="footer-icon-link">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </span>
+                    <strong>info@susamigos.com</strong>
+                    <span>Correo Electrónico</span>
+                </div>
+                <!-- Columna 4: Horario -->
+                <div class="footer-col">
+                    <span class="footer-icon-link">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                        </svg>
+                    </span>
+                    <strong>Abierto Lunes a Sábado:</strong>
+                    <span>07:00 am - 05:00 pm</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-slogan-bar">
+            <p class="footer-slogan">Cuidamos tu auto como si fuera nuestro. ¡El mejor servicio garantizado!</p>
+        </div>
+
+        <div class="footer-bottom-links">
+            <a href="#" data-target="about">🔗 ¿Quiénes Somos?</a>
+            <a href="#" data-target="servicios-btn">🔗 Servicios</a>
+            <a href="#" data-target="sucursal">🔗 Ubicación</a>
+            <a href="#" data-target="horario">🔗 Preguntas Frecuentes</a>
+            <a href="#">🔗 Términos y Condiciones</a>
+            <a href="#">🔗 Política de Privacidad</a>
+        </div>
+    </footer>
+    </div>
+
+    <!-- ===== WHATSAPP FLOTANTE ===== -->
+    <a href="https://wa.me/50670491753" target="_blank" rel="noopener noreferrer" class="whatsapp-widget"
+        id="whatsapp-widget" aria-label="SusAmigos WhatsApp">
+        <span class="whatsapp-label">SusAmigos Whatsapp</span>
+        <img src="../images/Iconos/whatsapp.svg" alt="WhatsApp" class="whatsapp-icon">
+    </a>
+    <!-- ===== LANGUAGE SWITCHER ===== -->
+    <div class="lang-switcher" id="lang-switcher">
+        <button class="lang-btn" id="lang-btn" aria-label="Cambiar idioma" aria-expanded="false">
+            <span class="lang-btn__flag" id="lang-flag">🇨🇷</span>
+            <span class="lang-btn__name" id="lang-name">Español</span>
+            <svg class="lang-btn__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 15l-6-6-6 6" />
+            </svg>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown" role="listbox">
+            <button class="lang-option lang-option--active" data-lang="es" role="option">
+                <span>🇨🇷</span> Español
+            </button>
+            <button class="lang-option" data-lang="en" role="option">
+                <span>🇺🇸</span> English
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

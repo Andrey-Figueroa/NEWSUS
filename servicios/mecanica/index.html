@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sus Amigos – Mecánica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../main/styles.css?v=2">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            min-height: 150vh; /* Para permitir scroll y ver el cambio del navbar */
+            margin: 0;
+            padding-top: 100px;
+        }
+        .service-title {
+            text-align: center;
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+        <div class="navbar-inner">
+
+            <!-- IZQUIERDA: Logo -->
+            <div class="navbar-left">
+                <a href="#" data-target="inicio" class="navbar-logo-link" aria-label="Sus Amigos – Inicio">
+                    <img src="../../images/Logos/SusAmigosLogotipo.png" alt="Sus Amigos Logo" class="navbar-logo">
+                </a>
+            </div>
+
+            <!-- CENTRO: Menú de navegación -->
+            <ul class="navbar-menu" id="navbar-menu" role="menubar">
+                <li role="none"><a href="#" data-target="inicio" class="nav-link" role="menuitem">Inicio</a></li>
+                <li role="none"><a href="#" data-target="about" class="nav-link" role="menuitem">¿Quiénes Somos?</a></li>
+
+                <!-- Dropdown Servicios -->
+                <li class="nav-item--dropdown" role="none">
+                    <button class="nav-link nav-link--dropdown" aria-haspopup="true" aria-expanded="false"
+                        id="servicios-btn" role="menuitem">
+                        Servicios
+                        <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none"
+                            aria-hidden="true">
+                            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <ul class="dropdown-menu" id="dropdown-menu" role="menu" aria-labelledby="servicios-btn">
+                        <li role="none"><a href="#" data-page="detailing" class="dropdown-item" role="menuitem">Detailing</a></li>
+                        <li role="none"><a href="#" data-page="mecanica" class="dropdown-item" role="menuitem">Mecánica</a></li>
+                        <li role="none"><a href="#" data-page="domicilio" class="dropdown-item" role="menuitem">Servicio a domicilio</a></li>
+                        <li role="none"><a href="#" data-page="productos" class="dropdown-item" role="menuitem">Productos</a></li>
+                        <li role="none"><a href="#" data-page="promociones" class="dropdown-item" role="menuitem">Promociones</a></li>
+                    </ul>
+                </li>
+
+                <li role="none"><a href="#" data-target="sucursal" class="nav-link" role="menuitem">Sucursal</a></li>
+                <li role="none"><a href="#" data-target="horario" class="nav-link" role="menuitem">Horario</a></li>
+
+            </ul>
+
+            <!-- DERECHA: Redes + CTA -->
+            <div class="navbar-right">
+                <a href="https://www.facebook.com/SusAmigos.DetailersCenter" target="_blank" rel="noopener noreferrer"
+                    class="nav-social-btn" id="nav-facebook" aria-label="Facebook">
+                    <img src="../../images/Iconos/facebook.svg" alt="Facebook" class="nav-social-icon">
+                </a>
+                <a href="https://www.instagram.com/susamigos.centrodeservicios/" target="_blank"
+                    rel="noopener noreferrer" class="nav-social-btn" id="nav-instagram" aria-label="Instagram">
+                    <img src="../../images/Iconos/instagram.svg" alt="Instagram" class="nav-social-icon">
+                </a>
+                <a href="#" data-target="contacto" class="nav-cta" id="nav-cta">Agendar Cita</a>
+
+                <!-- Hamburguesa (móvil) -->
+                <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false"
+                    aria-controls="mobile-menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- ===== MENÚ MÓVIL ===== -->
+    <div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
+    <aside class="mobile-menu" id="mobile-menu" aria-label="Menú móvil" aria-hidden="true">
+        <button class="mobile-menu__close" id="mobile-close" aria-label="Cerrar menú">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+        </button>
+        <nav class="mobile-menu__nav">
+            <a href="#" data-target="inicio" class="mobile-link">Inicio</a>
+            <a href="#" data-target="about" class="mobile-link">¿Quiénes Somos?</a>
+            <div class="mobile-link mobile-link--parent">Servicios</div>
+            <div class="mobile-submenu">
+                <a href="#" data-page="detailing" class="mobile-sublink">Detailing</a>
+                <a href="#" data-page="mecanica" class="mobile-sublink">Mecánica</a>
+                <a href="#" data-page="domicilio" class="mobile-sublink">Servicio a domicilio</a>
+                <a href="#" data-page="productos" class="mobile-sublink">Productos</a>
+                <a href="#" data-page="promociones" class="mobile-sublink">Promociones</a>
+            </div>
+            <a href="#" data-target="sucursal" class="mobile-link">Sucursal</a>
+            <a href="#" data-target="horario" class="mobile-link">Horario</a>
+
+            <a href="#" data-target="contacto" class="mobile-cta">Agendar Cita</a>
+        </nav>
+    </aside>
+
+    <h1 class="service-title">Mecánica</h1>
+
+    <!-- ===== LANGUAGE SWITCHER ===== -->
+    <div class="lang-switcher" id="lang-switcher">
+        <button class="lang-btn" id="lang-btn" aria-label="Cambiar idioma" aria-expanded="false">
+            <span class="lang-btn__flag" id="lang-flag">🇨🇷</span>
+            <span class="lang-btn__name" id="lang-name">Español</span>
+            <svg class="lang-btn__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown" role="listbox">
+            <button class="lang-option lang-option--active" data-lang="es" role="option">
+                <span>🇨🇷</span> Español
+            </button>
+            <button class="lang-option" data-lang="en" role="option">
+                <span>🇺🇸</span> English
+            </button>
+        </div>
+    </div>
+
+    <script src="../../main/script.js"></script>
+</body>
+</html>

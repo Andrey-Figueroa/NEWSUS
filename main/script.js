@@ -1,0 +1,506 @@
+/* ============================================================
+   SUS AMIGOS — NAVBAR SCRIPT
+   Comportamiento: scroll state, dropdown, menú móvil, idioma
+   ============================================================ */
+
+(function () {
+    'use strict';
+
+
+    /* ── Elementos ────────────────────────────────────────── */
+    const navbar = document.getElementById('navbar');
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const mobileClose = document.getElementById('mobile-close');
+    const serviciosBtn = document.getElementById('servicios-btn');
+    const dropdownItem = document.querySelector('.nav-item--dropdown');
+    const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-sublink, .mobile-cta');
+
+    /* ── 1. Scroll → clase .navbar--scrolled ─────────────── */
+    const SCROLL_THRESHOLD = 90;
+
+    function onScroll() {
+        const scrolled = window.scrollY > SCROLL_THRESHOLD;
+        navbar.classList.toggle('navbar--scrolled', scrolled);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* ── 2. Dropdown de Servicios (hover + foco) ──────────── */
+    let dropdownTimeout;
+
+    function openDropdown() {
+        clearTimeout(dropdownTimeout);
+        dropdownItem.classList.add('is-open');
+        serviciosBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeDropdown() {
+        dropdownTimeout = setTimeout(() => {
+            dropdownItem.classList.remove('is-open');
+            serviciosBtn.setAttribute('aria-expanded', 'false');
+        }, 120);
+    }
+
+    if (dropdownItem) {
+        dropdownItem.addEventListener('mouseenter', openDropdown);
+        dropdownItem.addEventListener('mouseleave', closeDropdown);
+        dropdownItem.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeDropdown();
+        });
+    }
+
+    /* ── 3. Menú Móvil ────────────────────────────────────── */
+    function openMobileMenu() {
+        mobileMenu.classList.add('is-open');
+        mobileOverlay.classList.add('is-open');
+        hamburger.classList.add('is-open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        mobileOverlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        mobileClose.focus();
+    }
+
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('is-open');
+        mobileOverlay.classList.remove('is-open');
+        hamburger.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        mobileOverlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        hamburger.focus();
+    }
+
+    if (hamburger) hamburger.addEventListener('click', openMobileMenu);
+    if (mobileClose) mobileClose.addEventListener('click', closeMobileMenu);
+    if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobileMenu);
+
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('is-open')) closeMobileMenu();
+        });
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('is-open')) {
+            closeMobileMenu();
+        }
+    });
+
+    /* ── 4. Language Switcher ─────────────────────────────── */
+    const langSwitcher = document.getElementById('lang-switcher');
+    const langBtn = document.getElementById('lang-btn');
+    const langFlag = document.getElementById('lang-flag');
+    const langName = document.getElementById('lang-name');
+    const langOptions = document.querySelectorAll('.lang-option');
+
+    const LANGS = {
+        es: { flag: '🇨🇷', name: 'Español' },
+        en: { flag: '🇺🇸', name: 'English' }
+    };
+
+    function toggleLangDropdown() {
+        const isOpen = langSwitcher.classList.toggle('open');
+        langBtn.setAttribute('aria-expanded', String(isOpen));
+    }
+
+    function closeLangDropdown() {
+        langSwitcher.classList.remove('open');
+        langBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    function applyLanguage(lang) {
+        // Actualizar botón
+        langFlag.textContent = LANGS[lang].flag;
+        langName.textContent = LANGS[lang].name;
+
+        // Marcar opción activa
+        langOptions.forEach(opt => {
+            opt.classList.toggle('lang-option--active', opt.dataset.lang === lang);
+        });
+
+        // Traducir todos los elementos con data-es / data-en
+        document.querySelectorAll('[data-es], [data-en]').forEach(el => {
+            const text = el.getAttribute('data-' + lang);
+            if (text) el.textContent = text;
+        });
+
+        localStorage.setItem('susamigos-lang', lang);
+        closeLangDropdown();
+    }
+
+    if (langBtn) {
+        langBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleLangDropdown();
+        });
+    }
+
+    langOptions.forEach(opt => {
+        opt.addEventListener('click', () => applyLanguage(opt.dataset.lang));
+    });
+
+    // Cerrar al hacer clic fuera
+    document.addEventListener('click', (e) => {
+        if (langSwitcher && !langSwitcher.contains(e.target)) {
+            closeLangDropdown();
+        }
+    });
+
+    // Restaurar idioma guardado
+    const savedLang = localStorage.getItem('susamigos-lang');
+    if (savedLang && LANGS[savedLang] && savedLang !== 'es') {
+        applyLanguage(savedLang);
+    }
+
+    /* ── Rotator ─────────────────────────────────────────── */
+    const rotatorList = document.getElementById('rotator-list');
+    if (rotatorList) {
+        const items = rotatorList.querySelectorAll('li');
+        const itemCount = items.length;
+        
+        // Clonamos la primera palabra al final para un bucle suave
+        const firstClone = items[0].cloneNode(true);
+        rotatorList.appendChild(firstClone);
+        
+        let currentIndex = 0;
+
+        setInterval(() => {
+            const itemHeight = items[0].clientHeight;
+            currentIndex++;
+            
+            // Animamos normalmente hacia la siguiente palabra
+            rotatorList.style.transition = 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+            rotatorList.style.transform = `translateY(-${currentIndex * itemHeight}px)`;
+            
+            // Si acabamos de animar hacia el clon, reseteamos silenciosamente a la posición 0 real
+            if (currentIndex === itemCount) {
+                setTimeout(() => {
+                    rotatorList.style.transition = 'none';
+                    currentIndex = 0;
+                    rotatorList.style.transform = `translateY(0px)`;
+                }, 600); // 600ms coincide con la duración de la transición
+            }
+        }, 2500);
+    }
+
+    /* ── Bubble Cursor ───────────────────────────────────────── */
+    const canvas = document.getElementById('bubble-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let bubbles = [];
+        let lastSpawnTime = 0;
+        let animationFrameId;
+
+        const resize = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+        window.addEventListener('resize', resize);
+        resize();
+
+        const spawnBubble = (x, y) => {
+            const isGold = Math.random() < 0.15;
+            const maxLife = Math.random() * 800 + 1200;
+            const distance = Math.random() * 60 + 40;
+            bubbles.push({
+                x, y,
+                startX: x,
+                size: (Math.random() * 10 + 4) / 2,
+                color: isGold ? '212, 175, 55' : '220, 240, 255',
+                baseOpacity: Math.random() * 0.3 + 0.3,
+                vy: -distance / maxLife,
+                wobbleSpeed: Math.random() * 0.005 + 0.002,
+                wobbleWidth: Math.random() * 10 + 5,
+                life: 0,
+                maxLife
+            });
+        };
+
+        const onPointerMove = (e) => {
+            const now = performance.now();
+            if (now - lastSpawnTime > 50) {
+                let clientX, clientY;
+                if (e.touches) {
+                    clientX = e.touches[0].clientX;
+                    clientY = e.touches[0].clientY;
+                } else {
+                    clientX = e.clientX;
+                    clientY = e.clientY;
+                }
+                spawnBubble(clientX, clientY);
+                lastSpawnTime = now;
+            }
+        };
+
+        let lastTime = performance.now();
+
+        const render = (time) => {
+            const deltaTime = time - lastTime;
+            lastTime = time;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = bubbles.length - 1; i >= 0; i--) {
+                const b = bubbles[i];
+                b.life += deltaTime;
+
+                if (b.life >= b.maxLife) {
+                    bubbles.splice(i, 1);
+                    continue;
+                }
+
+                const lifeRatio = b.life / b.maxLife;
+                b.y += b.vy * deltaTime;
+                b.x = b.startX + Math.sin(b.life * b.wobbleSpeed) * b.wobbleWidth;
+
+                const currentOpacity = b.baseOpacity * (1 - lifeRatio);
+
+                ctx.beginPath();
+                ctx.arc(b.x, b.y, b.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${b.color}, ${currentOpacity})`;
+                ctx.fill();
+
+                ctx.strokeStyle = `rgba(${b.color}, ${currentOpacity * 1.5})`;
+                ctx.lineWidth = 0.5;
+                ctx.stroke();
+
+                const highlightRadius = b.size * 0.25;
+                const highlightX = b.x - b.size * 0.3;
+                const highlightY = b.y - b.size * 0.3;
+                
+                ctx.beginPath();
+                ctx.arc(highlightX, highlightY, highlightRadius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${currentOpacity * 1.2})`;
+                ctx.fill();
+            }
+
+            animationFrameId = requestAnimationFrame(render);
+        };
+
+        const heroSection = document.getElementById('inicio');
+        if (heroSection) {
+            heroSection.addEventListener('mousemove', onPointerMove);
+            heroSection.addEventListener('touchmove', onPointerMove, { passive: true });
+        }
+
+        lastTime = performance.now();
+        render(lastTime);
+    }
+    /* ── Carrusel 3D de Servicios ────────────────────────────── */
+    const carouselTrack = document.getElementById('carousel-track');
+    if (carouselTrack) {
+        const cards = Array.from(carouselTrack.querySelectorAll('.card'));
+        const nextBtn = document.getElementById('carousel-next');
+        const prevBtn = document.getElementById('carousel-prev');
+        const dotsContainer = document.getElementById('carousel-dots');
+        
+        let currentCarouselIndex = 2; // Iniciar en el medio (índice 2 de 5)
+        const totalCards = cards.length;
+
+        // Crear Dots
+        cards.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === currentCarouselIndex) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                currentCarouselIndex = index;
+                updateCarousel();
+            });
+            dotsContainer.appendChild(dot);
+        });
+        const dots = Array.from(dotsContainer.querySelectorAll('.dot'));
+
+        function updateCarousel() {
+            cards.forEach((card, i) => {
+                card.classList.remove('active', 'prev', 'next', 'prev-far', 'next-far', 'hidden');
+                
+                let dist = i - currentCarouselIndex;
+                if (dist > 2) dist -= totalCards;
+                if (dist < -2) dist += totalCards;
+                
+                if (dist === 0) {
+                    card.classList.add('active');
+                } else if (dist === -1) {
+                    card.classList.add('prev');
+                } else if (dist === 1) {
+                    card.classList.add('next');
+                } else if (dist === -2) {
+                    card.classList.add('prev-far');
+                } else if (dist === 2) {
+                    card.classList.add('next-far');
+                }
+            });
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentCarouselIndex);
+            });
+        }
+
+        // Navegación por flechas (Bucle Infinito)
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentCarouselIndex = (currentCarouselIndex - 1 + totalCards) % totalCards;
+                updateCarousel();
+            });
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                currentCarouselIndex = (currentCarouselIndex + 1) % totalCards;
+                updateCarousel();
+            });
+        }
+
+        // Lógica de Drag / Touch (Swipe)
+        let isDraggingCarousel = false;
+        let startXCarousel = 0;
+        let diffXCarousel = 0;
+        const dragThreshold = 50;
+
+        const dragStart = (e) => {
+            isDraggingCarousel = true;
+            startXCarousel = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+            // Prevenir el drag por defecto de imágenes
+            if(e.target.tagName.toLowerCase() === 'img') {
+                e.preventDefault();
+            }
+        };
+
+        const dragMove = (e) => {
+            if (!isDraggingCarousel) return;
+            const currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+            diffXCarousel = currentX - startXCarousel;
+        };
+
+        const dragEnd = () => {
+            if (!isDraggingCarousel) return;
+            isDraggingCarousel = false;
+            
+            if (diffXCarousel > dragThreshold) {
+                // Swipe a la derecha -> anterior
+                currentCarouselIndex = (currentCarouselIndex - 1 + totalCards) % totalCards;
+            } else if (diffXCarousel < -dragThreshold) {
+                // Swipe a la izquierda -> siguiente
+                currentCarouselIndex = (currentCarouselIndex + 1) % totalCards;
+            }
+            diffXCarousel = 0;
+            updateCarousel();
+        };
+
+        // Mouse Events
+        carouselTrack.addEventListener('mousedown', dragStart);
+        window.addEventListener('mousemove', dragMove);
+        window.addEventListener('mouseup', dragEnd);
+        
+        // Touch Events
+        carouselTrack.addEventListener('touchstart', dragStart, { passive: true });
+        window.addEventListener('touchmove', dragMove, { passive: true });
+        window.addEventListener('touchend', dragEnd);
+
+        // Bloquear arrastre nativo en imágenes
+        cards.forEach(card => {
+            const img = card.querySelector('img');
+            if (img) img.addEventListener('dragstart', e => e.preventDefault());
+        });
+
+        // Inicializar
+        updateCarousel();
+    }
+
+
+    /* ── 6. Navegación Global (data-target / data-page) ────────────── */
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('[data-target], [data-page]');
+        if (!link) return;
+        
+        e.preventDefault();
+        
+        const path = window.location.pathname;
+        let depthPrefix = '';
+        if (path.includes('/servicios/')) {
+            depthPrefix = '../../';
+        } else if (path.includes('/main/')) {
+            depthPrefix = '../';
+        }
+
+        if (link.hasAttribute('data-target')) {
+            const targetId = link.getAttribute('data-target');
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+                if (mobileMenu && mobileMenu.classList.contains('is-open')) {
+                    closeMobileMenu();
+                }
+            } else {
+                window.location.href = depthPrefix + 'main/index.html#' + targetId;
+            }
+        } else if (link.hasAttribute('data-page')) {
+            const page = link.getAttribute('data-page');
+            window.location.href = depthPrefix + 'servicios/' + page + '/index.html';
+        }
+    });
+
+    /* ── 7. Lógica del Horario (Costa Rica UTC-6) ────────────── */
+    function updateScheduleStatus() {
+        const textElement = document.getElementById('scoreboard-text');
+        const timeElement = document.getElementById('scoreboard-time');
+        if (!textElement || !timeElement) return;
+        
+        // Obtener hora actual en Costa Rica
+        let crTimeString = new Date().toLocaleString("en-US", {timeZone: "America/Costa_Rica"});
+        let crTime = new Date(crTimeString);
+        
+        let day = crTime.getDay(); // 0 = Domingo, 1 = Lunes ... 6 = Sábado
+        let hour = crTime.getHours();
+        
+        let isOpen = false;
+        let nextEvent = null; 
+        
+        // Abierto de Lunes(1) a Sábado(6), de 7:00 a 16:59
+        if (day >= 1 && day <= 6 && hour >= 7 && hour < 17) {
+            isOpen = true;
+            nextEvent = new Date(crTime.getFullYear(), crTime.getMonth(), crTime.getDate(), 17, 0, 0);
+        } else {
+            isOpen = false;
+            nextEvent = new Date(crTime.getFullYear(), crTime.getMonth(), crTime.getDate(), 7, 0, 0);
+            
+            if (day === 0) {
+                nextEvent.setDate(nextEvent.getDate() + 1);
+            } else if (hour >= 17) {
+                nextEvent.setDate(nextEvent.getDate() + 1);
+                if (day === 6) {
+                    nextEvent.setDate(nextEvent.getDate() + 1);
+                }
+            }
+        }
+        
+        let diffMs = nextEvent - crTime;
+        let diffHrs = Math.floor(diffMs / (1000 * 60 * 60));
+        let diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+        let diffSecs = Math.floor((diffMs % (1000 * 60)) / 1000);
+        
+        let pad = num => num.toString().padStart(2, '0');
+        let timeStr = `${pad(diffHrs)}:${pad(diffMins)}:${pad(diffSecs)}`;
+        
+        timeElement.textContent = timeStr;
+        
+        if (isOpen) {
+            textElement.textContent = "CERRAMOS EN";
+            timeElement.className = "scoreboard-time green-led";
+        } else {
+            textElement.textContent = "ABRIMOS EN";
+            timeElement.className = "scoreboard-time red-led";
+        }
+    }
+    
+    if (document.getElementById('scoreboard-text')) {
+        setInterval(updateScheduleStatus, 1000);
+        updateScheduleStatus();
+    }
+
+})();
