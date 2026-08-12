@@ -316,6 +316,15 @@
         const dots = Array.from(dotsContainer.querySelectorAll('.dot'));
 
         function updateCarousel() {
+            // Silenciar todos los videos del carrusel al cambiar de lámina
+            document.querySelectorAll('.carousel-video').forEach(v => {
+                v.muted = true;
+                const btn = v.nextElementSibling;
+                if (btn && btn.classList.contains('btn-escuchar')) {
+                    btn.innerHTML = '<span class="icon">🔊</span> Escuchar';
+                }
+            });
+
             cards.forEach((card, i) => {
                 card.classList.remove('active', 'prev', 'next', 'prev-far', 'next-far', 'hidden');
                 
@@ -362,6 +371,7 @@
         const dragThreshold = 50;
 
         const dragStart = (e) => {
+            if (e.target.closest('.btn-escuchar')) return;
             isDraggingCarousel = true;
             startXCarousel = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
             // Prevenir el drag por defecto de imágenes
@@ -429,6 +439,12 @@
 
         if (link.hasAttribute('data-target')) {
             const targetId = link.getAttribute('data-target');
+
+            if (targetId === 'contacto' && (link.classList.contains('nav-cta') || link.classList.contains('mobile-cta') || link.classList.contains('btn-pill'))) {
+                openAppointmentModal(depthPrefix);
+                return;
+            }
+
             const targetElement = document.getElementById(targetId);
             
             if (targetElement) {
@@ -444,6 +460,63 @@
             window.location.href = depthPrefix + 'servicios/' + page + '/index.html';
         }
     });
+
+    function openAppointmentModal(depthPrefix) {
+        let modalOverlay = document.getElementById('appointment-overlay');
+        if (!modalOverlay) {
+            modalOverlay = document.createElement('div');
+            modalOverlay.id = 'appointment-overlay';
+            modalOverlay.className = 'appointment-overlay';
+            modalOverlay.innerHTML = `
+                <div class="appointment-modal">
+                    <button class="appointment-close" id="appointment-close">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                    <h2>Elige tu tipo de cita</h2>
+                    <div class="appointment-options">
+                        <a href="${depthPrefix}servicios/detailing/index.html" class="appointment-card">
+                            <div class="appointment-card-bg" style="background-image: url('${depthPrefix}images/botones/detailing.jpg')"></div>
+                            <div class="appointment-card-content">
+                                <div class="appointment-card-title">Detailing</div>
+                                <div class="appointment-card-desc">Cotiza en vivo todos los servicios y envianos tu cotizacion a nuestro whatssapp ....</div>
+                            </div>
+                        </a>
+                        <a href="${depthPrefix}servicios/domicilio/index.html" class="appointment-card">
+                            <div class="appointment-card-bg" style="background-image: url('${depthPrefix}images/botones/domicilio.jpg')"></div>
+                            <div class="appointment-card-content">
+                                <div class="appointment-card-title">A Domicilio</div>
+                                <div class="appointment-card-desc">Envianos tu fecha/hora que deseas y agenda tu servicio a domicilio</div>
+                            </div>
+                        </a>
+                        <a href="${depthPrefix}servicios/mecanica/index.html" class="appointment-card">
+                            <div class="appointment-card-bg" style="background-image: url('${depthPrefix}images/botones/mecanica.jpg')"></div>
+                            <div class="appointment-card-content">
+                                <div class="appointment-card-title">Mecánica</div>
+                                <div class="appointment-card-desc">Agenda tu cita en nuestra sucursal para las necesidades que tengas</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modalOverlay);
+
+            document.getElementById('appointment-close').addEventListener('click', () => {
+                modalOverlay.classList.remove('is-open');
+            });
+            modalOverlay.addEventListener('click', (e) => {
+                if(e.target === modalOverlay) modalOverlay.classList.remove('is-open');
+            });
+        }
+        
+        if (mobileMenu && mobileMenu.classList.contains('is-open')) {
+            closeMobileMenu();
+        }
+
+        modalOverlay.classList.add('is-open');
+    }
 
     /* ── 7. Lógica del Horario (Costa Rica UTC-6) ────────────── */
     function updateScheduleStatus() {

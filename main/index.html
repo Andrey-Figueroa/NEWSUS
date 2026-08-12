@@ -51,7 +51,7 @@
                         <li role="none"><a href="#" data-page="mecanica" class="dropdown-item"
                                 role="menuitem">Mecánica</a></li>
                         <li role="none"><a href="#" data-page="domicilio" class="dropdown-item" role="menuitem">Servicio a domicilio</a></li>
-                        <li role="none"><a href="#" data-page="productos" class="dropdown-item" role="menuitem">Productos</a></li>
+                        <li role="none"><a href="#" style="pointer-events: none; opacity: 0.5;" class="dropdown-item" role="menuitem">Productos</a></li>
                         <li role="none"><a href="#" data-page="promociones" class="dropdown-item" role="menuitem">Promociones</a></li>
                     </ul>
                 </li>
@@ -103,7 +103,7 @@
                 <a href="#" data-page="detailing" class="mobile-sublink">Detailing</a>
                 <a href="#" data-page="mecanica" class="mobile-sublink">Mecánica</a>
                 <a href="#" data-page="domicilio" class="mobile-sublink">Servicio a domicilio</a>
-                <a href="#" data-page="productos" class="mobile-sublink">Productos</a>
+                <a href="#" style="pointer-events: none; opacity: 0.5;" class="mobile-sublink">Productos</a>
                 <a href="#" data-page="promociones" class="mobile-sublink">Promociones</a>
             </div>
             <a href="#" data-target="sucursal" class="mobile-link">Sucursal</a>
@@ -173,7 +173,7 @@
                 </div>
                 <div class="stats-bar__sep"></div>
                 <div class="stats-bar__stat">
-                    <span class="stats-bar__number">+1,500</span>
+                    <span class="stats-bar__number">+50.000</span>
                     <span class="stats-bar__label" data-es="Vehículos atendidos" data-en="Vehicles serviced">Vehículos
                         atendidos</span>
                 </div>
@@ -200,8 +200,8 @@
     <!-- ===== CAROUSEL 3D SERVICIOS ===== -->
     <section id="servicios-carousel" class="services-3d" aria-label="Nuestros Servicios Destacados">
         <div class="carousel-header">
-            <h2>Vive la experiencia Sus Amigos.<br>Cuidado por nosotros, brillo para tu carro.</h2>
-            <button class="btn-pill">Agendar cita</button>
+            <h2>Vive la experiencia Sus Amigos.<br>Cuidamos tu carro por dentro y por fuera.</h2>
+            <button class="btn-pill" data-target="contacto">Agendar cita</button>
         </div>
 
         <div class="carousel-container">
@@ -209,61 +209,76 @@
 
                 <div class="lamina card">
                     <div class="card-img-wrapper">
-                        <img src="../images/laminas/1.jpg" alt="Lavado Premium"
-                            onerror="this.src='../images/Logos/SusAmigosLogotipo.png'; this.classList.add('fallback-img');">
+                        <video class="carousel-video" muted playsinline loop autoplay poster="../images/laminas/1.jpg">
+                            <source src="../images/carrusel/video01.mov">
+                        </video>
+                        <button class="btn-escuchar" onclick="const v = this.previousElementSibling; v.muted = !v.muted; this.innerHTML = v.muted ? '<span class=\'icon\'>🔊</span> Escuchar' : '<span class=\'icon\'>🔇</span> Silenciar';">
+                            <span class="icon">🔊</span> Escuchar
+                        </button>
                     </div>
                     <div class="card-content">
-                        <h3>Lavado Premium</h3>
-                        <p>Limpieza exterior profunda con productos ecológicos y secado a mano sin rayones para un
-                            brillo inigualable.</p>
+                        <h3>Abrillantado Premium</h3>
+                        <p>Pulido y encerado de la carrocería para eliminar imperfecciones leves, realzar el color y dejar un brillo intenso y uniforme en toda la pintura.</p>
                     </div>
                 </div>
 
                 <div class="lamina card">
                     <div class="card-img-wrapper">
-                        <img src="../images/laminas/2.jpg" alt="Detailing Completo"
-                            onerror="this.src='../images/Logos/SusAmigosLogotipo.png'; this.classList.add('fallback-img');">
+                        <video class="carousel-video" muted playsinline loop autoplay poster="../images/laminas/2.jpg">
+                            <source src="../images/carrusel/video02.mov">
+                        </video>
+                        <button class="btn-escuchar" onclick="const v = this.previousElementSibling; v.muted = !v.muted; this.innerHTML = v.muted ? '<span class=\'icon\'>🔊</span> Escuchar' : '<span class=\'icon\'>🔇</span> Silenciar';">
+                            <span class="icon">🔊</span> Escuchar
+                        </button>
                     </div>
                     <div class="card-content">
-                        <h3>Detailing Completo</h3>
-                        <p>Restauración interior y exterior. Descontaminación, limpieza de tapicería y protección
-                            cerámica duradera.</p>
+                        <h3>Detallado Cerámico</h3>
+                        <p>Aplicación de recubrimiento de nanocerámica que sella la pintura, potencia el brillo y crea una capa protectora contra rayos UV, agua y contaminación, dejando tu carro con un acabado profundo y duradero.</p>
                     </div>
                 </div>
 
                 <div class="lamina card">
                     <div class="card-img-wrapper">
-                        <img src="../images/laminas/3.jpg" alt="Diagnóstico Mecánico"
-                            onerror="this.src='../images/Logos/SusAmigosLogotipo.png'; this.classList.add('fallback-img');">
+                        <video class="carousel-video" muted playsinline loop autoplay poster="../images/laminas/3.jpg">
+                            <source src="../images/carrusel/video03.mov">
+                        </video>
+                        <button class="btn-escuchar" onclick="const v = this.previousElementSibling; v.muted = !v.muted; this.innerHTML = v.muted ? '<span class=\'icon\'>🔊</span> Escuchar' : '<span class=\'icon\'>🔇</span> Silenciar';">
+                            <span class="icon">🔊</span> Escuchar
+                        </button>
                     </div>
                     <div class="card-content">
-                        <h3>Diagnóstico Mecánico</h3>
-                        <p>Escaneo por computadora y revisión completa para detectar fallas antes de que se conviertan
-                            en problemas graves.</p>
+                        <h3>Descarbonización del Motor</h3>
+                        <p>Limpieza profunda de cámaras de combustión, válvulas e inyectores para eliminar residuos de carbón, recuperando potencia, mejorando el consumo de combustible y reduciendo emisiones.</p>
                     </div>
                 </div>
 
                 <div class="lamina card">
                     <div class="card-img-wrapper">
-                        <img src="../images/laminas/4.jpg" alt="Mantenimiento Preventivo"
-                            onerror="this.src='../images/Logos/SusAmigosLogotipo.png'; this.classList.add('fallback-img');">
+                        <video class="carousel-video" muted playsinline loop autoplay poster="../images/laminas/4.jpg">
+                            <source src="../images/carrusel/video04.mov">
+                        </video>
+                        <button class="btn-escuchar" onclick="const v = this.previousElementSibling; v.muted = !v.muted; this.innerHTML = v.muted ? '<span class=\'icon\'>🔊</span> Escuchar' : '<span class=\'icon\'>🔇</span> Silenciar';">
+                            <span class="icon">🔊</span> Escuchar
+                        </button>
                     </div>
                     <div class="card-content">
-                        <h3>Mantenimiento Preventivo</h3>
-                        <p>Cambio de aceite, filtros, revisión de frenos y fluidos para mantener el motor de tu vehículo
-                            como nuevo.</p>
+                        <h3>Servicio Detailing a Domicilio</h3>
+                        <p>Llevamos el detallado hasta donde estés: mismo cuidado y productos premium, sin que tengas que mover tu rutina para mover tu carro.</p>
                     </div>
                 </div>
 
                 <div class="lamina card">
                     <div class="card-img-wrapper">
-                        <img src="../images/laminas/5.jpg" alt="Pulido y Encerado"
-                            onerror="this.src='../images/Logos/SusAmigosLogotipo.png'; this.classList.add('fallback-img');">
+                        <video class="carousel-video" muted playsinline loop autoplay poster="../images/laminas/5.jpg">
+                            <source src="../images/carrusel/video05.mov">
+                        </video>
+                        <button class="btn-escuchar" onclick="const v = this.previousElementSibling; v.muted = !v.muted; this.innerHTML = v.muted ? '<span class=\'icon\'>🔊</span> Escuchar' : '<span class=\'icon\'>🔇</span> Silenciar';">
+                            <span class="icon">🔊</span> Escuchar
+                        </button>
                     </div>
                     <div class="card-content">
-                        <h3>Pulido y Encerado</h3>
-                        <p>Eliminación de micro-rayones y aplicación de ceras premium que protegen la pintura contra el
-                            clima y la suciedad.</p>
+                        <h3>Limpieza de Inyectores</h3>
+                        <p>Eliminación de residuos y depósitos en los inyectores de combustible para restaurar un rociado uniforme, mejorando el arranque, la aceleración y el rendimiento del motor.</p>
                     </div>
                 </div>
 
@@ -284,20 +299,14 @@
         <h3 class="about-section-title">¿Quiénes Somos?</h3>
         <div class="about-container">
             <div class="about-video-wrapper">
-                <video autoplay muted loop playsinline class="about-video" poster="../images/FondoHero.jpg">
-                    <!-- El src real del video se pondrá aquí -->
-                    <source src="../images/Nosotros/videoFondo.mp4" type="video/mp4">
-                    Tu navegador no soporta el formato de video.
-                </video>
+                <img src="../images/Nosotros/imagen01.jpg" alt="Equipo Sus Amigos" class="about-video">
             </div>
             <div class="about-content">
                 <h2>Más que un taller, somos tu equipo de confianza</h2>
-                <p class="about-lead">Ofrecemos servicios de lavado, detailing y mantenimiento mecánico en Cartago,
-                    Taras, con un enfoque en calidad, precios justos y trato cercano con cada cliente.</p>
+                <p class="about-lead">Somos un centro de servicios automotrices en Cartago, Taras, especializado en mantenimiento y reparación mecánica, complementado con lavado y detailing para que tu vehículo salga andando y luciendo como se merece.</p>
                 <div class="about-story">
-                    <p>[ Aquí va la historia real del local. Cuándo empezaron, cómo, qué los motivó, cómo han crecido.
-                        Por favor cuéntame los detalles y actualizaremos este texto para que refleje la verdadera
-                        esencia de Sus Amigos. ]</p>
+                    <p>Diagnosticamos con equipo profesional, trabajamos con repuestos de calidad y te explicamos con claridad qué necesita tu carro y por qué sin letra pequeña ni sorpresas en la factura.</p>
+                    <p>Sabemos que confiar tu vehículo a un taller no es fácil. Por eso nuestro compromiso es simple: precios justos, trabajo garantizado y trato cercano, como si fuéramos tus propios amigos cuidando tu carro.</p>
                 </div>
             </div>
         </div>
@@ -368,7 +377,7 @@
 
                 <!-- Nota sobre feriados -->
                 <p class="schedule-note">
-                    <span class="gold-dot"></span> El horario puede variar por los feriados. Te recomendamos preguntar al número <a href="https://wa.me/50670491753" target="_blank" rel="noopener noreferrer" class="text-gold">+506 7049-1753</a>
+                    <span class="gold-dot"></span> El horario puede variar por los feriados. Te recomendamos preguntar al número <a href="https://wa.me/50670491753?text=Hola,%20vengo%20del%20sitio%20web,%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" class="text-gold">+506 7049-1753</a>
                 </p>
             </div>
         </div>
@@ -420,13 +429,15 @@
     <footer id="contacto" class="site-footer">
         <div class="footer-main-row">
             <div class="footer-brand">
+                <a href="#" data-target="inicio" aria-label="Ir al inicio">
                 <img src="../images/Logos/SusAmigosLogotipo.png" alt="Sus Amigos Logo" class="footer-logo">
+            </a>
             </div>
             
             <div class="footer-grid">
                 <!-- Columna 1: WhatsApp -->
                 <div class="footer-col">
-                    <a href="https://wa.me/50670491753" target="_blank" rel="noopener noreferrer" class="footer-icon-link">
+                    <a href="https://wa.me/50670491753?text=Hola,%20vengo%20del%20sitio%20web,%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" class="footer-icon-link">
                         <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
                             <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 3.825 0 6.938 3.112 6.938 6.937 0 3.825-3.113 6.938-6.938 6.938z"/>
                         </svg>
@@ -436,11 +447,11 @@
                 </div>
                 <!-- Columna 2: Ubicación -->
                 <div class="footer-col">
-                    <span class="footer-icon-link">
+                    <a href="https://www.google.com/maps/place/Sus+Amigos+Centro+de+Servicios/@9.8807622,-83.9372587,17z/data=!3m1!4b1!4m6!3m5!1s0x8fa0e1e746fcf4ff:0xee9a6c511f924492!8m2!3d9.8807569!4d-83.9346838!16s%2Fg%2F11h7_v2dlq?entry=ttu&g_ep=EgoyMDI2MDgwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="footer-icon-link">
                         <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                         </svg>
-                    </span>
+                    </a>
                     <strong>Taras, Cartago</strong>
                     <span>V3J8+84, Provincia de Cartago</span>
                 </div>
@@ -456,11 +467,11 @@
                 </div>
                 <!-- Columna 4: Horario -->
                 <div class="footer-col">
-                    <span class="footer-icon-link">
+                    <a href="#" data-target="horario" class="footer-icon-link">
                         <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
                             <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
                         </svg>
-                    </span>
+                    </a>
                     <strong>Abierto Lunes a Sábado:</strong>
                     <span>07:00 am - 05:00 pm</span>
                 </div>
@@ -471,19 +482,20 @@
             <p class="footer-slogan">Cuidamos tu auto como si fuera nuestro. ¡El mejor servicio garantizado!</p>
         </div>
 
-        <div class="footer-bottom-links">
+                <div class="footer-bottom-links">
             <a href="#" data-target="about">🔗 ¿Quiénes Somos?</a>
-            <a href="#" data-target="servicios-btn">🔗 Servicios</a>
             <a href="#" data-target="sucursal">🔗 Ubicación</a>
-            <a href="#" data-target="horario">🔗 Preguntas Frecuentes</a>
-            <a href="#">🔗 Términos y Condiciones</a>
-            <a href="#">🔗 Política de Privacidad</a>
+            <a href="#" data-page="detailing">🔗 Detailing</a>
+            <a href="#" data-page="mecanica">🔗 Mecánica</a>
+            <a href="#" data-page="domicilio">🔗 Servicio a domicilio</a>
+            <a href="#" style="pointer-events: none; opacity: 0.5;">🔗 Productos</a>
+            <a href="#" data-page="promociones">🔗 Promociones</a>
         </div>
     </footer>
     </div>
 
     <!-- ===== WHATSAPP FLOTANTE ===== -->
-    <a href="https://wa.me/50670491753" target="_blank" rel="noopener noreferrer" class="whatsapp-widget"
+    <a href="https://wa.me/50670491753?text=Hola,%20vengo%20del%20sitio%20web,%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" class="whatsapp-widget"
         id="whatsapp-widget" aria-label="SusAmigos WhatsApp">
         <span class="whatsapp-label">SusAmigos Whatsapp</span>
         <img src="../images/Iconos/whatsapp.svg" alt="WhatsApp" class="whatsapp-icon">

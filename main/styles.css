@@ -27,11 +27,6 @@
 body,
 html {
     background-color: var(--black);
-    background-image: url('../images/Fondo/fondo1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
     color: var(--white);
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
@@ -111,7 +106,7 @@ button {
 }
 
 .navbar-logo {
-    height: 100px;
+    height: 80px;
     width: auto;
     object-fit: contain;
     display: block;
@@ -119,7 +114,7 @@ button {
 }
 
 .navbar--scrolled .navbar-logo {
-    height: 100px;
+    height: 70px;
 }
 
 /* ── Menú central ─────────────────────────────────────────── */
@@ -795,13 +790,23 @@ button {
     position: relative;
     width: 100%;
     min-height: 80vh;
-    background: radial-gradient(circle at center, rgba(26, 26, 26, 0.5) 0%, rgba(5, 5, 5, 0.8) 100%);
+    background: url('../images/Fondo/fondo1.jpg') no-repeat center center / cover;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     padding: 140px 20px 80px;
+}
+
+.services-3d::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 15, 15, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1;
 }
 
 /* Cabecera del Carrusel */
@@ -845,8 +850,8 @@ button {
 .carousel-container {
     perspective: 1200px;
     width: 100%;
-    max-width: 1000px;
-    height: 450px;
+    max-width: 1200px;
+    height: 700px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -867,8 +872,8 @@ button {
 /* Tarjetas (Láminas) - Landscape Layout */
 .lamina {
     position: absolute;
-    width: 750px;
-    height: 380px;
+    width: 900px;
+    height: 600px;
     background: transparent;
     border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: 16px;
@@ -899,6 +904,39 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+.carousel-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-escuchar {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background-color: var(--gold);
+    color: #000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: transform 0.2s, background-color 0.2s;
+    z-index: 10;
+}
+
+.btn-escuchar:hover {
+    transform: scale(1.05);
+    background-color: #ffd700;
 }
 
 .card-img-wrapper img {
@@ -1069,25 +1107,18 @@ button {
 
 .about-video-wrapper {
     width: 100%;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-    border: 1px solid rgba(212, 175, 55, 0.2);
     position: relative;
-    aspect-ratio: 16 / 9;
-    background: #000;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .about-video {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.85;
-    transition: opacity 0.3s;
-}
-
-.about-video-wrapper:hover .about-video {
-    opacity: 1;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .about-content {
@@ -2451,4 +2482,145 @@ button {
         flex-direction: column;
         gap: 50px;
     }
+}
+
+/* ============================================================
+   APPOINTMENT MODAL
+   ============================================================ */
+.appointment-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.appointment-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.appointment-modal {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 900px;
+    width: 90%;
+    text-align: center;
+    transform: translateY(30px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.appointment-overlay.is-open .appointment-modal {
+    transform: translateY(0);
+}
+
+.appointment-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: transparent;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.appointment-close:hover {
+    color: var(--gold);
+}
+
+.appointment-modal h2 {
+    font-family: 'Outfit', sans-serif;
+    color: var(--gold);
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.appointment-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+@media(max-width: 768px) {
+    .appointment-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+.appointment-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    position: relative;
+    overflow: hidden;
+}
+
+.appointment-card-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.appointment-card:hover .appointment-card-bg {
+    opacity: 0.4;
+    transform: scale(1.05);
+}
+
+.appointment-card-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    pointer-events: none;
+}
+
+.appointment-card:hover {
+    background: #222;
+    border-color: var(--gold);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.1);
+}
+
+.appointment-card-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--gold-light);
+    margin-bottom: 5px;
+}
+
+.appointment-card-desc {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.75);
+    text-align: center;
+    line-height: 1.3;
+    font-weight: 300;
+    max-width: 95%;
+    margin: 0 auto;
 }

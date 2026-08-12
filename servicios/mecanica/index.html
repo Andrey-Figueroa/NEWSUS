@@ -7,6 +7,7 @@
     <title>Sus Amigos – Mecánica</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../main/styles.css?v=2">
+    <link rel="stylesheet" href="style.css">
     <style>
         body {
             background-color: #000;
@@ -56,7 +57,7 @@
                         <li role="none"><a href="#" data-page="detailing" class="dropdown-item" role="menuitem">Detailing</a></li>
                         <li role="none"><a href="#" data-page="mecanica" class="dropdown-item" role="menuitem">Mecánica</a></li>
                         <li role="none"><a href="#" data-page="domicilio" class="dropdown-item" role="menuitem">Servicio a domicilio</a></li>
-                        <li role="none"><a href="#" data-page="productos" class="dropdown-item" role="menuitem">Productos</a></li>
+                        <li role="none"><a href="#" style="pointer-events: none; opacity: 0.5;" class="dropdown-item" role="menuitem">Productos</a></li>
                         <li role="none"><a href="#" data-page="promociones" class="dropdown-item" role="menuitem">Promociones</a></li>
                     </ul>
                 </li>
@@ -108,7 +109,7 @@
                 <a href="#" data-page="detailing" class="mobile-sublink">Detailing</a>
                 <a href="#" data-page="mecanica" class="mobile-sublink">Mecánica</a>
                 <a href="#" data-page="domicilio" class="mobile-sublink">Servicio a domicilio</a>
-                <a href="#" data-page="productos" class="mobile-sublink">Productos</a>
+                <a href="#" style="pointer-events: none; opacity: 0.5;" class="mobile-sublink">Productos</a>
                 <a href="#" data-page="promociones" class="mobile-sublink">Promociones</a>
             </div>
             <a href="#" data-target="sucursal" class="mobile-link">Sucursal</a>
@@ -118,7 +119,143 @@
         </nav>
     </aside>
 
-    <h1 class="service-title">Mecánica</h1>
+    <!-- Contenedor general para toda la sección -->
+    <main class="mecanica-container">
+        
+        <!-- HEADER / TÍTULO -->
+        <header class="mecanica-header">
+            <h1 class="service-title-gold">Centro de Mecánica</h1>
+            <p class="mecanica-subtitle">Cuidamos el corazón de tu vehículo</p>
+        </header>
+
+        <!-- SERVICIO ESTRELLA -->
+        <section class="mecanica-hero">
+            <div class="hero-content">
+                <span class="hero-badge">Servicio Estrella</span>
+                <h2>Mantenimiento General</h2>
+                <p>El servicio más completo para mantener tu vehículo en óptimas condiciones y evitar daños costosos a futuro.</p>
+                <button class="btn-gold" id="btn-agendar-hero">Agenda tu cita ya</button>
+            </div>
+            <div class="hero-image">
+                <video controls muted playsinline class="hero-video">
+                    <source src="../../videos/mantenimientoGeneral.mov">
+                </video>
+            </div>
+        </section>
+
+        <!-- EXPLORADOR DE SERVICIOS -->
+        <section class="mecanica-explorer" id="mecanica-explorer">
+            <h3 class="section-subtitle">Explora nuestros servicios</h3>
+            <div class="carousel-container">
+                <button class="carousel-btn" id="mecanica-carousel-prev" aria-label="Anterior">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <div class="carousel-track" id="mecanica-carousel-track">
+                    <!-- Tarjetas generadas por JS -->
+                </div>
+                <button class="carousel-btn" id="mecanica-carousel-next" aria-label="Siguiente">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- VISTA DE DETALLE DE CATEGORÍA -->
+        <section class="mecanica-details" id="mecanica-details" style="display: none;">
+            <button class="btn-breadcrumb" id="btn-back-categories">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Volver a Categorías
+            </button>
+            <div class="details-header">
+                <h3 class="details-title" id="details-category-title">Detalles Mecánicos</h3>
+                <p class="details-subtitle">Seleccione los servicios específicos para esta categoría.</p>
+            </div>
+            <div class="subservices-grid" id="subservices-grid">
+                <!-- Tarjetas generadas dinámicamente -->
+            </div>
+            <div class="details-action">
+                <button class="btn-gold" id="btn-agendar-category" disabled>Agendar Servicios Seleccionados</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- BOTÓN GLOBAL DE AGENDAR -->
+    <button class="btn-floating-agendar" id="btn-floating-agendar" style="display: none;">
+        <span class="agendar-count" id="agendar-count">0</span>
+        Agendar Servicios
+    </button>
+
+    <!-- MODAL DE AGENDAMIENTO -->
+    <div class="modal-overlay" id="appointment-modal">
+        <div class="modal-box">
+            <button class="modal-close" id="modal-close" aria-label="Cerrar modal">&times;</button>
+            <h3 class="modal-title" id="modal-title">Agendar Mantenimiento General</h3>
+            <p class="modal-subtitle">Comienza tu reservación seleccionando fecha y hora.</p>
+            
+            <form class="appointment-form" id="appointment-form">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="client-name" class="custom-input" placeholder="Tu nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Vehículo (Marca y Modelo)</label>
+                    <input type="text" id="client-vehicle" class="custom-input" placeholder="Ej. Honda CR-V" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Año del Vehículo</label>
+                    <input type="number" id="client-year" class="custom-input" placeholder="Ej. 2018" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Selecciona el Día</label>
+                    <div class="date-scroll-container" id="date-scroll-container">
+                        <!-- Generado por JS (7 días) -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Selecciona la Hora</label>
+                    <div class="time-grid" id="time-grid">
+                        <label class="time-btn">
+                            <input type="radio" name="client_time" value="07:00 AM">
+                            <span>07:00 AM</span>
+                        </label>
+                        <label class="time-btn">
+                            <input type="radio" name="client_time" value="08:00 AM">
+                            <span>08:00 AM</span>
+                        </label>
+                        <label class="time-btn">
+                            <input type="radio" name="client_time" value="09:00 AM">
+                            <span>09:00 AM</span>
+                        </label>
+                        <label class="time-btn">
+                            <input type="radio" name="client_time" value="10:00 AM">
+                            <span>10:00 AM</span>
+                        </label>
+                        <label class="time-btn">
+                            <input type="radio" name="client_time" value="11:00 AM">
+                            <span>11:00 AM</span>
+                        </label>
+                        <label class="time-btn">
+                            <input type="radio" name="client_time" value="12:00 PM">
+                            <span>12:00 PM</span>
+                        </label>
+                        <label class="time-btn">
+                            <input type="radio" name="client_time" value="01:00 PM">
+                            <span>01:00 PM</span>
+                        </label>
+                        <label class="time-btn">
+                            <input type="radio" name="client_time" value="02:00 PM">
+                            <span>02:00 PM</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-gold btn-submit-modal">Solicitar por WhatsApp</button>
+            </form>
+        </div>
+    </div>
 
     <!-- ===== LANGUAGE SWITCHER ===== -->
     <div class="lang-switcher" id="lang-switcher">
@@ -138,5 +275,60 @@
     </div>
 
     <script src="../../main/script.js"></script>
+    <script src="main.js"></script>
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="footer-main-row">
+            <div class="footer-brand">
+                <a href="#" data-target="inicio" aria-label="Ir al inicio">
+                <img src="../../images/Logos/SusAmigosLogotipo.png" alt="Sus Amigos Logo" class="footer-logo">
+            </a>
+            </div>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="https://wa.me/50670491753?text=Hola,%20vengo%20del%20sitio%20web,%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" class="footer-icon-link">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 3.825 0 6.938 3.112 6.938 6.937 0 3.825-3.113 6.938-6.938 6.938z"/></svg>
+                    </a>
+                    <strong>(506) 7049-1753</strong>
+                    <span>WhatsApp</span>
+                </div>
+                <div class="footer-col">
+                    <span class="footer-icon-link">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    </span>
+                    <strong>Taras, Cartago</strong>
+                    <span>V3J8+84, Provincia de Cartago</span>
+                </div>
+                <div class="footer-col">
+                    <span class="footer-icon-link">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </span>
+                    <strong>info@susamigos.com</strong>
+                    <span>Correo Electronico</span>
+                </div>
+                <div class="footer-col">
+                    <span class="footer-icon-link">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                    </span>
+                    <strong>Abierto Lunes a Sabado:</strong>
+                    <span>07:00 am - 05:00 pm</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-slogan-bar">
+            <p class="footer-slogan">Cuidamos tu auto como si fuera nuestro. El mejor servicio garantizado!</p>
+        </div>
+                <div class="footer-bottom-links">
+            <a href="#" data-target="about">🔗 ¿Quiénes Somos?</a>
+            <a href="#" data-target="sucursal">🔗 Ubicación</a>
+            <a href="#" data-page="detailing">🔗 Detailing</a>
+            <a href="#" data-page="mecanica">🔗 Mecánica</a>
+            <a href="#" data-page="domicilio">🔗 Servicio a domicilio</a>
+            <a href="#" style="pointer-events: none; opacity: 0.5;">🔗 Productos</a>
+            <a href="#" data-page="promociones">🔗 Promociones</a>
+        </div>
+    </footer>
+
 </body>
 </html>
+

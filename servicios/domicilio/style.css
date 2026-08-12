@@ -1,0 +1,108 @@
+/* Estilos específicos para Servicio a Domicilio */
+
+.form-grid {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #f0c14b;
+}
+
+.custom-input {
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: #222;
+    color: #fff;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-input:focus {
+    outline: none;
+    border-color: #f0c14b;
+    box-shadow: 0 0 0 2px rgba(240, 193, 75, 0.2);
+}
+
+/* Selector de Fechas */
+.date-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #f0c14b #222;
+}
+.date-scroll-container::-webkit-scrollbar {
+    height: 6px;
+}
+.date-scroll-container::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 4px;
+}
+.date-scroll-container::-webkit-scrollbar-thumb {
+    background-color: #f0c14b;
+    border-radius: 4px;
+}
+
+.day-card {
+    flex: 0 0 auto;
+    width: 90px;
+    padding: 10px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+.day-card:hover:not(.disabled) {
+    border-color: #f0c14b;
+    background: #222;
+}
+.day-card.active {
+    background: rgba(240, 193, 75, 0.1);
+    border-color: #f0c14b;
+    box-shadow: 0 0 10px rgba(240, 193, 75, 0.2);
+}
+.day-card.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #111;
+    border-color: #444;
+}
+.day-card.disabled .day-name {
+    color: #ff4d4d;
+}
+.day-name {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #ccc;
+    margin-bottom: 4px;
+}
+.day-date {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+}
+.day-month {
+    display: block;
+    font-size: 0.75rem;
+    color: #888;
+}

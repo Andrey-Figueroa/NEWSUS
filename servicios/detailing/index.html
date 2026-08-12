@@ -9,23 +9,7 @@
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../../main/styles.css?v=2">
-    <style>
-        body {
-            background-color: #000;
-            color: #fff;
-            min-height: 150vh;
-            /* Para permitir scroll y ver el cambio del navbar */
-            margin: 0;
-            padding-top: 100px;
-        }
-
-        .service-title {
-            text-align: center;
-            font-family: 'Outfit', sans-serif;
-            font-size: 3rem;
-            margin-top: 50px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -62,7 +46,7 @@
                         <li role="none"><a href="#" data-page="mecanica" class="dropdown-item"
                                 role="menuitem">Mecánica</a></li>
                         <li role="none"><a href="#" data-page="domicilio" class="dropdown-item" role="menuitem">Servicio a domicilio</a></li>
-                        <li role="none"><a href="#" data-page="productos" class="dropdown-item" role="menuitem">Productos</a></li>
+                        <li role="none"><a href="#" style="pointer-events: none; opacity: 0.5;" class="dropdown-item" role="menuitem">Productos</a></li>
                         <li role="none"><a href="#" data-page="promociones" class="dropdown-item" role="menuitem">Promociones</a></li>
                     </ul>
                 </li>
@@ -114,7 +98,7 @@
                 <a href="#" data-page="detailing" class="mobile-sublink">Detailing</a>
                 <a href="#" data-page="mecanica" class="mobile-sublink">Mecánica</a>
                 <a href="#" data-page="domicilio" class="mobile-sublink">Servicio a domicilio</a>
-                <a href="#" data-page="productos" class="mobile-sublink">Productos</a>
+                <a href="#" style="pointer-events: none; opacity: 0.5;" class="mobile-sublink">Productos</a>
                 <a href="#" data-page="promociones" class="mobile-sublink">Promociones</a>
             </div>
             <a href="#" data-target="sucursal" class="mobile-link">Sucursal</a>
@@ -124,7 +108,631 @@
         </nav>
     </aside>
 
-    <h1 class="service-title">Detailing</h1>
+    <section class="detailing-header">
+        <h1 class="service-title-gold">Detailing</h1>
+        
+        <a href="../../InfoServicios/CATALOGO DE PRODUCTOS SUS AMIGOS.pdf" download class="btn-download-icon" aria-label="Descargar Catálogo de Servicios PDF">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span class="btn-download-text">Descargar Catálogo de Servicios (PDF)</span>
+        </a>
+    </section>
+
+    <!-- Contenedor Principal (Limpio para rediseño) -->
+    <section class="detailing-content">
+        <div class="live-quote-container">
+            <div class="quote-header">
+                <h2 class="quote-title">Cotiza tu servicio en vivo</h2>
+                <div class="quote-cart">
+                    <svg class="cart-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-total" id="cart-total">₡0</span>
+                </div>
+            </div>
+            
+            <div class="wizard-viewport">
+                <div class="wizard-track" id="wizard-track">
+                    
+                    <!-- PASO 1 -->
+                    <div class="step-container" id="step-1">
+                        <h3 class="step-title">Paso 1: Tamaño del Vehículo</h3>
+                        <p class="step-description">Seleccione el tamaño de su auto para mostrar los precios adecuados.</p>
+                        <div class="vehicle-grid">
+                            <!-- Moto -->
+                            <label class="vehicle-card">
+                                <input type="radio" name="vehicle" value="moto" class="vehicle-input">
+                                <div class="vehicle-content">
+                                    <img src="../../images/Detailing/moto.png" alt="Moto" class="vehicle-img">
+                                    <span class="vehicle-name">Moto / Cuadraciclo</span>
+                                </div>
+                            </label>
+
+                            <!-- Sedan -->
+                            <label class="vehicle-card">
+                                <input type="radio" name="vehicle" value="sedan" class="vehicle-input">
+                                <div class="vehicle-content">
+                                    <img src="../../images/Detailing/sedan.png" alt="Sedán" class="vehicle-img">
+                                    <span class="vehicle-name">Sedán o Hatchback</span>
+                                </div>
+                            </label>
+
+                            <!-- SUV -->
+                            <label class="vehicle-card">
+                                <input type="radio" name="vehicle" value="suv" class="vehicle-input">
+                                <div class="vehicle-content">
+                                    <img src="../../images/Detailing/suv.png" alt="SUV" class="vehicle-img">
+                                    <span class="vehicle-name">SUV o Crossover</span>
+                                </div>
+                            </label>
+
+                            <!-- 4x4 -->
+                            <label class="vehicle-card">
+                                <input type="radio" name="vehicle" value="4x4" class="vehicle-input">
+                                <div class="vehicle-content">
+                                    <img src="../../images/Detailing/vehiculo.png" alt="4x4" class="vehicle-img">
+                                    <span class="vehicle-name">4x4 o 7 Pasajeros</span>
+                                </div>
+                            </label>
+
+                            <!-- Minibús -->
+                            <label class="vehicle-card">
+                                <input type="radio" name="vehicle" value="minibus" class="vehicle-input">
+                                <div class="vehicle-content">
+                                    <img src="../../images/Detailing/transporte.png" alt="Minibús" class="vehicle-img">
+                                    <span class="vehicle-name">Minibús (12-15 pax)</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- PASO 2: PAQUETES -->
+                    <div class="step-container" id="step-2">
+                        <h3 class="step-title">Paso 2: Tipo de Lavado / Detallado</h3>
+                        <p class="step-description">Seleccione el paquete que mejor se adapte a sus necesidades.</p>
+                        
+                        <div class="package-grid">
+                            <!-- Premium -->
+                            <label class="package-card">
+                                <input type="radio" name="package" value="premium" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <span class="package-name">Premium</span>
+                                    <div class="package-price dynamic-price" data-pkg="premium">₡1.000</div>
+                                    <div class="info-overlay">
+                                        <p>Incluye detallado profundo y encerado.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <!-- Gold -->
+                            <label class="package-card">
+                                <input type="radio" name="package" value="gold" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <span class="package-name">Gold</span>
+                                    <div class="package-price dynamic-price" data-pkg="gold">₡1.000</div>
+                                    <div class="info-overlay">
+                                        <p>Máximo detalle, limpieza a vapor y más.</p>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <!-- Abrillantado -->
+                            <label class="package-card">
+                                <input type="radio" name="package" value="abrillantado" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <span class="package-name">Abrillantado Premium</span>
+                                    <div class="package-price dynamic-price" data-pkg="abrillantado">₡45.000</div>
+                                    <div class="info-overlay">
+                                        <p>Corrección de pintura de 1 paso.</p>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <!-- Hidrosellado -->
+                            <label class="package-card">
+                                <input type="radio" name="package" value="hidrosellado" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <span class="package-name">Hidrosellado Cerámico</span>
+                                    <div class="package-price dynamic-price" data-pkg="hidrosellado">₡60.000</div>
+                                    <div class="info-overlay">
+                                        <p>Protección hidrofóbica avanzada.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <!-- Detallado Cerámico -->
+                            <label class="package-card">
+                                <input type="radio" name="package" value="ceramico" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <span class="package-name">Detallado Cerámico</span>
+                                    <div class="package-price dynamic-price" data-pkg="ceramico">₡1.000</div>
+                                    <div class="info-overlay">
+                                        <p>Protección y brillo de máxima duración.</p>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <!-- Saltar Detailing -->
+                            <label class="package-card" style="grid-column: 1 / -1; max-width: 400px; margin: 0 auto;">
+                                <input type="radio" name="package" value="skip" class="package-input">
+                                <div class="package-content" style="padding: 1rem; flex-direction: row; justify-content: center; gap: 1rem;">
+
+                                    <div style="text-align: left;">
+                                        <span class="package-name" style="margin: 0; display: block; font-size: 1.1rem;">Saltar Detailing</span>
+                                        <span class="package-desc" style="font-size: 0.85rem;">No estoy interesado, ir a servicios especiales.</span>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- PASO 3: DETALLADO INTERIOR -->
+                    <!-- PASO 3: DETALLADO INTERIOR -->
+                    <div class="step-container" id="step-3">
+                        <h3 class="step-title">Paso 3: Detallado de Interior</h3>
+                        <p class="interior-note" id="note-clasico" style="display:none; color: #ff6b6b; font-size: 0.85rem; text-align: center; margin-bottom: 0.5rem;">* Mate y Brillante no están disponibles con el paquete Clásico.</p>
+                        
+                        <div class="interior-sections">
+                            <div class="interior-group-compact">
+                                <h4 class="interior-subtitle">1. Detallador Interior</h4>
+                                <div class="package-grid mini-grid">
+                                    <label class="package-card mini-card">
+                                        <input type="radio" name="interior_detail" value="nice" class="package-input">
+                                        <div class="package-content">
+                                            <div class="package-icon">🧴</div>
+                                            <span class="package-name">Nice</span>
+                                        </div>
+                                    </label>
+                                    <label class="package-card mini-card">
+                                        <input type="radio" name="interior_detail" value="trapo" class="package-input" checked>
+                                        <div class="package-content">
+                                            <div class="package-icon">🧽</div>
+                                            <span class="package-name">Trapo</span>
+                                        </div>
+                                    </label>
+                                    <label class="package-card mini-card">
+                                        <input type="radio" name="interior_detail" value="mate" class="package-input cond-clasico">
+                                        <div class="package-content">
+                                            <div class="package-icon">
+                                                <svg width="32" height="32" viewBox="0 0 24 24" fill="#111" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                                                </svg>
+                                            </div>
+                                            <span class="package-name">Mate</span>
+                                        </div>
+                                    </label>
+                                    <label class="package-card mini-card">
+                                        <input type="radio" name="interior_detail" value="brillante" class="package-input cond-clasico">
+                                        <div class="package-content">
+                                            <div class="package-icon">✨</div>
+                                            <span class="package-name">Brillante</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="interior-group-compact">
+                                <h4 class="interior-subtitle">2. Aromatizante</h4>
+                                <div class="package-grid mini-grid">
+                                    <label class="package-card mini-card">
+                                        <input type="radio" name="interior_aroma" value="limon" class="package-input">
+                                        <div class="package-content">
+                                            <div class="package-icon">🍋</div>
+                                            <span class="package-name">Limón</span>
+                                        </div>
+                                    </label>
+                                    <label class="package-card mini-card">
+                                        <input type="radio" name="interior_aroma" value="frutos" class="package-input">
+                                        <div class="package-content">
+                                            <div class="package-icon">🍒</div>
+                                            <span class="package-name">Frutos rojos</span>
+                                        </div>
+                                    </label>
+                                    <label class="package-card mini-card">
+                                        <input type="radio" name="interior_aroma" value="carro_nuevo" class="package-input">
+                                        <div class="package-content">
+                                            <div class="package-icon">🚗</div>
+                                            <span class="package-name">Carro</span>
+                                        </div>
+                                    </label>
+                                    <label class="package-card mini-card">
+                                        <input type="radio" name="interior_aroma" value="ninguno" class="package-input" checked>
+                                        <div class="package-content">
+                                            <div class="package-icon">✖️</div>
+                                            <span class="package-name">Nada</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="interior-group-compact">
+                                <h4 class="interior-subtitle">3. Alfombras</h4>
+                                <div class="package-grid mini-grid">
+                                    <label class="package-card mini-card">
+                                        <input type="radio" name="interior_nice" value="si" class="package-input">
+                                        <div class="package-content">
+                                            <div class="package-icon">✅</div>
+                                            <span class="package-name">Con Nice</span>
+                                        </div>
+                                    </label>
+                                    <label class="package-card mini-card">
+                                        <input type="radio" name="interior_nice" value="no" class="package-input" checked>
+                                        <div class="package-content">
+                                            <div class="package-icon">❌</div>
+                                            <span class="package-name">Sin Nice</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PASO 4: SERVICIOS ESPECIALES -->
+                    <div class="step-container" id="step-4">
+                        <h3 class="step-title">Paso 4: Detallados Especiales</h3>
+                        <p class="step-description">Seleccione uno o varios servicios especiales (Opcional).</p>
+                        
+                        <div class="package-grid">
+                            <label class="package-card">
+                                <input type="checkbox" name="special" value="ninguno" id="special-none" class="package-input" checked>
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">✖️</div>
+                                    <span class="package-name">Ninguno</span>
+                                    <div class="package-price dynamic-price" data-special="ninguno"></div>
+                                    <div class="info-overlay">
+                                        <p>No agregar ningún servicio especial a la cotización.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="package-card">
+                                <input type="checkbox" name="special" value="silvines" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">💡</div>
+                                    <span class="package-name">Pulido de silvines</span>
+                                    <div class="package-price dynamic-price" data-special="silvines"></div>
+                                    <div class="info-overlay">
+                                        <p>Restaura la claridad de los faros, eliminando lo opaco y amarillento.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="package-card">
+                                <input type="checkbox" name="special" value="vidrios" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">🪟</div>
+                                    <span class="package-name">Pulido de vidrios</span>
+                                    <div class="package-price dynamic-price" data-special="vidrios"></div>
+                                    <div class="info-overlay">
+                                        <p>Elimina manchas de agua seca, sarro y contaminación de cristales.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="package-card">
+                                <input type="checkbox" name="special" value="parabrisas" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">🚘</div>
+                                    <span class="package-name">Pulido de parabrisas</span>
+                                    <div class="package-price dynamic-price" data-special="parabrisas"></div>
+                                    <div class="info-overlay">
+                                        <p>Descontaminación profunda para mejorar visibilidad y evitar reflejos.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="package-card">
+                                <input type="checkbox" name="special" value="carroceria" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">✨</div>
+                                    <span class="package-name">Pulido de carrocería</span>
+                                    <div class="package-price dynamic-price" data-special="carroceria"></div>
+                                    <div class="info-overlay">
+                                        <p>Corrección que elimina rayones y devuelve el brillo original al auto.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="package-card">
+                                <input type="checkbox" name="special" value="motor" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">⚙️</div>
+                                    <span class="package-name">Lavado de motor</span>
+                                    <div class="package-price dynamic-price" data-special="motor"></div>
+                                    <div class="info-overlay">
+                                        <p>Limpieza detallada del compartimiento del motor con acabado protector.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="package-card">
+                                <input type="checkbox" name="special" value="tapiceria" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">💺</div>
+                                    <span class="package-name">Tapicería profunda</span>
+                                    <div class="package-price dynamic-price" data-special="tapiceria"></div>
+                                    <div class="info-overlay">
+                                        <p>Lavado profundo de asientos, alfombras y puertas con extracción.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="package-card">
+                                <input type="checkbox" name="special" value="chasis" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">🔧</div>
+                                    <span class="package-name">Lavado de chasis</span>
+                                    <div class="package-price dynamic-price" data-special="chasis"></div>
+                                    <div class="info-overlay">
+                                        <p>Limpieza a presión inferior para remover barro, grasa y suciedad.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="package-card">
+                                <input type="checkbox" name="special" value="lluvia" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">🛠️</div>
+                                    <span class="package-name">Lluvia de grafito</span>
+                                    <div class="package-price dynamic-price" data-special="lluvia"></div>
+                                    <div class="info-overlay">
+                                        <p>Lubricación del chasis con grafito para proteger y evitar ruidos.</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- PASO 5: EXTRAS FINALES -->
+                    <div class="step-container" id="step-5">
+                        <h3 class="step-title">Paso 5: Extras Finales</h3>
+                        <p class="step-description">Puede seleccionar varios extras o "Ninguno".</p>
+                        
+                        <div class="package-grid">
+                            <label class="package-card">
+                                <input type="checkbox" name="extra" value="ninguno" id="extra-none" class="package-input" checked>
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">✖️</div>
+                                    <span class="package-name">Ninguno</span>
+                                    <div class="package-price dynamic-price" data-extra="ninguno"></div>
+                                    <div class="info-overlay">
+                                        <p>No agregar ningún extra final a la cotización.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="package-card">
+                                <input type="checkbox" name="extra" value="cera" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">🧴</div>
+                                    <span class="package-name">Cera premium</span>
+                                    <div class="package-price dynamic-price" data-extra="cera"></div>
+                                    <div class="info-overlay">
+                                        <p>Cera premium para un brillo superior y protección temporal extra.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="package-card">
+                                <input type="checkbox" name="extra" value="protector_int" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">🛡️</div>
+                                    <span class="package-name">Protector de interiores</span>
+                                    <div class="package-price dynamic-price" data-extra="protector_int"></div>
+                                    <div class="info-overlay">
+                                        <p>Acondicionador y protector UV para plásticos y vinilos del interior.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="package-card">
+                                <input type="checkbox" name="extra" value="protector_asientos" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">💺</div>
+                                    <span class="package-name">Protector de asientos</span>
+                                    <div class="package-price dynamic-price" data-extra="protector_asientos"></div>
+                                    <div class="info-overlay">
+                                        <p>Crema humectante y protectora para alargar la vida de los asientos.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="package-card">
+                                <input type="checkbox" name="extra" value="anti_empanante" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">🌫️</div>
+                                    <span class="package-name">Anti empañante</span>
+                                    <div class="package-price dynamic-price" data-extra="anti_empanante"></div>
+                                    <div class="info-overlay">
+                                        <p>Tratamiento en los vidrios interiores para evitar que se empañen.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="package-card">
+                                <input type="checkbox" name="extra" value="repelente" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">💧</div>
+                                    <span class="package-name">Repelente de agua</span>
+                                    <div class="package-price dynamic-price" data-extra="repelente"></div>
+                                    <div class="info-overlay">
+                                        <p>Capa hidrofóbica ligera que ayuda a repeler el agua y polvo.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="package-card">
+                                <input type="checkbox" name="extra" value="sellador" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">💎</div>
+                                    <span class="package-name">Sellador</span>
+                                    <div class="package-price dynamic-price" data-extra="sellador"></div>
+                                    <div class="info-overlay">
+                                        <p>Sellador sintético de larga duración para máxima protección.</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="package-card">
+                                <input type="checkbox" name="extra" value="partes_negras" class="package-input">
+                                <div class="package-content">
+                                    <div class="info-toggle" onclick="toggleInfo(event)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="package-icon">⬛</div>
+                                    <span class="package-name">Partes negras</span>
+                                    <div class="package-price dynamic-price" data-extra="partes_negras"></div>
+                                    <div class="info-overlay">
+                                        <p>Restaurador profundo para plásticos y molduras negras del exterior.</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- PASO 6: CIERRE / RESUMEN -->
+                    <div class="step-container" id="step-6">
+                        <h3 class="step-title">Resumen de tu Cotización</h3>
+                        
+                        <div class="summary-ticket" id="summary-ticket">
+                            <!-- JS inyectará el contenido aquí -->
+                        </div>
+
+                        <div class="checkout-actions">
+                            <a href="#" target="_blank" class="btn-checkout btn-whatsapp" id="btn-whatsapp">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12.031 0C5.383 0 0 5.383 0 12.031c0 2.12.548 4.195 1.593 6.015L.305 23.364l5.44-1.428A11.966 11.966 0 0 0 12.031 24c6.648 0 12.031-5.383 12.031-12.031C24.062 5.383 18.679 0 12.031 0zm0 21.996c-1.802 0-3.57-.484-5.127-1.408l-.367-.218-3.805 1 .998-3.71-.24-.38a9.982 9.982 0 0 1-1.527-5.32C1.934 6.486 6.42 2 12.031 2c5.61 0 10.096 4.486 10.096 10.096 0 5.61-4.486 10.096-10.096 10.096zm5.532-7.556c-.303-.153-1.796-.888-2.073-.99-.278-.102-.48-.153-.683.152-.202.305-.783.99-.96 1.194-.176.204-.353.23-.656.076-.303-.152-1.282-.472-2.443-1.506-.902-.803-1.51-1.795-1.686-2.1-.177-.305-.019-.47.133-.62.137-.137.303-.356.455-.534.152-.178.203-.305.303-.508.102-.203.05-.38-.025-.533-.076-.152-.683-1.646-.935-2.253-.247-.594-.497-.514-.683-.524-.176-.01-.378-.01-.58-.01s-.532.076-.81.38c-.278.305-1.062 1.037-1.062 2.527s1.087 2.932 1.238 3.136c.152.204 2.14 3.267 5.183 4.58.723.313 1.287.5 1.727.64.726.23 1.386.198 1.905.12.583-.087 1.796-.733 2.05-1.442.253-.709.253-1.316.177-1.442-.077-.126-.279-.202-.582-.355z"/>
+                                </svg>
+                                Enviar por WhatsApp
+                            </a>
+                            <a href="../domicilio/index.html" class="btn-checkout btn-schedule">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                Agendar a domicilio
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- NAVEGACIÓN -->
+            <div class="wizard-nav">
+                <button class="btn-wizard btn-prev" id="btn-prev" disabled>Volver</button>
+                <button class="btn-wizard btn-next" id="btn-next">Siguiente</button>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="footer-main-row">
+            <div class="footer-brand">
+                <a href="#" data-target="inicio" aria-label="Ir al inicio">
+                <img src="../../images/Logos/SusAmigosLogotipo.png" alt="Sus Amigos Logo" class="footer-logo">
+            </a>
+            </div>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="https://wa.me/50670491753?text=Hola,%20vengo%20del%20sitio%20web,%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" class="footer-icon-link">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 3.825 0 6.938 3.112 6.938 6.937 0 3.825-3.113 6.938-6.938 6.938z"/></svg>
+                    </a>
+                    <strong>(506) 7049-1753</strong>
+                    <span>WhatsApp</span>
+                </div>
+                <div class="footer-col">
+                    <span class="footer-icon-link">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    </span>
+                    <strong>Taras, Cartago</strong>
+                    <span>V3J8+84, Provincia de Cartago</span>
+                </div>
+                <div class="footer-col">
+                    <span class="footer-icon-link">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </span>
+                    <strong>info@susamigos.com</strong>
+                    <span>Correo Electrónico</span>
+                </div>
+                <div class="footer-col">
+                    <span class="footer-icon-link">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                    </span>
+                    <strong>Abierto Lunes a Sábado:</strong>
+                    <span>07:00 am - 05:00 pm</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-slogan-bar">
+            <p class="footer-slogan">Cuidamos tu auto como si fuera nuestro. ¡El mejor servicio garantizado!</p>
+        </div>
+                <div class="footer-bottom-links">
+            <a href="#" data-target="about">🔗 ¿Quiénes Somos?</a>
+            <a href="#" data-target="sucursal">🔗 Ubicación</a>
+            <a href="#" data-page="detailing">🔗 Detailing</a>
+            <a href="#" data-page="mecanica">🔗 Mecánica</a>
+            <a href="#" data-page="domicilio">🔗 Servicio a domicilio</a>
+            <a href="#" style="pointer-events: none; opacity: 0.5;">🔗 Productos</a>
+            <a href="#" data-page="promociones">🔗 Promociones</a>
+        </div>
+    </footer>
 
     <!-- ===== LANGUAGE SWITCHER ===== -->
     <div class="lang-switcher" id="lang-switcher">
@@ -147,6 +755,7 @@
     </div>
 
     <script src="../../main/script.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

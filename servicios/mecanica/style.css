@@ -1,0 +1,589 @@
+/* ==========================================================================
+   ESTILOS - SECCIÓN MECÁNICA (Tema Dark/Gold)
+   ========================================================================== */
+
+/* === VARIABLES & BASE === */
+:root {
+    --gold: #d4af37;
+    --gold-light: #f5d76e;
+    --gold-dark: #b5952f;
+    --bg-dark: #111;
+    --bg-card: #1a1a1a;
+    --text-main: #fff;
+    --text-muted: #aaa;
+    --border-color: #333;
+}
+
+html {
+    background-image: none !important;
+    background-color: #000 !important;
+}
+
+body {
+    background-image: none !important;
+    background-color: transparent !important;
+    position: relative;
+    z-index: 1;
+}
+
+body::before {
+    content: "";
+    display: block !important;
+    position: fixed;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    background-image: url('../../images/mecanica/FondoMecanica.jpg') !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(5px) brightness(0.3) !important;
+    z-index: -1;
+}
+
+/* === TIPOGRAFÍA & UTILIDADES === */
+.service-title-gold {
+    font-family: 'Outfit', sans-serif;
+    font-size: 3.5rem;
+    color: var(--gold-light);
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin: 0 0 10px 0;
+    letter-spacing: 2px;
+}
+.mecanica-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+.section-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
+    color: #fff;
+    border-left: 4px solid var(--gold);
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+}
+.btn-gold {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-gold:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+.btn-gold:disabled {
+    background: #333;
+    color: #777;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* === LAYOUT GENERAL === */
+.mecanica-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+/* === HERO SECTION (Mantenimiento General) === */
+.mecanica-hero {
+    background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+}
+.mecanica-hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 4px;
+    background: var(--gold);
+}
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+}
+.hero-badge {
+    display: inline-block;
+    background: rgba(212, 175, 55, 0.15);
+    color: var(--gold-light);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+.hero-content h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.5rem;
+    margin: 0 0 1rem 0;
+    color: #fff;
+}
+.hero-content p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.hero-video {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    border-radius: 12px;
+    border: 2px solid var(--gold-dark);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    object-fit: cover;
+}
+
+/* === CARRUSEL DE CATEGORÍAS === */
+.section-subtitle {
+    margin-bottom: 0.5rem;
+}
+.carousel-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+}
+.carousel-track {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding: 15px 10px; /* Padding for box-shadow */
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 10px; /* Align snap with padding */
+}
+.carousel-track::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+.category-card {
+    flex: 0 0 220px;
+    height: 200px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    box-sizing: border-box;
+    scroll-snap-align: start;
+}
+.category-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+.category-icon {
+    width: 50px;
+    height: 50px;
+    color: var(--gold);
+}
+.category-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #fff;
+    margin: 0;
+}
+.carousel-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+.carousel-btn:hover {
+    background: var(--gold);
+    color: #000;
+    border-color: var(--gold);
+}
+
+/* === VISTA DE DETALLES (Sub-servicios) === */
+.mecanica-details {
+    background: #0a0a0a;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    animation: fadeIn 0.4s ease forwards;
+}
+.btn-breadcrumb {
+    background: transparent;
+    border: none;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 2rem;
+    transition: color 0.3s ease;
+}
+.btn-breadcrumb:hover {
+    color: var(--gold-light);
+}
+.details-header {
+    margin-bottom: 2rem;
+}
+.details-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.2rem;
+    color: #fff;
+    margin: 0 0 5px 0;
+}
+.details-subtitle {
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Tarjetas Sub-servicios (Diseño Referencia) */
+.subservices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+.subservice-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.subservice-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 4px; height: 100%;
+    background: transparent;
+    transition: background 0.3s ease;
+}
+.subservice-card:hover {
+    border-color: #444;
+}
+.subservice-card.selected {
+    border-color: var(--gold);
+    background: rgba(212, 175, 55, 0.05);
+}
+.subservice-card.selected::before {
+    background: var(--gold);
+}
+.subservice-icon {
+    width: 32px;
+    height: 32px;
+    color: #888;
+    flex-shrink: 0;
+    transition: color 0.3s ease;
+}
+.subservice-card.selected .subservice-icon {
+    color: var(--gold);
+}
+.subservice-info {
+    flex: 1;
+}
+.subservice-name {
+    display: block;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 4px;
+    transition: color 0.3s ease;
+}
+.subservice-card.selected .subservice-name {
+    color: var(--gold-light);
+}
+.subservice-desc {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+.details-action {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+}
+
+/* === BOTÓN FLOTANTE === */
+.btn-floating-agendar {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: #000;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    cursor: pointer;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+.btn-floating-agendar:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+.agendar-count {
+    background: #000;
+    color: var(--gold);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+@keyframes bounceIn {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+/* === PROMOCIONES === */
+.mecanica-promos {
+    background: #111;
+    border: 1px dashed var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+}
+.promo-card {
+    background: var(--bg-card);
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+    color: var(--text-muted);
+}
+
+/* === MODAL DE AGENDAMIENTO (Mantenimiento General) === */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal-box {
+    background: var(--bg-card);
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 750px;
+    padding: 2rem;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+.modal-overlay.active .modal-box {
+    transform: translateY(0);
+}
+.modal-close {
+    position: absolute;
+    top: 15px; right: 15px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+}
+.modal-title {
+    font-family: 'Outfit', sans-serif;
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin: 0 0 5px 0;
+}
+.modal-subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+/* Formulario Modal */
+.appointment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--gold-light);
+}
+.custom-input {
+    padding: 12px;
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: #fff;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+.custom-input:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+/* Selector Fecha (Reuso de Domicilio) */
+.date-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) #222;
+}
+.date-scroll-container::-webkit-scrollbar { height: 6px; }
+.date-scroll-container::-webkit-scrollbar-track { background: #222; border-radius: 4px; }
+.date-scroll-container::-webkit-scrollbar-thumb { background-color: var(--gold); border-radius: 4px; }
+
+.day-card {
+    flex: 0 0 auto;
+    width: 80px;
+    padding: 10px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+.day-card:hover:not(.disabled) { border-color: var(--gold); background: #222; }
+.day-card.active {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--gold);
+}
+.day-card.disabled { opacity: 0.5; cursor: not-allowed; border-color: #444; }
+.day-name { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: #ccc; }
+.day-card.disabled .day-name { color: #ff4d4d; }
+.day-date { display: block; font-size: 1.1rem; font-weight: 700; color: #fff; margin: 4px 0; }
+.day-month { display: block; font-size: 0.7rem; color: #888; }
+
+/* Selector Hora */
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+.time-btn {
+    display: block;
+    position: relative;
+    cursor: pointer;
+}
+.time-btn input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.time-btn span {
+    display: block;
+    padding: 12px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.time-btn:hover span { border-color: var(--gold); }
+.time-btn input:checked ~ span {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--gold);
+    color: var(--gold-light);
+}
+
+.btn-submit-modal {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .mecanica-hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+    }
+    .hero-content h2 { font-size: 2rem; }
+    .hero-image { display: none; }
+    .service-title-gold { font-size: 2.5rem; }
+    .mecanica-container { padding: 1.5rem 1rem; }
+}

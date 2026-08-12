@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sus Amigos – Muy Pronto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../main/styles.css?v=2">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            color: #fff;
+            min-height: 100vh;
+            margin: 0;
+            padding-top: 100px;
+            display: flex;
+            flex-direction: column;
+        }
+        .coming-soon-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .coming-soon-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 4rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .coming-soon-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            color: #aaa;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .btn-back {
+            padding: 15px 30px;
+            background: var(--gold);
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 30px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .btn-back:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            color: #000;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+        <div class="navbar-inner">
+
+            <!-- IZQUIERDA: Logo -->
+            <div class="navbar-left">
+                <a href="#" data-target="inicio" class="navbar-logo-link" aria-label="Sus Amigos – Inicio">
+                    <img src="../../images/Logos/SusAmigosLogotipo.png" alt="Sus Amigos Logo" class="navbar-logo">
+                </a>
+            </div>
+
+            <!-- CENTRO: Menú de navegación -->
+            <ul class="navbar-menu" id="navbar-menu" role="menubar">
+                <li role="none"><a href="#" data-target="inicio" class="nav-link" role="menuitem">Inicio</a></li>
+                <li role="none"><a href="#" data-target="about" class="nav-link" role="menuitem">¿Quiénes Somos?</a></li>
+
+                <!-- Dropdown Servicios -->
+                <li class="nav-item--dropdown" role="none">
+                    <button class="nav-link nav-link--dropdown" aria-haspopup="true" aria-expanded="false"
+                        id="servicios-btn" role="menuitem">
+                        Servicios
+                        <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none"
+                            aria-hidden="true">
+                            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <ul class="dropdown-menu" id="dropdown-menu" role="menu" aria-labelledby="servicios-btn">
+                        <li role="none"><a href="#" data-page="detailing" class="dropdown-item" role="menuitem">Detailing</a></li>
+                        <li role="none"><a href="#" data-page="mecanica" class="dropdown-item" role="menuitem">Mecánica</a></li>
+                        <li role="none"><a href="#" data-page="domicilio" class="dropdown-item" role="menuitem">Servicio a domicilio</a></li>
+                        <li role="none"><a href="#" style="pointer-events: none; opacity: 0.5;" class="dropdown-item" role="menuitem">Productos</a></li>
+                        <li role="none"><a href="#" data-page="promociones" class="dropdown-item" role="menuitem">Promociones</a></li>
+                    </ul>
+                </li>
+
+                <li role="none"><a href="#" data-target="sucursal" class="nav-link" role="menuitem">Sucursal</a></li>
+                <li role="none"><a href="#" data-target="horario" class="nav-link" role="menuitem">Horario</a></li>
+
+            </ul>
+
+            <!-- DERECHA: Redes + CTA -->
+            <div class="navbar-right">
+                <a href="https://www.facebook.com/SusAmigos.DetailersCenter" target="_blank" rel="noopener noreferrer"
+                    class="nav-social-btn" id="nav-facebook" aria-label="Facebook">
+                    <img src="../../images/Iconos/facebook.svg" alt="Facebook" class="nav-social-icon">
+                </a>
+                <a href="https://www.instagram.com/susamigos.centrodeservicios/" target="_blank"
+                    rel="noopener noreferrer" class="nav-social-btn" id="nav-instagram" aria-label="Instagram">
+                    <img src="../../images/Iconos/instagram.svg" alt="Instagram" class="nav-social-icon">
+                </a>
+                <a href="#" data-target="contacto" class="nav-cta" id="nav-cta">Agendar Cita</a>
+
+                <!-- Hamburguesa (móvil) -->
+                <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false"
+                    aria-controls="mobile-menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- ===== MENÚ MÓVIL ===== -->
+    <div class="mobile-overlay" id="mobile-overlay" aria-hidden="true"></div>
+    <aside class="mobile-menu" id="mobile-menu" aria-label="Menú móvil" aria-hidden="true">
+        <button class="mobile-menu__close" id="mobile-close" aria-label="Cerrar menú">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+        </button>
+        <nav class="mobile-menu__nav">
+            <a href="#" data-target="inicio" class="mobile-link">Inicio</a>
+            <a href="#" data-target="about" class="mobile-link">¿Quiénes Somos?</a>
+            <div class="mobile-link mobile-link--parent">Servicios</div>
+            <div class="mobile-submenu">
+                <a href="#" data-page="detailing" class="mobile-sublink">Detailing</a>
+                <a href="#" data-page="mecanica" class="mobile-sublink">Mecánica</a>
+                <a href="#" data-page="domicilio" class="mobile-sublink">Servicio a domicilio</a>
+                <a href="#" style="pointer-events: none; opacity: 0.5;" class="mobile-sublink">Productos</a>
+                <a href="#" data-page="promociones" class="mobile-sublink">Promociones</a>
+            </div>
+            <a href="#" data-target="sucursal" class="mobile-link">Sucursal</a>
+            <a href="#" data-target="horario" class="mobile-link">Horario</a>
+
+            <a href="#" data-target="contacto" class="mobile-cta">Agendar Cita</a>
+        </nav>
+    </aside>
+    
+        <main class="promociones-container">
+        <div class="promociones-header">
+            <h1 class="promociones-title">Promociones</h1>
+            <p class="promociones-subtitle">Las mejores ofertas y descuentos en un solo lugar.</p>
+        </div>
+        
+        <div class="promos-grid" id="promos-grid">
+            <article class="promo-card hidden-element">
+                <div class="promo-image" style="background-image: url('../../images/Promociones/promocion01.png');">
+                    <span class="promo-badge">Promo</span>
+                </div>
+                <div class="promo-content">
+                    <h3 class="promo-title">Limpieza de inyeccion</h3>
+                    <p class="promo-desc">Mejora el rendimiento y consumo de tu vehículo con nuestra limpieza especializada.</p>
+                    <a href="https://wa.me/50670491753?text=Hola,%20me%20interesa%20la%20promoción:%20Limpieza%20de%20inyeccion" target="_blank" class="btn-me-interesa">Me interesa</a>
+                </div>
+            </article>
+            <article class="promo-card hidden-element">
+                <div class="promo-image" style="background-image: url('../../images/Promociones/promocion02.png');">
+                    <span class="promo-badge">Promo</span>
+                </div>
+                <div class="promo-content">
+                    <h3 class="promo-title">Cambios de aceite 20w50</h3>
+                    <p class="promo-desc">Mantén tu motor protegido y funcionando al máximo con aceite de alta calidad.</p>
+                    <a href="https://wa.me/50670491753?text=Hola,%20me%20interesa%20la%20promoción:%20Cambios%20de%20aceite%2020w50" target="_blank" class="btn-me-interesa">Me interesa</a>
+                </div>
+            </article>
+            <article class="promo-card hidden-element">
+                <div class="promo-image" style="background-image: url('../../images/Promociones/promocion03.png');">
+                    <span class="promo-badge">Promo</span>
+                </div>
+                <div class="promo-content">
+                    <h3 class="promo-title">Diagnostico, recarga y reparacion de aire de acondicionar</h3>
+                    <p class="promo-desc">Respira aire puro y fresco en tu auto con nuestro servicio completo de AC.</p>
+                    <a href="https://wa.me/50670491753?text=Hola,%20me%20interesa%20la%20promoción:%20Diagnostico,%20recarga%20y%20reparacion%20de%20aire%20de%20acondicionar" target="_blank" class="btn-me-interesa">Me interesa</a>
+                </div>
+            </article>
+            <article class="promo-card hidden-element">
+                <div class="promo-image" style="background-image: url('../../images/Promociones/promocion04.png');">
+                    <span class="promo-badge">Promo</span>
+                </div>
+                <div class="promo-content">
+                    <h3 class="promo-title">Pre Dekra</h3>
+                    <p class="promo-desc">Asegura que tu vehículo pase la revisión técnica sin contratiempos.</p>
+                    <a href="https://wa.me/50670491753?text=Hola,%20me%20interesa%20la%20promoción:%20Pre%20Dekra" target="_blank" class="btn-me-interesa">Me interesa</a>
+                </div>
+            </article>
+            <article class="promo-card hidden-element">
+                <div class="promo-image" style="background-image: url('../../images/Promociones/promocion05.png');">
+                    <span class="promo-badge">Promo</span>
+                </div>
+                <div class="promo-content">
+                    <h3 class="promo-title">Medicion de gases</h3>
+                    <p class="promo-desc">Controla las emisiones de tu vehículo y contribuye a un ambiente más limpio.</p>
+                    <a href="https://wa.me/50670491753?text=Hola,%20me%20interesa%20la%20promoción:%20Medicion%20de%20gases" target="_blank" class="btn-me-interesa">Me interesa</a>
+                </div>
+            </article>
+            <article class="promo-card hidden-element">
+                <div class="promo-image" style="background-image: url('../../images/Promociones/promocion06.png');">
+                    <span class="promo-badge">Promo</span>
+                </div>
+                <div class="promo-content">
+                    <h3 class="promo-title">Diagnostico Scanner</h3>
+                    <p class="promo-desc">Detección precisa de fallas eléctricas y mecánicas en tiempo récord.</p>
+                    <a href="https://wa.me/50670491753?text=Hola,%20me%20interesa%20la%20promoción:%20Diagnostico%20Scanner" target="_blank" class="btn-me-interesa">Me interesa</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- MODAL DE IMAGEN -->
+        <div id="image-modal" class="image-modal">
+            <span class="close-modal">&times;</span>
+            <img class="modal-content" id="modal-img">
+        </div>
+    </main><!-- ===== LANGUAGE SWITCHER ===== -->
+    <div class="lang-switcher" id="lang-switcher">
+        <button class="lang-btn" id="lang-btn" aria-label="Cambiar idioma" aria-expanded="false">
+            <span class="lang-btn__flag" id="lang-flag">🇨🇷</span>
+            <span class="lang-btn__name" id="lang-name">Español</span>
+            <svg class="lang-btn__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown" role="listbox">
+            <button class="lang-option lang-option--active" data-lang="es" role="option">
+                <span>🇨🇷</span> Español
+            </button>
+            <button class="lang-option" data-lang="en" role="option">
+                <span>🇺🇸</span> English
+            </button>
+        </div>
+    </div>
+
+    <script src="../../main/script.js"></script>
+    <script src="main.js"></script>
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="footer-main-row">
+            <div class="footer-brand">
+                <a href="#" data-target="inicio" aria-label="Ir al inicio">
+                <img src="../../images/Logos/SusAmigosLogotipo.png" alt="Sus Amigos Logo" class="footer-logo">
+            </a>
+            </div>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="https://wa.me/50670491753?text=Hola,%20vengo%20del%20sitio%20web,%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" class="footer-icon-link">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 3.825 0 6.938 3.112 6.938 6.937 0 3.825-3.113 6.938-6.938 6.938z"/></svg>
+                    </a>
+                    <strong>(506) 7049-1753</strong>
+                    <span>WhatsApp</span>
+                </div>
+                <div class="footer-col">
+                    <span class="footer-icon-link">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    </span>
+                    <strong>Taras, Cartago</strong>
+                    <span>V3J8+84, Provincia de Cartago</span>
+                </div>
+                <div class="footer-col">
+                    <span class="footer-icon-link">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </span>
+                    <strong>info@susamigos.com</strong>
+                    <span>Correo Electronico</span>
+                </div>
+                <div class="footer-col">
+                    <span class="footer-icon-link">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                    </span>
+                    <strong>Abierto Lunes a Sabado:</strong>
+                    <span>07:00 am - 05:00 pm</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-slogan-bar">
+            <p class="footer-slogan">Cuidamos tu auto como si fuera nuestro. El mejor servicio garantizado!</p>
+        </div>
+                <div class="footer-bottom-links">
+            <a href="#" data-target="about">🔗 ¿Quiénes Somos?</a>
+            <a href="#" data-target="sucursal">🔗 Ubicación</a>
+            <a href="#" data-page="detailing">🔗 Detailing</a>
+            <a href="#" data-page="mecanica">🔗 Mecánica</a>
+            <a href="#" data-page="domicilio">🔗 Servicio a domicilio</a>
+            <a href="#" style="pointer-events: none; opacity: 0.5;">🔗 Productos</a>
+            <a href="#" data-page="promociones">🔗 Promociones</a>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+
