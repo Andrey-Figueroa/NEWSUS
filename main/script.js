@@ -332,16 +332,25 @@
                 if (dist > 2) dist -= totalCards;
                 if (dist < -2) dist += totalCards;
                 
+                const video = card.querySelector('.carousel-video');
                 if (dist === 0) {
                     card.classList.add('active');
-                } else if (dist === -1) {
-                    card.classList.add('prev');
-                } else if (dist === 1) {
-                    card.classList.add('next');
-                } else if (dist === -2) {
-                    card.classList.add('prev-far');
-                } else if (dist === 2) {
-                    card.classList.add('next-far');
+                    if (video) {
+                        video.play().catch(() => {});
+                    }
+                } else {
+                    if (video && !video.paused) {
+                        video.pause();
+                    }
+                    if (dist === -1) {
+                        card.classList.add('prev');
+                    } else if (dist === 1) {
+                        card.classList.add('next');
+                    } else if (dist === -2) {
+                        card.classList.add('prev-far');
+                    } else if (dist === 2) {
+                        card.classList.add('next-far');
+                    }
                 }
             });
 
