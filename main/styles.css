@@ -468,7 +468,7 @@ button {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background-image: url('../images/FondoHero.jpg');
+    background-image: url('../images/FondoHero.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -645,7 +645,7 @@ button {
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
-    background-image: url('../images/FondoHero.jpg');
+    background-image: url('../images/FondoHero.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -790,7 +790,7 @@ button {
     position: relative;
     width: 100%;
     min-height: 80vh;
-    background: url('../images/Fondo/fondo1.jpg') no-repeat center center / cover;
+    background: url('../images/Fondo/fondo1.webp') no-repeat center center / cover;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1914,7 +1914,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('../images/Ubicacion/fondoUbicacion.jpg');
+    background-image: url('../images/Ubicacion/fondoUbicacion.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -2254,7 +2254,7 @@ button {
 
 /* ── Contenedor de Fondo (Galería y Footer) ── */
 .bottom-bg-container {
-    background-image: url('../images/Fondo/fondo2.jpg');
+    background-image: url('../images/Fondo/fondo2.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

@@ -487,21 +487,21 @@
                     <h2>Elige tu tipo de cita</h2>
                     <div class="appointment-options">
                         <a href="${depthPrefix}servicios/detailing/index.html" class="appointment-card">
-                            <div class="appointment-card-bg" style="background-image: url('${depthPrefix}images/botones/detailing.jpg')"></div>
+                            <div class="appointment-card-bg" style="background-image: url('${depthPrefix}images/botones/detailing.webp')"></div>
                             <div class="appointment-card-content">
                                 <div class="appointment-card-title">Detailing</div>
                                 <div class="appointment-card-desc">Cotiza en vivo todos los servicios y envianos tu cotizacion a nuestro whatssapp ....</div>
                             </div>
                         </a>
                         <a href="${depthPrefix}servicios/domicilio/index.html" class="appointment-card">
-                            <div class="appointment-card-bg" style="background-image: url('${depthPrefix}images/botones/domicilio.jpg')"></div>
+                            <div class="appointment-card-bg" style="background-image: url('${depthPrefix}images/botones/domicilio.webp')"></div>
                             <div class="appointment-card-content">
                                 <div class="appointment-card-title">A Domicilio</div>
                                 <div class="appointment-card-desc">Envianos tu fecha/hora que deseas y agenda tu servicio a domicilio</div>
                             </div>
                         </a>
                         <a href="${depthPrefix}servicios/mecanica/index.html" class="appointment-card">
-                            <div class="appointment-card-bg" style="background-image: url('${depthPrefix}images/botones/mecanica.jpg')"></div>
+                            <div class="appointment-card-bg" style="background-image: url('${depthPrefix}images/botones/mecanica.webp')"></div>
                             <div class="appointment-card-content">
                                 <div class="appointment-card-title">Mecánica</div>
                                 <div class="appointment-card-desc">Agenda tu cita en nuestra sucursal para las necesidades que tengas</div>

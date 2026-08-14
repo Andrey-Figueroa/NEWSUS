@@ -34,7 +34,7 @@ body::before {
     left: -5%;
     width: 110%;
     height: 110%;
-    background-image: url('../../images/mecanica/FondoMecanica.jpg') !important;
+    background-image: url('../../images/mecanica/FondoMecanica.webp') !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
