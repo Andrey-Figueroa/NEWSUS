@@ -638,8 +638,7 @@ button {
 /* ── Hero layout principal ────────────────────────────────── */
 .hero-container {
     position: relative;
-    height: 100vh;
-    min-height: 600px;
+    min-height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -657,11 +656,8 @@ button {
     position: relative;
     z-index: 10;
     display: flex;
-    align-items: start;
-    padding: 56px 80px 0 0;
-    /* padding izquierdo en 0 */
-    transform: translateX(-300px);
-    /* Esto lo moverá forzosamente a la izquierda */
+    align-items: flex-start;
+    padding: 60px 80px 0;
     flex: 1;
 }
 
@@ -674,9 +670,9 @@ button {
 
 .hero-headline {
     font-family: 'Outfit', sans-serif;
-    font-size: clamp(2.8rem, 5.5vw, 5rem);
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
     font-weight: 900;
-    line-height: 1.05;
+    line-height: 1.1;
     color: var(--white);
     text-transform: uppercase;
     letter-spacing: -1px;
@@ -729,10 +725,10 @@ button {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    padding: 0 140px 56px 80px;
+    padding: 0 80px 40px;
     width: 100%;
     animation: fadeUp 0.8s ease both;
-    animation-delay: 0.55s;
+    animation-delay: 0.3s;
 }
 
 /* Columna derecha – Eyebrow + subtítulo */
@@ -740,19 +736,15 @@ button {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    text-align: justify;
-    gap: 16px;
-    max-width: 450px;
-    animation: fadeUp 0.8s ease both;
-    animation-delay: 0.3s;
+    text-align: right;
+    gap: 12px;
+    max-width: 500px;
 }
 
 .hero-eyebrow {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 100%;
+    align-items: flex-end;
     gap: 4px;
 }
 
@@ -779,8 +771,31 @@ button {
     font-size: clamp(0.85rem, 1.4vw, 0.98rem);
     font-weight: 400;
     line-height: 1.75;
-    color: rgba(242, 242, 242, 0.7);
-    max-width: 400px;
+    color: rgba(242, 242, 242, 0.75);
+}
+
+@media (max-width: 768px) {
+    .hero-container {
+        height: auto;
+        min-height: auto;
+        padding-bottom: 20px;
+    }
+    .hero-top {
+        padding: 40px 24px 20px;
+        transform: none;
+    }
+    .hero-bottom {
+        padding: 0 24px 30px;
+        justify-content: flex-start;
+    }
+    .hero-right {
+        align-items: flex-start;
+        text-align: left;
+        max-width: 100%;
+    }
+    .hero-eyebrow {
+        align-items: flex-start;
+    }
 }
 
 /* ============================================================
@@ -1020,6 +1035,70 @@ button {
     opacity: 0;
     pointer-events: none;
     z-index: 1;
+}
+
+/* === RESPONSIVE CARRUSEL (MÓVIL Y TABLET) === */
+@media (max-width: 900px) {
+    .services-3d {
+        padding: 100px 15px 60px;
+        min-height: auto;
+    }
+    .carousel-header {
+        margin-bottom: 30px;
+    }
+    .carousel-header h2 {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+    .carousel-container {
+        height: 520px;
+        max-width: 100%;
+    }
+    .lamina {
+        width: 320px;
+        height: 480px;
+        flex-direction: column;
+        border-radius: 16px;
+    }
+    .card-img-wrapper {
+        width: 100% !important;
+        height: 100% !important;
+    }
+    .card-content {
+        display: none !important; /* En móviles sólo mostramos el video limpio sin cortar */
+    }
+    .carousel-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .lamina.prev {
+        transform: translateX(-70%) scale(0.8);
+        opacity: 0.4;
+    }
+    .lamina.next {
+        transform: translateX(70%) scale(0.8);
+        opacity: 0.4;
+    }
+    .carousel-nav-pill {
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-container {
+        height: 460px;
+    }
+    .lamina {
+        width: 280px;
+        height: 440px;
+    }
+    .lamina.prev {
+        transform: translateX(-65%) scale(0.75);
+    }
+    .lamina.next {
+        transform: translateX(65%) scale(0.75);
+    }
 }
 
 /* Navegación Pill */
