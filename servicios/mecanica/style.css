@@ -582,8 +582,40 @@ body::before {
         text-align: center;
         padding: 2rem 1.5rem;
     }
-    .hero-content h2 { font-size: 2rem; }
+    .hero-content h2 { font-size: 1.8rem; }
     .hero-image { display: none; }
-    .service-title-gold { font-size: 2.5rem; }
+    .service-title-gold { font-size: 2.2rem; }
     .mecanica-container { padding: 1.5rem 1rem; }
+    
+    .category-card {
+        flex: 0 0 170px;
+        height: 170px;
+        padding: 1.2rem 0.8rem;
+    }
+    .category-icon {
+        width: 40px;
+        height: 40px;
+    }
+    .category-title {
+        font-size: 0.95rem;
+    }
+
+    .subservice-card {
+        padding: 14px;
+        min-height: 52px;
+    }
+    .subservice-name {
+        font-size: 1rem;
+    }
+
+    .btn-floating-agendar {
+        bottom: 80px;
+        right: 18px;
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+
+    .time-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }

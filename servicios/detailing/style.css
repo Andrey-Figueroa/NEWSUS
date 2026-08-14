@@ -625,3 +625,53 @@ body::before {
     color: var(--gold);
     transform: translateY(-2px);
 }
+
+/* === RESPONSIVE DETAILING === */
+@media (max-width: 768px) {
+    .detailing-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        padding: 0.8rem 1.2rem;
+    }
+    .service-title-gold {
+        font-size: 2.2rem;
+    }
+    .detailing-content {
+        padding: 0 1rem;
+    }
+    .live-quote-container {
+        padding: 1rem 0.8rem;
+        border-radius: 12px;
+    }
+    .vehicle-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+    .vehicle-content {
+        padding: 1rem 0.6rem;
+    }
+    .vehicle-img {
+        width: 55px;
+        height: 55px;
+    }
+    .vehicle-name {
+        font-size: 0.88rem;
+    }
+    .btn-checkout {
+        width: 100%;
+        justify-content: center;
+        padding: 0.9rem 1.4rem;
+        font-size: 1rem;
+    }
+    .wizard-nav {
+        display: flex;
+        gap: 0.8rem;
+    }
+    .wizard-nav .btn-prev,
+    .wizard-nav .btn-next {
+        flex: 1;
+        min-height: 48px;
+        font-size: 1rem;
+    }
+}
