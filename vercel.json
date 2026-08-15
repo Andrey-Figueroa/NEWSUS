@@ -1,20 +1,15 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
+  "trailingSlash": true,
   "redirects": [
     {
       "source": "/",
-      "destination": "/main",
+      "destination": "/main/",
       "permanent": false
     },
     {
       "source": "/system",
-      "destination": "/system/login",
-      "permanent": false
-    },
-    {
-      "source": "/system/",
-      "destination": "/system/login",
+      "destination": "/system/login/",
       "permanent": false
     }
   ]
