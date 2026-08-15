@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/system",
+      "destination": "/system/SusAmigosSite/SystemSusAmigos-main/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/system/",
+      "destination": "/system/SusAmigosSite/SystemSusAmigos-main/index.html",
+      "permanent": false
+    }
+  ]
+}
