@@ -363,6 +363,12 @@
     window.toggleVideoSound = function(btn) {
         const video = btn.previousElementSibling;
         if (!video) return;
+        const source = video.querySelector('source');
+        if (source && source.dataset.src && !source.getAttribute('src')) {
+            source.src = source.dataset.src;
+            video.load();
+            video.play().catch(() => {});
+        }
         video.muted = !video.muted;
         const isMuted = video.muted;
         const lang = document.documentElement.lang || 'es';
@@ -427,6 +433,11 @@
                 if (dist === 0) {
                     card.classList.add('active');
                     if (video) {
+                        const source = video.querySelector('source');
+                        if (source && source.dataset.src && !source.getAttribute('src')) {
+                            source.src = source.dataset.src;
+                            video.load();
+                        }
                         video.play().catch(() => {});
                     }
                 } else {
