@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sus Amigos – Servicio a Domicilio</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../main/styles.css?v=2">
-    <link rel="stylesheet" href="../detailing/style.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../main/styles.css?v=3">
+    <link rel="stylesheet" href="../detailing/style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=3">
     <style>
         body {
             color: #fff;
@@ -44,14 +44,14 @@
 
             <!-- CENTRO: Menú de navegación -->
             <ul class="navbar-menu" id="navbar-menu" role="menubar">
-                <li role="none"><a href="#" data-target="inicio" class="nav-link" role="menuitem">Inicio</a></li>
-                <li role="none"><a href="#" data-target="about" class="nav-link" role="menuitem">¿Quiénes Somos?</a></li>
+                <li role="none"><a href="#" data-target="inicio" class="nav-link" role="menuitem" data-es="Inicio" data-en="Home">Inicio</a></li>
+                <li role="none"><a href="#" data-target="about" class="nav-link" role="menuitem" data-es="¿Quiénes Somos?" data-en="About Us">¿Quiénes Somos?</a></li>
 
                 <!-- Dropdown Servicios -->
                 <li class="nav-item--dropdown" role="none">
                     <button class="nav-link nav-link--dropdown" aria-haspopup="true" aria-expanded="false"
                         id="servicios-btn" role="menuitem">
-                        Servicios
+                        <span data-es="Servicios" data-en="Services">Servicios</span>
                         <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none"
                             aria-hidden="true">
                             <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8"
@@ -59,16 +59,15 @@
                         </svg>
                     </button>
                     <ul class="dropdown-menu" id="dropdown-menu" role="menu" aria-labelledby="servicios-btn">
-                        <li role="none"><a href="#" data-page="detailing" class="dropdown-item" role="menuitem">Detailing</a></li>
-                        <li role="none"><a href="#" data-page="mecanica" class="dropdown-item" role="menuitem">Mecánica</a></li>
-                        <li role="none"><a href="#" data-page="domicilio" class="dropdown-item" role="menuitem">Servicio a domicilio</a></li>
-                        <li role="none"><a href="#" style="pointer-events: none; opacity: 0.5;" class="dropdown-item" role="menuitem">Productos</a></li>
-                        <li role="none"><a href="#" data-page="promociones" class="dropdown-item" role="menuitem">Promociones</a></li>
+                        <li role="none"><a href="#" data-page="detailing" class="dropdown-item" role="menuitem" data-es="Detailing" data-en="Detailing">Detailing</a></li>
+                        <li role="none"><a href="#" data-page="mecanica" class="dropdown-item" role="menuitem" data-es="Mecánica" data-en="Mechanics">Mecánica</a></li>
+                        <li role="none"><a href="#" data-page="domicilio" class="dropdown-item" role="menuitem" data-es="Servicio a domicilio" data-en="Home Service">Servicio a domicilio</a></li>
+                        <li role="none"><a href="#" data-page="promociones" class="dropdown-item" role="menuitem" data-es="Promociones" data-en="Promotions">Promociones</a></li>
                     </ul>
                 </li>
 
-                <li role="none"><a href="#" data-target="sucursal" class="nav-link" role="menuitem">Sucursal</a></li>
-                <li role="none"><a href="#" data-target="horario" class="nav-link" role="menuitem">Horario</a></li>
+                <li role="none"><a href="#" data-target="sucursal" class="nav-link" role="menuitem" data-es="Sucursal" data-en="Location">Sucursal</a></li>
+                <li role="none"><a href="#" data-target="horario" class="nav-link" role="menuitem" data-es="Horario" data-en="Hours">Horario</a></li>
 
             </ul>
 
@@ -82,7 +81,7 @@
                     rel="noopener noreferrer" class="nav-social-btn" id="nav-instagram" aria-label="Instagram">
                     <img src="../../images/Iconos/instagram.svg" alt="Instagram" class="nav-social-icon">
                 </a>
-                <a href="#" data-target="contacto" class="nav-cta" id="nav-cta">Agendar Cita</a>
+                <a href="#" data-target="contacto" class="nav-cta" id="nav-cta" data-es="Agendar Cita" data-en="Book Appointment">Agendar Cita</a>
 
                 <!-- Hamburguesa (móvil) -->
                 <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false"
@@ -107,41 +106,43 @@
             </svg>
         </button>
         <nav class="mobile-menu__nav">
-            <a href="#" data-target="inicio" class="mobile-link">Inicio</a>
-            <a href="#" data-target="about" class="mobile-link">¿Quiénes Somos?</a>
-            <div class="mobile-link mobile-link--parent">Servicios</div>
+            <a href="#" data-target="inicio" class="mobile-link" data-es="Inicio" data-en="Home">Inicio</a>
+            <a href="#" data-target="about" class="mobile-link" data-es="¿Quiénes Somos?" data-en="About Us">¿Quiénes Somos?</a>
+            <div class="mobile-link mobile-link--parent" data-es="Servicios" data-en="Services">Servicios</div>
             <div class="mobile-submenu">
-                <a href="#" data-page="detailing" class="mobile-sublink">Detailing</a>
-                <a href="#" data-page="mecanica" class="mobile-sublink">Mecánica</a>
-                <a href="#" data-page="domicilio" class="mobile-sublink">Servicio a domicilio</a>
-                <a href="#" style="pointer-events: none; opacity: 0.5;" class="mobile-sublink">Productos</a>
-                <a href="#" data-page="promociones" class="mobile-sublink">Promociones</a>
+                <a href="#" data-page="detailing" class="mobile-sublink" data-es="Detailing" data-en="Detailing">Detailing</a>
+                <a href="#" data-page="mecanica" class="mobile-sublink" data-es="Mecánica" data-en="Mechanics">Mecánica</a>
+                <a href="#" data-page="domicilio" class="mobile-sublink" data-es="Servicio a domicilio" data-en="Home Service">Servicio a domicilio</a>
+                <a href="#" data-page="promociones" class="mobile-sublink" data-es="Promociones" data-en="Promotions">Promociones</a>
             </div>
-            <a href="#" data-target="sucursal" class="mobile-link">Sucursal</a>
-            <a href="#" data-target="horario" class="mobile-link">Horario</a>
+            <a href="#" data-target="sucursal" class="mobile-link" data-es="Sucursal" data-en="Location">Sucursal</a>
+            <a href="#" data-target="horario" class="mobile-link" data-es="Horario" data-en="Hours">Horario</a>
 
-            <a href="#" data-target="contacto" class="mobile-cta">Agendar Cita</a>
+            <a href="#" data-target="contacto" class="mobile-cta" data-es="Agendar Cita" data-en="Book Appointment">Agendar Cita</a>
         </nav>
     </aside>
 
     <section class="detailing-header">
-        <h1 class="service-title-gold">Servicio a Domicilio</h1>
+        <div class="header-titles">
+            <h1 class="service-title-gold" data-es="Servicio a Domicilio" data-en="Home Detailing Service">Servicio a Domicilio</h1>
+            <p class="service-header-subtitle" data-es="¡Vamos hasta tu casa o trabajo! Nuestro servicio a domicilio &lt;strong&gt;no tiene ningún costo adicional&lt;/strong&gt;." data-en="We come to your home or office! Our mobile detailing service &lt;strong&gt;has no extra charge&lt;/strong&gt;.">¡Vamos hasta tu casa o trabajo! Nuestro servicio a domicilio <strong>no tiene ningún costo adicional</strong>.</p>
+        </div>
         
-        <a href="../../InfoServicios/CATALOGO DE PRODUCTOS SUS AMIGOS.pdf" download class="btn-download-icon" aria-label="Descargar Catálogo de Servicios PDF">
+        <a href="../../Documentos/CATALOGO%20DE%20PRODUCTOS%20SUS%20AMIGOS.pdf" download="CATALOGO DE PRODUCTOS SUS AMIGOS.pdf" target="_blank" class="btn-download-icon" aria-label="Descargar Catálogo de Servicios PDF">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                 <polyline points="7 10 12 15 17 10"></polyline>
                 <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
-            <span class="btn-download-text">Descargar Catálogo de Servicios (PDF)</span>
+            <span class="btn-download-text" data-es="Descargar Catálogo de Servicios (PDF)" data-en="Download Service Catalog (PDF)">Descargar Catálogo de Servicios (PDF)</span>
         </a>
     </section>
 
-    <!-- Contenedor Principal (Limpio para rediseño) -->
+    <!-- Contenedor Principal -->
     <section class="detailing-content">
         <div class="live-quote-container">
             <div class="quote-header">
-                <h2 class="quote-title">Cotiza tu servicio en vivo</h2>
+                <h2 class="quote-title" data-es="Cotiza tu servicio en vivo" data-en="Quote your service live">Cotiza tu servicio en vivo</h2>
                 <div class="quote-cart">
                     <svg class="cart-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="9" cy="21" r="1"></circle>
@@ -157,19 +158,19 @@
                     
                     <!-- PASO 1: CLIENTE Y AGENDA -->
                     <div class="step-container" id="step-1">
-                        <h3 class="step-title">Paso 1: Identificar Cliente y Agendar</h3>
-                        <p class="step-description">Ingresa los datos del cliente para el servicio a domicilio.</p>
+                        <h3 class="step-title" data-es="Paso 1: Identificar Cliente y Agendar" data-en="Step 1: Contact Details &amp; Schedule">Paso 1: Identificar Cliente y Agendar</h3>
+                        <p class="step-description" data-es="Ingresa los datos del cliente para el servicio a domicilio." data-en="Enter client details for the mobile home service.">Ingresa los datos del cliente para el servicio a domicilio.</p>
                         
                         <div class="form-grid">
                             <div class="form-group" style="grid-column: 1 / -1;">
-                                <label>Día Agendado</label>
+                                <label data-es="Día Agendado" data-en="Scheduled Date">Día Agendado</label>
                                 <div class="date-scroll-container" id="date-scroll-container">
                                     <!-- JS inyectará los días aquí -->
                                 </div>
                             </div>
                             <div class="form-group" style="grid-column: 1 / -1;">
-                                <label>Hora Agendada</label>
-                                <div class="package-grid mini-grid" style="grid-template-columns: repeat(4, 1fr);" id="time-grid">
+                                <label data-es="Hora Agendada" data-en="Scheduled Time">Hora Agendada</label>
+                                <div class="package-grid mini-grid time-grid" id="time-grid">
                                     <label class="package-card mini-card">
                                         <input type="radio" name="client_time" value="07:30 AM" class="package-input">
                                         <div class="package-content" style="padding: 0.8rem 0.5rem; justify-content: center;">
@@ -197,39 +198,45 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="client-phone">Número de teléfono</label>
-                                <input type="tel" id="client-phone" placeholder="Ej. 8888-8888" class="custom-input">
+                                <label for="client-phone" data-es="Número de teléfono" data-en="Phone Number">Número de teléfono</label>
+                                <input type="tel" id="client-phone" placeholder="Ej. 8888-8888" data-placeholder-es="Ej. 8888-8888" data-placeholder-en="e.g. 8888-8888" class="custom-input">
                             </div>
                             <div class="form-group">
-                                <label for="client-name">Nombre Completo</label>
-                                <input type="text" id="client-name" placeholder="Nombre completo del cliente" class="custom-input">
+                                <label for="client-name" data-es="Nombre Completo" data-en="Full Name">Nombre Completo</label>
+                                <input type="text" id="client-name" placeholder="Nombre completo del cliente" data-placeholder-es="Nombre completo del cliente" data-placeholder-en="Client's full name" class="custom-input">
                             </div>
                             <div class="form-group">
-                                <label for="client-address">Dirección del Domicilio</label>
-                                <input type="text" id="client-address" placeholder="Provincia, Cantón, Señas..." class="custom-input">
+                                <label for="client-address" data-es="Dirección del Domicilio" data-en="Home / Work Address">Dirección del Domicilio</label>
+                                <input type="text" id="client-address" placeholder="Provincia, Cantón, Señas..." data-placeholder-es="Provincia, Cantón, Señas..." data-placeholder-en="Province, Canton, Street directions..." class="custom-input">
                             </div>
                             <div class="form-group">
-                                <label>Método de pago</label>
-                                <div class="package-grid mini-grid" style="grid-template-columns: repeat(3, 1fr);">
+                                <label data-es="Método de pago" data-en="Payment Method">Método de pago</label>
+                                <div class="package-grid mini-grid payment-grid">
                                     <label class="package-card mini-card">
                                         <input type="radio" name="client_payment" value="Efectivo" class="package-input" checked>
                                         <div class="package-content" style="padding: 0.8rem 0.5rem;">
-                                            <div class="package-icon" style="font-size: 1.5rem; margin-bottom: 0.2rem;">💵</div>
-                                            <span class="package-name" style="font-size: 0.9rem;">Efectivo</span>
+                                            <div class="package-icon" style="margin-bottom: 0.2rem;">
+                                                <img src="../../images/Iconos/efectivo.webp" alt="Efectivo" class="payment-method-icon">
+                                            </div>
+                                            <span class="package-name" style="font-size: 0.9rem;" data-es="Efectivo" data-en="Cash">Efectivo</span>
                                         </div>
                                     </label>
                                     <label class="package-card mini-card">
                                         <input type="radio" name="client_payment" value="Sinpe Movil" class="package-input">
                                         <div class="package-content" style="padding: 0.8rem 0.5rem;">
-                                            <div class="package-icon" style="font-size: 1.5rem; margin-bottom: 0.2rem;">📱</div>
-                                            <span class="package-name" style="font-size: 0.9rem;">Sinpe Móvil</span>
+                                            <div class="package-icon" style="margin-bottom: 0.2rem;">
+                                                <img src="../../images/Iconos/sinpe.webp" alt="Sinpe Móvil" class="payment-method-icon">
+                                            </div>
+                                            <span class="package-name" style="font-size: 0.9rem;" data-es="Sinpe Móvil" data-en="Sinpe Movil">Sinpe Móvil</span>
                                         </div>
                                     </label>
                                     <label class="package-card mini-card">
                                         <input type="radio" name="client_payment" value="Tarjeta" class="package-input">
                                         <div class="package-content" style="padding: 0.8rem 0.5rem;">
-                                            <div class="package-icon" style="font-size: 1.5rem; margin-bottom: 0.2rem;">💳</div>
-                                            <span class="package-name" style="font-size: 0.9rem;">Tarjeta</span>
+                                            <div class="package-icon" style="margin-bottom: 0.2rem;">
+                                                <img src="../../images/Iconos/tarjeta.webp" alt="Tarjeta" class="payment-method-icon">
+                                            </div>
+                                            <span class="package-name" style="font-size: 0.9rem;" data-es="Tarjeta" data-en="Credit/Debit Card">Tarjeta</span>
                                         </div>
                                     </label>
                                 </div>
@@ -237,8 +244,8 @@
                         </div>
                     </div>
                     <div class="step-container" id="step-2">
-                        <h3 class="step-title">Paso 2: Tamaño del Vehículo</h3>
-                        <p class="step-description">Seleccione el tamaño de su auto para mostrar los precios adecuados.</p>
+                        <h3 class="step-title" data-es="Paso 2: Tamaño del Vehículo" data-en="Step 2: Vehicle Size">Paso 2: Tamaño del Vehículo</h3>
+                        <p class="step-description" data-es="Seleccione el tamaño de su auto para mostrar los precios adecuados." data-en="Select your vehicle size to show the appropriate pricing.">Seleccione el tamaño de su auto para mostrar los precios adecuados.</p>
                         <div class="vehicle-grid">
 
                             <!-- SEDAN -->
@@ -246,7 +253,7 @@
                                 <input type="radio" name="vehicle" value="sedan" class="vehicle-input">
                                 <div class="vehicle-content">
                                     <img src="../../images/Detailing/sedan.webp" alt="Sedán" class="vehicle-img" loading="lazy">
-                                    <span class="vehicle-name">Sedán o Hatchback</span>
+                                    <span class="vehicle-name" data-es="Sedán o Hatchback" data-en="Sedan or Hatchback">Sedán o Hatchback</span>
                                 </div>
                             </label>
 
@@ -255,7 +262,7 @@
                                 <input type="radio" name="vehicle" value="suv" class="vehicle-input">
                                 <div class="vehicle-content">
                                     <img src="../../images/Detailing/suv.webp" alt="SUV" class="vehicle-img" loading="lazy">
-                                    <span class="vehicle-name">SUV o Crossover</span>
+                                    <span class="vehicle-name" data-es="SUV o Crossover" data-en="SUV or Crossover">SUV o Crossover</span>
                                 </div>
                             </label>
 
@@ -264,7 +271,7 @@
                                 <input type="radio" name="vehicle" value="4x4" class="vehicle-input">
                                 <div class="vehicle-content">
                                     <img src="../../images/Detailing/vehiculo.webp" alt="4x4" class="vehicle-img" loading="lazy">
-                                    <span class="vehicle-name">4x4 o 7 Pasajeros</span>
+                                    <span class="vehicle-name" data-es="4x4 o 7 Pasajeros" data-en="4x4 or 7 Passengers">4x4 o 7 Pasajeros</span>
                                 </div>
                             </label>
 
@@ -273,7 +280,7 @@
                                 <input type="radio" name="vehicle" value="minibus" class="vehicle-input">
                                 <div class="vehicle-content">
                                     <img src="../../images/Detailing/transporte.webp" alt="MicroBus" class="vehicle-img" loading="lazy">
-                                    <span class="vehicle-name">MicroBus</span>
+                                    <span class="vehicle-name" data-es="Microbús" data-en="Minibus">Microbús</span>
                                 </div>
                             </label>
 
@@ -282,16 +289,16 @@
                                 <input type="radio" name="vehicle" value="moto" class="vehicle-input">
                                 <div class="vehicle-content">
                                     <img src="../../images/Detailing/moto.webp" alt="Moto" class="vehicle-img" loading="lazy">
-                                    <span class="vehicle-name">Moto o Cuadra</span>
+                                    <span class="vehicle-name" data-es="Moto o Cuadra" data-en="Motorcycle or Quad">Moto o Cuadra</span>
                                 </div>
                             </label>
                         </div>
                     </div>
 
-                    <!-- PASO 2: PAQUETES -->
+                    <!-- PASO 3: PAQUETES -->
                     <div class="step-container" id="step-3">
-                        <h3 class="step-title">Paso 3: Tipo de Lavado / Detallado</h3>
-                        <p class="step-description">Seleccione el paquete que mejor se adapte a sus necesidades.</p>
+                        <h3 class="step-title" data-es="Paso 3: Tipo de Lavado / Detallado" data-en="Step 3: Wash / Detailing Package">Paso 3: Tipo de Lavado / Detallado</h3>
+                        <p class="step-description" data-es="Seleccione el paquete que mejor se adapte a sus necesidades." data-en="Select the package that best fits your vehicle needs.">Seleccione el paquete que mejor se adapte a sus necesidades.</p>
                         
                         <div class="package-grid">
                             <!-- Premium -->
@@ -304,7 +311,7 @@
                                     <span class="package-name">Premium</span>
                                     <div class="package-price dynamic-price" data-pkg="premium">₡1.000</div>
                                     <div class="info-overlay">
-                                        <p>Incluye detallado profundo y encerado.</p>
+                                        <p data-es="Aspirado profundo y cera cerámica con protección UV." data-en="Deep vacuuming and ceramic wax with UV shield protection.">Aspirado profundo y cera cerámica con protección UV.</p>
                                     </div>
                                 </div>
                             </label>
@@ -319,7 +326,7 @@
                                     <span class="package-name">Gold</span>
                                     <div class="package-price dynamic-price" data-pkg="gold">₡1.000</div>
                                     <div class="info-overlay">
-                                        <p>Máximo detalle, limpieza a vapor y más.</p>
+                                        <p data-es="Detallado integral, descontaminación y abrillantado a máquina." data-en="Comprehensive detailing, decontamination and machine gloss polish.">Detallado integral, descontaminación y abrillantado a máquina.</p>
                                     </div>
                                 </div>
                             </label>
@@ -331,10 +338,10 @@
                                     <div class="info-toggle" onclick="toggleInfo(event)">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
-                                    <span class="package-name">Abrillantado Premium</span>
+                                    <span class="package-name" data-es="Abrillantado Premium" data-en="Premium Polishing">Abrillantado Premium</span>
                                     <div class="package-price dynamic-price" data-pkg="abrillantado">₡45.000</div>
                                     <div class="info-overlay">
-                                        <p>Corrección de pintura de 1 paso.</p>
+                                        <p data-es="Brillo intenso con desinfección por ozono." data-en="Intense high-gloss finish with ozone cabin disinfection.">Brillo intenso con desinfección por ozono.</p>
                                     </div>
                                 </div>
                             </label>
@@ -346,25 +353,25 @@
                                     <div class="info-toggle" onclick="toggleInfo(event)">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
-                                    <span class="package-name">Hidrosellado Cerámico</span>
+                                    <span class="package-name" data-es="Hidrosellado" data-en="Hydro-Sealing">Hidrosellado</span>
                                     <div class="package-price dynamic-price" data-pkg="hidrosellado">₡60.000</div>
                                     <div class="info-overlay">
-                                        <p>Protección hidrofóbica avanzada.</p>
+                                        <p data-es="Sellado con protección garantizada por 6 meses." data-en="Hydrophobic seal with guaranteed 6-month protection.">Sellado con protección garantizada por 6 meses.</p>
                                     </div>
                                 </div>
                             </label>
                             
-                            <!-- Detallado Cerámico -->
+                            <!-- Tratamiento Cerámico -->
                             <label class="package-card">
                                 <input type="radio" name="package" value="ceramico" class="package-input">
                                 <div class="package-content">
                                     <div class="info-toggle" onclick="toggleInfo(event)">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
-                                    <span class="package-name">Detallado Cerámico</span>
+                                    <span class="package-name" data-es="Tratamiento Cerámico" data-en="Ceramic Coating">Tratamiento Cerámico</span>
                                     <div class="package-price dynamic-price" data-pkg="ceramico">₡1.000</div>
                                     <div class="info-overlay">
-                                        <p>Protección y brillo de máxima duración.</p>
+                                        <p data-es="Corrección de pintura con protección de años." data-en="Multi-stage paint correction with multi-year nano protection.">Corrección de pintura con protección de años.</p>
                                     </div>
                                 </div>
                             </label>
@@ -374,22 +381,22 @@
                                 <input type="radio" name="package" value="skip" class="package-input">
                                 <div class="package-content" style="padding: 1rem; flex-direction: row; justify-content: center; gap: 1rem;">
                                     <div style="text-align: left;">
-                                        <span class="package-name" style="margin: 0; display: block; font-size: 1.1rem;">Saltar Detailing</span>
-                                        <span class="package-desc" style="font-size: 0.85rem;">No estoy interesado, ir a servicios especiales.</span>
+                                        <span class="package-name" data-es="Saltar Detailing" data-en="Skip Detailing" style="margin: 0; display: block; font-size: 1.1rem;">Saltar Detailing</span>
+                                        <span class="package-desc" data-es="No estoy interesado, ir a servicios especiales." data-en="Not interested, proceed to special services." style="font-size: 0.85rem;">No estoy interesado, ir a servicios especiales.</span>
                                     </div>
                                 </div>
                             </label>
                         </div>
                     </div>
-                    <!-- PASO 3: DETALLADO INTERIOR -->
-                    <!-- PASO 3: DETALLADO INTERIOR -->
+
+                    <!-- PASO 4: DETALLADO INTERIOR -->
                     <div class="step-container" id="step-4">
-                        <h3 class="step-title">Paso 4: Detallado de Interior</h3>
-                        <p class="interior-note" id="note-clasico" style="display:none; color: #ff6b6b; font-size: 0.85rem; text-align: center; margin-bottom: 0.5rem;">* Mate y Brillante no están disponibles con el paquete Clásico.</p>
+                        <h3 class="step-title" data-es="Paso 4: Detallado de Interior" data-en="Step 4: Interior Detailing">Paso 4: Detallado de Interior</h3>
+                        <p class="interior-note" id="note-clasico" data-es="* Mate y Brillante no están disponibles con el paquete Clásico." data-en="* Matte and Gloss are not available with Classic package." style="display:none; color: #ff6b6b; font-size: 0.85rem; text-align: center; margin-bottom: 0.5rem;">* Mate y Brillante no están disponibles con el paquete Clásico.</p>
                         
                         <div class="interior-sections">
                             <div class="interior-group-compact">
-                                <h4 class="interior-subtitle">1. Detallador Interior</h4>
+                                <h4 class="interior-subtitle" data-es="1. Detallador Interior" data-en="1. Interior Dressing">1. Detallador Interior</h4>
                                 <div class="package-grid mini-grid">
                                     <label class="package-card mini-card">
                                         <input type="radio" name="interior_detail" value="nice" class="package-input">
@@ -402,7 +409,7 @@
                                         <input type="radio" name="interior_detail" value="trapo" class="package-input" checked>
                                         <div class="package-content">
                                             <div class="package-icon">🧽</div>
-                                            <span class="package-name">Trapo</span>
+                                            <span class="package-name" data-es="Trapo" data-en="Cloth / Rag">Trapo</span>
                                         </div>
                                     </label>
                                     <label class="package-card mini-card">
@@ -413,68 +420,68 @@
                                                     <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
                                                 </svg>
                                             </div>
-                                            <span class="package-name">Mate</span>
+                                            <span class="package-name" data-es="Mate" data-en="Matte">Mate</span>
                                         </div>
                                     </label>
                                     <label class="package-card mini-card">
                                         <input type="radio" name="interior_detail" value="brillante" class="package-input cond-clasico">
                                         <div class="package-content">
                                             <div class="package-icon">✨</div>
-                                            <span class="package-name">Brillante</span>
+                                            <span class="package-name" data-es="Brillante" data-en="Glossy">Brillante</span>
                                         </div>
                                     </label>
                                 </div>
                             </div>
 
                             <div class="interior-group-compact">
-                                <h4 class="interior-subtitle">2. Aromatizante</h4>
+                                <h4 class="interior-subtitle" data-es="2. Aromatizante" data-en="2. Air Freshener">2. Aromatizante</h4>
                                 <div class="package-grid mini-grid">
                                     <label class="package-card mini-card">
-                                        <input type="radio" name="interior_aroma" value="limon" class="package-input">
+                                        <input type="radio" name="interior_aroma" value="manzana" class="package-input">
                                         <div class="package-content">
-                                            <div class="package-icon">🍋</div>
-                                            <span class="package-name">Limón</span>
+                                            <div class="package-icon">🍏</div>
+                                            <span class="package-name" data-es="Manzana verde" data-en="Green Apple">Manzana verde</span>
                                         </div>
                                     </label>
                                     <label class="package-card mini-card">
                                         <input type="radio" name="interior_aroma" value="frutos" class="package-input">
                                         <div class="package-content">
                                             <div class="package-icon">🍒</div>
-                                            <span class="package-name">Frutos rojos</span>
+                                            <span class="package-name" data-es="Frutos rojos" data-en="Red Berries">Frutos rojos</span>
                                         </div>
                                     </label>
                                     <label class="package-card mini-card">
                                         <input type="radio" name="interior_aroma" value="carro_nuevo" class="package-input">
                                         <div class="package-content">
                                             <div class="package-icon">🚗</div>
-                                            <span class="package-name">Carro</span>
+                                            <span class="package-name" data-es="Carro nuevo" data-en="New Car">Carro nuevo</span>
                                         </div>
                                     </label>
                                     <label class="package-card mini-card">
                                         <input type="radio" name="interior_aroma" value="ninguno" class="package-input" checked>
                                         <div class="package-content">
                                             <div class="package-icon">✖️</div>
-                                            <span class="package-name">Nada</span>
+                                            <span class="package-name" data-es="Nada" data-en="None">Nada</span>
                                         </div>
                                     </label>
                                 </div>
                             </div>
 
                             <div class="interior-group-compact">
-                                <h4 class="interior-subtitle">3. Alfombras</h4>
+                                <h4 class="interior-subtitle" data-es="3. Alfombras" data-en="3. Floor Mats">3. Alfombras</h4>
                                 <div class="package-grid mini-grid">
                                     <label class="package-card mini-card">
                                         <input type="radio" name="interior_nice" value="si" class="package-input">
                                         <div class="package-content">
                                             <div class="package-icon">✅</div>
-                                            <span class="package-name">Con Nice</span>
+                                            <span class="package-name" data-es="Con Nice" data-en="With Nice">Con Nice</span>
                                         </div>
                                     </label>
                                     <label class="package-card mini-card">
                                         <input type="radio" name="interior_nice" value="no" class="package-input" checked>
                                         <div class="package-content">
                                             <div class="package-icon">❌</div>
-                                            <span class="package-name">Sin Nice</span>
+                                            <span class="package-name" data-es="Sin Nice" data-en="Without Nice">Sin Nice</span>
                                         </div>
                                     </label>
                                 </div>
@@ -482,10 +489,10 @@
                         </div>
                     </div>
 
-                    <!-- PASO 4: SERVICIOS ESPECIALES -->
+                    <!-- PASO 5: SERVICIOS ESPECIALES -->
                     <div class="step-container" id="step-5">
-                        <h3 class="step-title">Paso 5: Detallados Especiales</h3>
-                        <p class="step-description">Seleccione uno o varios servicios especiales (Opcional).</p>
+                        <h3 class="step-title" data-es="Paso 5: Detallados Especiales" data-en="Step 5: Special Detailing Services">Paso 5: Detallados Especiales</h3>
+                        <p class="step-description" data-es="Seleccione uno o varios servicios especiales (Opcional)." data-en="Select one or more special services (Optional).">Seleccione uno o varios servicios especiales (Opcional).</p>
                         
                         <div class="package-grid">
                             <label class="package-card">
@@ -495,10 +502,10 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">✖️</div>
-                                    <span class="package-name">Ninguno</span>
+                                    <span class="package-name" data-es="Ninguno" data-en="None">Ninguno</span>
                                     <div class="package-price dynamic-price" data-special="ninguno"></div>
                                     <div class="info-overlay">
-                                        <p>No agregar ningún servicio especial a la cotización.</p>
+                                        <p data-es="No agregar ningún servicio especial a la cotización." data-en="Do not add any special services to the quote.">No agregar ningún servicio especial a la cotización.</p>
                                     </div>
                                 </div>
                             </label>
@@ -509,10 +516,10 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">💡</div>
-                                    <span class="package-name">Pulido de silvines</span>
+                                    <span class="package-name" data-es="Pulido de silvines" data-en="Headlight Restoration">Pulido de silvines</span>
                                     <div class="package-price dynamic-price" data-special="silvines"></div>
                                     <div class="info-overlay">
-                                        <p>Restaura la claridad de los faros, eliminando lo opaco y amarillento.</p>
+                                        <p data-es="Restaura la claridad de los faros, eliminando lo opaco y amarillento." data-en="Restores headlight clarity, removing haze, yellowing and oxidation.">Restaura la claridad de los faros, eliminando lo opaco y amarillento.</p>
                                     </div>
                                 </div>
                             </label>
@@ -523,10 +530,10 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">🪟</div>
-                                    <span class="package-name">Pulido de vidrios</span>
+                                    <span class="package-name" data-es="Pulido de vidrios" data-en="Glass Polishing">Pulido de vidrios</span>
                                     <div class="package-price dynamic-price" data-special="vidrios"></div>
                                     <div class="info-overlay">
-                                        <p>Elimina manchas de agua seca, sarro y contaminación de cristales.</p>
+                                        <p data-es="Elimina manchas de agua seca, sarro y contaminación de cristales." data-en="Removes hard water stains, lime scale, and mineral deposits from windows.">Elimina manchas de agua seca, sarro y contaminación de cristales.</p>
                                     </div>
                                 </div>
                             </label>
@@ -537,10 +544,10 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">🚘</div>
-                                    <span class="package-name">Pulido de parabrisas</span>
+                                    <span class="package-name" data-es="Pulido de parabrisas" data-en="Windshield Polishing">Pulido de parabrisas</span>
                                     <div class="package-price dynamic-price" data-special="parabrisas"></div>
                                     <div class="info-overlay">
-                                        <p>Descontaminación profunda para mejorar visibilidad y evitar reflejos.</p>
+                                        <p data-es="Descontaminación profunda para mejorar visibilidad y evitar reflejos." data-en="Deep decontamination to improve nighttime visibility and reduce glare.">Descontaminación profunda para mejorar visibilidad y evitar reflejos.</p>
                                     </div>
                                 </div>
                             </label>
@@ -551,10 +558,10 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">✨</div>
-                                    <span class="package-name">Pulido de carrocería</span>
+                                    <span class="package-name" data-es="Pulido de carrocería" data-en="Paint Correction & Polish">Pulido de carrocería</span>
                                     <div class="package-price dynamic-price" data-special="carroceria"></div>
                                     <div class="info-overlay">
-                                        <p>Corrección que elimina rayones y devuelve el brillo original al auto.</p>
+                                        <p data-es="Corrección que elimina rayones y devuelve el brillo original al auto." data-en="Paint correction that eliminates swirl marks and restores deep reflection.">Corrección que elimina rayones y devuelve el brillo original al auto.</p>
                                     </div>
                                 </div>
                             </label>
@@ -565,10 +572,10 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">⚙️</div>
-                                    <span class="package-name">Lavado de motor</span>
+                                    <span class="package-name" data-es="Lavado de motor" data-en="Engine Bay Detail">Lavado de motor</span>
                                     <div class="package-price dynamic-price" data-special="motor"></div>
                                     <div class="info-overlay">
-                                        <p>Limpieza detallada del compartimiento del motor con acabado protector.</p>
+                                        <p data-es="Limpieza detallada del compartimiento del motor con acabado protector." data-en="Detailed engine bay degreasing and satin protective dressing.">Limpieza detallada del compartimiento del motor con acabado protector.</p>
                                     </div>
                                 </div>
                             </label>
@@ -579,10 +586,10 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">💺</div>
-                                    <span class="package-name">Tapicería profunda</span>
+                                    <span class="package-name" data-es="Tapicería profunda" data-en="Deep Upholstery Extraction">Tapicería profunda</span>
                                     <div class="package-price dynamic-price" data-special="tapiceria"></div>
                                     <div class="info-overlay">
-                                        <p>Lavado profundo de asientos, alfombras y puertas con extracción.</p>
+                                        <p data-es="Lavado profundo de asientos, alfombras y puertas con extracción." data-en="Deep shampooing and hot water extraction for seats, carpets and door panels.">Lavado profundo de asientos, alfombras y puertas con extracción.</p>
                                     </div>
                                 </div>
                             </label>
@@ -593,10 +600,10 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">🔧</div>
-                                    <span class="package-name">Lavado de chasis</span>
+                                    <span class="package-name" data-es="Lavado de chasis" data-en="Undercarriage Pressure Wash">Lavado de chasis</span>
                                     <div class="package-price dynamic-price" data-special="chasis"></div>
                                     <div class="info-overlay">
-                                        <p>Limpieza a presión inferior para remover barro, grasa y suciedad.</p>
+                                        <p data-es="Limpieza a presión inferior para remover barro, grasa y suciedad." data-en="High-pressure underbody wash to remove road salt, mud and grime.">Limpieza a presión inferior para remover barro, grasa y suciedad.</p>
                                     </div>
                                 </div>
                             </label>
@@ -607,20 +614,20 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">🛠️</div>
-                                    <span class="package-name">Lluvia de grafito</span>
+                                    <span class="package-name" data-es="Lluvia de grafito" data-en="Graphite Undercarriage Shield">Lluvia de grafito</span>
                                     <div class="package-price dynamic-price" data-special="lluvia"></div>
                                     <div class="info-overlay">
-                                        <p>Lubricación del chasis con grafito para proteger y evitar ruidos.</p>
+                                        <p data-es="Lubricación del chasis con grafito para proteger y evitar ruidos." data-en="Graphite chassis lubrication to protect undercarriage and stop squeaks.">Lubricación del chasis con grafito para proteger y evitar ruidos.</p>
                                     </div>
                                 </div>
                             </label>
                         </div>
                     </div>
 
-                    <!-- PASO 5: EXTRAS FINALES -->
+                    <!-- PASO 6: EXTRAS FINALES -->
                     <div class="step-container" id="step-6">
-                        <h3 class="step-title">Paso 6: Extras Finales</h3>
-                        <p class="step-description">Puede seleccionar varios extras o "Ninguno".</p>
+                        <h3 class="step-title" data-es="Paso 6: Extras Finales" data-en="Step 6: Final Add-ons">Paso 6: Extras Finales</h3>
+                        <p class="step-description" data-es="Puede seleccionar varios extras o 'Ninguno'." data-en="You can select multiple add-ons or 'None'.">Puede seleccionar varios extras o "Ninguno".</p>
                         
                         <div class="package-grid">
                             <label class="package-card">
@@ -630,10 +637,10 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">✖️</div>
-                                    <span class="package-name">Ninguno</span>
+                                    <span class="package-name" data-es="Ninguno" data-en="None">Ninguno</span>
                                     <div class="package-price dynamic-price" data-extra="ninguno"></div>
                                     <div class="info-overlay">
-                                        <p>No agregar ningún extra final a la cotización.</p>
+                                        <p data-es="No agregar ningún extra final a la cotización." data-en="Do not add any final add-ons to the quote.">No agregar ningún extra final a la cotización.</p>
                                     </div>
                                 </div>
                             </label>
@@ -644,10 +651,10 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">🧴</div>
-                                    <span class="package-name">Cera premium</span>
+                                    <span class="package-name" data-es="Cera premium" data-en="Premium Wax">Cera premium</span>
                                     <div class="package-price dynamic-price" data-extra="cera"></div>
                                     <div class="info-overlay">
-                                        <p>Cera premium para un brillo superior y protección temporal extra.</p>
+                                        <p data-es="Cera premium para un brillo superior y protección temporal extra." data-en="Premium paste wax for superior gloss and temporary hydrophobic shield.">Cera premium para un brillo superior y protección temporal extra.</p>
                                     </div>
                                 </div>
                             </label>
@@ -658,10 +665,10 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">🛡️</div>
-                                    <span class="package-name">Protector de interiores</span>
+                                    <span class="package-name" data-es="Protector de interiores" data-en="Interior UV Dressing">Protector de interiores</span>
                                     <div class="package-price dynamic-price" data-extra="protector_int"></div>
                                     <div class="info-overlay">
-                                        <p>Acondicionador y protector UV para plásticos y vinilos del interior.</p>
+                                        <p data-es="Acondicionador y protector UV para plásticos y vinilos del interior." data-en="Conditioner and UV protectant for dashboard, plastics, and vinyl.">Acondicionador y protector UV para plásticos y vinilos del interior.</p>
                                     </div>
                                 </div>
                             </label>
@@ -672,10 +679,10 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">💺</div>
-                                    <span class="package-name">Protector de asientos</span>
+                                    <span class="package-name" data-es="Protector de asientos" data-en="Leather & Seat Protectant">Protector de asientos</span>
                                     <div class="package-price dynamic-price" data-extra="protector_asientos"></div>
                                     <div class="info-overlay">
-                                        <p>Crema humectante y protectora para alargar la vida de los asientos.</p>
+                                        <p data-es="Crema humectante y protectora para alargar la vida de los asientos." data-en="Nourishing conditioner to prevent leather cracking and extend seat life.">Crema humectante y protectora para alargar la vida de los asientos.</p>
                                     </div>
                                 </div>
                             </label>
@@ -686,10 +693,10 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">🌫️</div>
-                                    <span class="package-name">Anti empañante</span>
+                                    <span class="package-name" data-es="Anti empañante" data-en="Anti-Fog Glass Treatment">Anti empañante</span>
                                     <div class="package-price dynamic-price" data-extra="anti_empanante"></div>
                                     <div class="info-overlay">
-                                        <p>Tratamiento en los vidrios interiores para evitar que se empañen.</p>
+                                        <p data-es="Tratamiento en los vidrios interiores para evitar que se empañen." data-en="Interior glass formula to prevent fogging in humid conditions.">Tratamiento en los vidrios interiores para evitar que se empañen.</p>
                                     </div>
                                 </div>
                             </label>
@@ -700,10 +707,10 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">💧</div>
-                                    <span class="package-name">Repelente de agua</span>
+                                    <span class="package-name" data-es="Repelente de agua" data-en="Rain & Water Repellent">Repelente de agua</span>
                                     <div class="package-price dynamic-price" data-extra="repelente"></div>
                                     <div class="info-overlay">
-                                        <p>Capa hidrofóbica ligera que ayuda a repeler el agua y polvo.</p>
+                                        <p data-es="Capa hidrofóbica ligera que ayuda a repeler el agua y polvo." data-en="Hydrophobic coating for rapid water beading and clear vision.">Capa hidrofóbica ligera que ayuda a repeler el agua y polvo.</p>
                                     </div>
                                 </div>
                             </label>
@@ -714,10 +721,10 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">💎</div>
-                                    <span class="package-name">Sellador</span>
+                                    <span class="package-name" data-es="Sellador" data-en="Synthetic Paint Sealant">Sellador</span>
                                     <div class="package-price dynamic-price" data-extra="sellador"></div>
                                     <div class="info-overlay">
-                                        <p>Sellador sintético de larga duración para máxima protección.</p>
+                                        <p data-es="Sellador sintético de larga duración para máxima protección." data-en="Long-lasting synthetic polymer sealant for durable paint defense.">Sellador sintético de larga duración para máxima protección.</p>
                                     </div>
                                 </div>
                             </label>
@@ -728,19 +735,19 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                     </div>
                                     <div class="package-icon">⬛</div>
-                                    <span class="package-name">Partes negras</span>
+                                    <span class="package-name" data-es="Partes negras" data-en="Black Trim Restoration">Partes negras</span>
                                     <div class="package-price dynamic-price" data-extra="partes_negras"></div>
                                     <div class="info-overlay">
-                                        <p>Restaurador profundo para plásticos y molduras negras del exterior.</p>
+                                        <p data-es="Restaurador profundo para plásticos y molduras negras del exterior." data-en="Deep dye & conditioner for faded exterior plastic trims and bumpers.">Restaurador profundo para plásticos y molduras negras del exterior.</p>
                                     </div>
                                 </div>
                             </label>
                         </div>
                     </div>
 
-                    <!-- PASO 6: CIERRE / RESUMEN -->
+                    <!-- PASO 7: CIERRE / RESUMEN -->
                     <div class="step-container" id="step-7">
-                        <h3 class="step-title">Resumen de tu Cotización</h3>
+                        <h3 class="step-title" data-es="Resumen de tu Cotización" data-en="Your Quote Summary">Resumen de tu Cotización</h3>
                         
                         <div class="summary-ticket" id="summary-ticket">
                             <!-- JS inyectará el contenido aquí -->
@@ -751,7 +758,7 @@
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12.031 0C5.383 0 0 5.383 0 12.031c0 2.12.548 4.195 1.593 6.015L.305 23.364l5.44-1.428A11.966 11.966 0 0 0 12.031 24c6.648 0 12.031-5.383 12.031-12.031C24.062 5.383 18.679 0 12.031 0zm0 21.996c-1.802 0-3.57-.484-5.127-1.408l-.367-.218-3.805 1 .998-3.71-.24-.38a9.982 9.982 0 0 1-1.527-5.32C1.934 6.486 6.42 2 12.031 2c5.61 0 10.096 4.486 10.096 10.096 0 5.61-4.486 10.096-10.096 10.096zm5.532-7.556c-.303-.153-1.796-.888-2.073-.99-.278-.102-.48-.153-.683.152-.202.305-.783.99-.96 1.194-.176.204-.353.23-.656.076-.303-.152-1.282-.472-2.443-1.506-.902-.803-1.51-1.795-1.686-2.1-.177-.305-.019-.47.133-.62.137-.137.303-.356.455-.534.152-.178.203-.305.303-.508.102-.203.05-.38-.025-.533-.076-.152-.683-1.646-.935-2.253-.247-.594-.497-.514-.683-.524-.176-.01-.378-.01-.58-.01s-.532.076-.81.38c-.278.305-1.062 1.037-1.062 2.527s1.087 2.932 1.238 3.136c.152.204 2.14 3.267 5.183 4.58.723.313 1.287.5 1.727.64.726.23 1.386.198 1.905.12.583-.087 1.796-.733 2.05-1.442.253-.709.253-1.316.177-1.442-.077-.126-.279-.202-.582-.355z"/>
                                 </svg>
-                                Enviar por WhatsApp
+                                <span data-es="Enviar por WhatsApp" data-en="Send via WhatsApp">Enviar por WhatsApp</span>
                             </a>
                             <a href="#" class="btn-checkout btn-schedule">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -760,7 +767,7 @@
                                     <line x1="8" y1="2" x2="8" y2="6"></line>
                                     <line x1="3" y1="10" x2="21" y2="10"></line>
                                 </svg>
-                                Agendar a domicilio
+                                <span data-es="Agendar a domicilio" data-en="Book Home Service">Agendar a domicilio</span>
                             </a>
                         </div>
                     </div>
@@ -770,8 +777,8 @@
 
             <!-- NAVEGACIÓN -->
             <div class="wizard-nav">
-                <button class="btn-wizard btn-prev" id="btn-prev" disabled>Volver</button>
-                <button class="btn-wizard btn-next" id="btn-next">Siguiente</button>
+                <button class="btn-wizard btn-prev" id="btn-prev" disabled data-es="Volver" data-en="Back">Volver</button>
+                <button class="btn-wizard btn-next" id="btn-next" data-es="Siguiente" data-en="Next">Siguiente</button>
             </div>
             
         </div>
@@ -798,41 +805,38 @@
                         <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                     </span>
                     <strong>Taras, Cartago</strong>
-                    <span>V3J8+84, Provincia de Cartago</span>
+                    <span data-es="V3J8+84, Provincia de Cartago" data-en="V3J8+84, Cartago Province">V3J8+84, Provincia de Cartago</span>
                 </div>
                 <div class="footer-col">
                     <span class="footer-icon-link">
                         <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                     </span>
                     <strong>info@susamigos.com</strong>
-                    <span>Correo Electrónico</span>
+                    <span data-es="Correo Electrónico" data-en="Email Address">Correo Electrónico</span>
                 </div>
                 <div class="footer-col">
                     <span class="footer-icon-link">
                         <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
                     </span>
-                    <strong>Abierto Lunes a Sábado:</strong>
-                    <span>07:00 am - 05:00 pm</span>
+                    <strong data-es="Abierto Lunes a Sábado:" data-en="Open Monday to Saturday:">Abierto Lunes a Sábado:</strong>
+                    <span data-es="07:00 am - 05:00 pm" data-en="07:00 AM - 05:00 PM">07:00 am - 05:00 pm</span>
                 </div>
             </div>
         </div>
         <div class="footer-slogan-bar">
-            <p class="footer-slogan">Cuidamos tu auto como si fuera nuestro. ¡El mejor servicio garantizado!</p>
+            <p class="footer-slogan" data-es="Cuidamos tu auto como si fuera nuestro. ¡El mejor servicio garantizado!" data-en="We care for your car as if it were our own. Best service guaranteed!">Cuidamos tu auto como si fuera nuestro. ¡El mejor servicio garantizado!</p>
         </div>
-                <div class="footer-bottom-links">
-            <a href="#" data-target="about">🔗 ¿Quiénes Somos?</a>
-            <a href="#" data-target="sucursal">🔗 Ubicación</a>
-            <a href="#" data-page="detailing">🔗 Detailing</a>
-            <a href="#" data-page="mecanica">🔗 Mecánica</a>
-            <a href="#" data-page="domicilio">🔗 Servicio a domicilio</a>
-            <a href="#" style="pointer-events: none; opacity: 0.5;">🔗 Productos</a>
-            <a href="#" data-page="promociones">🔗 Promociones</a>
+        <div class="footer-bottom-links">
+            <a href="#" data-target="about" data-es="🔗 ¿Quiénes Somos?" data-en="🔗 About Us">🔗 ¿Quiénes Somos?</a>
+            <a href="#" data-target="sucursal" data-es="🔗 Ubicación" data-en="🔗 Location">🔗 Ubicación</a>
+            <a href="#" data-page="detailing" data-es="🔗 Detailing" data-en="🔗 Detailing">🔗 Detailing</a>
+            <a href="#" data-page="mecanica" data-es="🔗 Mecánica" data-en="🔗 Mechanics">🔗 Mecánica</a>
+            <a href="#" data-page="domicilio" data-es="🔗 Servicio a domicilio" data-en="🔗 Home Service">🔗 Servicio a domicilio</a>
+            <a href="#" data-page="promociones" data-es="🔗 Promociones" data-en="🔗 Promotions">🔗 Promociones</a>
         </div>
     </footer>
 
-    
     <!-- ===== LANGUAGE SWITCHER ===== -->
-<!-- ===== LANGUAGE SWITCHER ===== -->
     <div class="lang-switcher" id="lang-switcher">
         <button class="lang-btn" id="lang-btn" aria-label="Cambiar idioma" aria-expanded="false">
             <span class="lang-btn__flag" id="lang-flag">🇨🇷</span>
@@ -849,8 +853,69 @@
         </div>
     </div>
 
-    <script src="../../main/script.js"></script>
-    <script src="main.js"></script>
+    <!-- MODAL CALENDARIO PARA DÍA AGENDADO -->
+    <div class="calendar-modal" id="calendar-modal" aria-hidden="true">
+        <div class="calendar-modal-backdrop" id="calendar-backdrop"></div>
+        <div class="calendar-modal-content">
+            <div class="calendar-modal-header">
+                <h4 class="calendar-title" id="calendar-month-year"></h4>
+                <div class="calendar-nav-btns">
+                    <button type="button" class="calendar-nav-btn" id="cal-prev" aria-label="Mes anterior">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <button type="button" class="calendar-nav-btn" id="cal-next" aria-label="Mes siguiente">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                    <button type="button" class="calendar-close-btn" id="cal-close" aria-label="Cerrar">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="calendar-weekdays">
+                <span class="cal-weekday cal-sun" data-es="Dom" data-en="Sun">Dom</span>
+                <span class="cal-weekday" data-es="Lun" data-en="Mon">Lun</span>
+                <span class="cal-weekday" data-es="Mar" data-en="Tue">Mar</span>
+                <span class="cal-weekday" data-es="Mié" data-en="Wed">Mié</span>
+                <span class="cal-weekday" data-es="Jue" data-en="Thu">Jue</span>
+                <span class="cal-weekday" data-es="Vie" data-en="Fri">Vie</span>
+                <span class="cal-weekday" data-es="Sáb" data-en="Sat">Sáb</span>
+            </div>
+            <div class="calendar-days-grid" id="calendar-days-grid">
+                <!-- Días generados por JS -->
+            </div>
+            <div class="calendar-legend">
+                <span class="cal-legend-item"><span class="cal-dot cal-dot--disabled"></span> <span data-es="Domingos cerrados" data-en="Sundays closed">Domingos cerrados</span></span>
+                <span class="cal-legend-item"><span class="cal-dot cal-dot--available"></span> <span data-es="Disponible" data-en="Available">Disponible</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE ALERTA PERSONALIZADO -->
+    <div class="custom-alert-modal" id="custom-alert-modal" aria-hidden="true">
+        <div class="custom-alert-backdrop" id="custom-alert-backdrop"></div>
+        <div class="custom-alert-card">
+            <div class="custom-alert-icon">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#f0c14b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+            </div>
+            <h4 class="custom-alert-title" id="custom-alert-title">Atención</h4>
+            <p class="custom-alert-message" id="custom-alert-message">Mensaje de alerta</p>
+            <button type="button" class="custom-alert-btn" id="custom-alert-btn">OK</button>
+        </div>
+    </div>
+
+    <script src="../../main/script.js?v=9"></script>
+    <script src="main.js?v=9"></script>
 </body>
 </html>
 

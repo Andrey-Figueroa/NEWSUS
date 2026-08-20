@@ -628,6 +628,9 @@ body::before {
 
 /* === RESPONSIVE DETAILING === */
 @media (max-width: 768px) {
+    body {
+        padding-top: 80px;
+    }
     .detailing-header {
         flex-direction: column;
         align-items: flex-start;
@@ -658,11 +661,26 @@ body::before {
     .vehicle-name {
         font-size: 0.88rem;
     }
+    .interior-sections {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    .package-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .extras-grid-compact {
+        grid-template-columns: repeat(2, 1fr);
+    }
     .btn-checkout {
         width: 100%;
         justify-content: center;
         padding: 0.9rem 1.4rem;
         font-size: 1rem;
+    }
+    .summary-ticket {
+        padding: 1.4rem;
+        font-size: 1rem;
+        margin: 0.8rem auto 1.5rem;
     }
     .wizard-nav {
         display: flex;
@@ -674,4 +692,164 @@ body::before {
         min-height: 48px;
         font-size: 1rem;
     }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-top: 70px;
+    }
+    .service-title-gold {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+    }
+    .detailing-header {
+        padding: 0.6rem 0.8rem;
+    }
+    .detailing-content {
+        padding: 0 0.75rem;
+    }
+    .vehicle-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem;
+    }
+    .vehicle-img {
+        width: 45px;
+        height: 45px;
+    }
+    .vehicle-name {
+        font-size: 0.8rem;
+    }
+    .interior-sections {
+        grid-template-columns: 1fr;
+    }
+    .package-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem;
+    }
+    .extras-grid-compact {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .mini-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .summary-ticket {
+        padding: 1.2rem;
+        font-size: 0.92rem;
+        border-top-width: 5px;
+    }
+    .step-title {
+        font-size: 1.3rem;
+    }
+    .quote-title {
+        font-size: 1.2rem;
+    }
+    .cart-total {
+        font-size: 1rem;
+    }
+    .wizard-nav .btn-prev,
+    .wizard-nav .btn-next {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    .checkout-actions {
+        flex-direction: column;
+    }
+    .btn-checkout {
+        font-size: 0.95rem;
+        padding: 0.85rem 1.2rem;
+    }
+}
+
+/* === MODAL DE ALERTA PERSONALIZADO === */
+.custom-alert-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    padding: 1.5rem;
+}
+
+.custom-alert-modal.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.custom-alert-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(8px);
+}
+
+.custom-alert-card {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(145deg, #1e1e1e, #131313);
+    border: 1.5px solid #f0c14b;
+    border-radius: 18px;
+    padding: 2rem 1.8rem;
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9), 0 0 25px rgba(240, 193, 75, 0.25);
+    transform: scale(0.9);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.custom-alert-modal.active .custom-alert-card {
+    transform: scale(1);
+}
+
+.custom-alert-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: rgba(240, 193, 75, 0.12);
+    border: 1px solid rgba(240, 193, 75, 0.3);
+    border-radius: 50%;
+    margin-bottom: 1.2rem;
+}
+
+.custom-alert-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #f0c14b;
+    margin: 0 0 0.6rem 0;
+}
+
+.custom-alert-message {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #e0e0e0;
+    line-height: 1.5;
+    margin: 0 0 1.6rem 0;
+}
+
+.custom-alert-btn {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #f0c14b, #d4af37);
+    color: #111;
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem 2.2rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 15px rgba(240, 193, 75, 0.3);
+}
+
+.custom-alert-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(240, 193, 75, 0.5);
+    background: #ffea79;
 }

@@ -460,19 +460,8 @@ button {
 /* ============================================================
    HERO SECTION
    ============================================================ */
-.hero-container {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    background-image: url('../images/FondoHero.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+/* (La regla principal de .hero-container está más abajo, en la sección de layout) */
+
 
 .hero-overlay {
     position: absolute;
@@ -484,161 +473,16 @@ button {
     z-index: 1;
 }
 
-/* ── Hero Content Layout ──────────────────────────────────── */
-.hero-content {
-    position: relative;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 0 24px;
-    gap: 28px;
-    max-width: 860px;
-}
 
-/* ── Eyebrow ──────────────────────────────────────────────── */
-.hero-eyebrow {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    animation: fadeUp 0.7s ease both;
-    animation-delay: 0.1s;
-}
-
-.hero-eyebrow__brand {
-    font-family: 'Outfit', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--gold-light);
-}
-
-.hero-eyebrow__sub {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 400;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(242, 242, 242, 0.65);
-}
-
-/* ── H1 ───────────────────────────────────────────────────── */
-.hero-headline {
-    font-family: 'Outfit', sans-serif;
-    font-size: clamp(2.6rem, 6vw, 4.2rem);
-    font-weight: 800;
-    line-height: 1.1;
-    color: var(--white);
-    letter-spacing: -0.5px;
-    animation: fadeUp 0.8s ease both;
-    animation-delay: 0.25s;
-}
-
-.hero-headline__accent {
-    color: var(--gold-light);
-    display: block;
-}
-
-/* ── Subtitle ─────────────────────────────────────────────── */
-.hero-subtitle {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-    font-weight: 400;
-    line-height: 1.7;
-    color: rgba(242, 242, 242, 0.72);
-    max-width: 660px;
-    animation: fadeUp 0.8s ease both;
-    animation-delay: 0.4s;
-}
-
-/* ── CTAs ─────────────────────────────────────────────────── */
-.hero-ctas {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-    animation: fadeUp 0.8s ease both;
-    animation-delay: 0.55s;
-}
-
-.hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 32px;
-    border-radius: 8px;
-    font-family: 'Outfit', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    transition: all 250ms ease;
-    white-space: nowrap;
-}
-
-.hero-cta--primary {
-    background: var(--gold);
-    color: var(--black);
-    border: 2px solid var(--gold);
-}
-
-.hero-cta--primary:hover {
-    background: var(--gold-light);
-    border-color: var(--gold-light);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(191, 161, 37, 0.4);
-}
-
-.hero-cta--secondary {
-    background: transparent;
-    color: var(--white);
-    border: 2px solid rgba(242, 242, 242, 0.45);
-}
-
-.hero-cta--secondary:hover {
-    border-color: var(--white);
-    background: rgba(255, 255, 255, 0.07);
-    transform: translateY(-2px);
-}
-
-/* ── Service Highlights ───────────────────────────────────── */
-.hero-highlights {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
-    animation: fadeUp 0.8s ease both;
-    animation-delay: 0.7s;
-}
-
-.hero-highlight {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: rgba(242, 242, 242, 0.6);
-    transition: color 200ms ease;
-}
-
-.hero-highlight:hover {
-    color: var(--gold-light);
-}
-
-.hero-highlight__dot {
-    color: var(--gold);
-    font-size: 0.6rem;
-    opacity: 0.7;
-}
 
 /* ── Hero layout principal ────────────────────────────────── */
 .hero-container {
     position: relative;
-    min-height: 100vh;
+    /* Pantalla completa exacta: 100svh es la altura más pequeña (con navbar browser),
+       100dvh es dinámica (se adapta cuando el browser chrome aparece/desaparece) */
+    height: 100svh;           /* Fallback: siempre cabe aunque el URL bar esté visible */
+    height: 100dvh;           /* Modern: dinámico según el chrome del navegador */
+    min-height: 560px;        /* Mínimo de seguridad */
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -651,13 +495,14 @@ button {
     padding-top: var(--nav-height);
 }
 
-/* ── TOP: una columna ────────────────────────────────────── */
+/* ── TOP: columna izquierda ───────────────────────────────── */
 .hero-top {
     position: relative;
     z-index: 10;
     display: flex;
     align-items: flex-start;
     padding: 60px 80px 0;
+    width: 100%;
     flex: 1;
 }
 
@@ -666,6 +511,7 @@ button {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    text-align: left;
 }
 
 .hero-headline {
@@ -676,6 +522,7 @@ button {
     color: var(--white);
     text-transform: uppercase;
     letter-spacing: -1px;
+    text-align: left;
     animation: fadeUp 0.8s ease both;
     animation-delay: 0.1s;
 }
@@ -694,6 +541,10 @@ button {
     height: clamp(1.5rem, 3vw, 2.2rem);
     overflow: hidden;
     position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
     animation: fadeUp 0.8s ease both;
     animation-delay: 0.2s;
 }
@@ -701,12 +552,14 @@ button {
 .rotator-window {
     height: 100%;
     overflow: hidden;
+    text-align: left;
 }
 
 .rotator-list {
     list-style: none;
     padding: 0;
     margin: 0;
+    text-align: left;
     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -716,9 +569,10 @@ button {
     color: var(--gold-light);
     letter-spacing: 2px;
     text-transform: uppercase;
+    text-align: left;
 }
 
-/* ── BOTTOM: hero-bottom ──────────────────────────────────── */
+/* ── BOTTOM: hero-bottom alineado a la derecha en desktop ── */
 .hero-bottom {
     position: relative;
     z-index: 10;
@@ -727,6 +581,7 @@ button {
     align-items: flex-end;
     padding: 0 80px 40px;
     width: 100%;
+    text-align: right;
     animation: fadeUp 0.8s ease both;
     animation-delay: 0.3s;
 }
@@ -738,32 +593,35 @@ button {
     align-items: flex-end;
     text-align: right;
     gap: 12px;
-    max-width: 500px;
+    max-width: 550px;
 }
 
 .hero-eyebrow {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    text-align: right;
     gap: 4px;
 }
 
 .hero-eyebrow__brand {
     font-family: 'Outfit', sans-serif;
-    font-size: 0.82rem;
+    font-size: 0.88rem;
     font-weight: 700;
     letter-spacing: 4px;
     text-transform: uppercase;
     color: var(--gold-light);
+    text-align: right;
 }
 
 .hero-eyebrow__sub {
     font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     font-weight: 400;
     letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: rgba(242, 242, 242, 0.5);
+    color: rgba(242, 242, 242, 0.6);
+    text-align: right;
 }
 
 .hero-subtitle {
@@ -771,30 +629,113 @@ button {
     font-size: clamp(0.85rem, 1.4vw, 0.98rem);
     font-weight: 400;
     line-height: 1.75;
-    color: rgba(242, 242, 242, 0.75);
+    color: rgba(242, 242, 242, 0.8);
+    text-align: right;
+    margin: 0;
 }
 
 @media (max-width: 768px) {
     .hero-container {
-        height: auto;
-        min-height: auto;
-        padding-bottom: 20px;
+        height: 100svh;
+        height: 100dvh;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        text-align: left;
+        padding-top: var(--nav-height);
+        padding-bottom: 0;
+        background-position: 65% center;
+        overflow: hidden;
     }
     .hero-top {
-        padding: 40px 24px 20px;
+        padding: 14px 20px 0;
         transform: none;
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: left;
+        width: 100%;
+    }
+    .hero-left {
+        align-items: flex-start;
+        text-align: left;
+        width: 100%;
+    }
+    .hero-headline {
+        font-size: clamp(1.85rem, 7.8vw, 2.45rem);
+        line-height: 1.08;
+        text-align: left;
+    }
+    .hero-rotator {
+        margin-top: 8px;
+        font-size: clamp(1.05rem, 4.2vw, 1.3rem);
+        height: clamp(1.3rem, 4.8vw, 1.6rem);
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: left;
+        width: 100%;
+    }
+    .rotator-window {
+        width: 100%;
+        text-align: left;
+    }
+    .rotator-list {
+        text-align: left;
+    }
+    .rotator-list li {
+        height: clamp(1.3rem, 4.8vw, 1.6rem);
+        line-height: clamp(1.3rem, 4.8vw, 1.6rem);
+        text-align: left;
     }
     .hero-bottom {
-        padding: 0 24px 30px;
+        padding: 0 20px max(50px, calc(env(safe-area-inset-bottom, 0px) + 45px));
         justify-content: flex-start;
+        align-items: flex-start;
+        flex: 0 0 auto;
+        margin-top: auto;
+        width: 100%;
+        text-align: left;
     }
     .hero-right {
         align-items: flex-start;
         text-align: left;
         max-width: 100%;
+        margin: 0;
+        gap: 6px;
     }
     .hero-eyebrow {
         align-items: flex-start;
+        text-align: left;
+        gap: 2px;
+    }
+    .hero-eyebrow__brand {
+        font-size: 0.92rem;
+        letter-spacing: 2.5px;
+        color: var(--gold-light);
+        font-weight: 800;
+        text-align: left;
+    }
+    .hero-eyebrow__sub {
+        font-size: 0.72rem;
+        letter-spacing: 1.2px;
+        color: rgba(242, 242, 242, 0.85);
+        text-transform: uppercase;
+        font-weight: 500;
+        text-align: left;
+    }
+    .hero-subtitle {
+        font-size: clamp(0.8rem, 3.3vw, 0.9rem);
+        line-height: 1.48;
+        color: rgba(242, 242, 242, 0.9);
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+        text-align: left;
+        margin: 0;
+        max-width: 100%;
     }
 }
 
@@ -1247,53 +1188,6 @@ button {
     }
 }
 
-/* ── BOTTOM: stats bar ────────────────────────────────────── */
-.hero-bottom__stats {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 22px 80px;
-    width: 100%;
-}
-
-.hero-stat {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 3px;
-    flex: 1;
-}
-
-.hero-stat__number {
-    font-family: 'Outfit', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--gold-light);
-    line-height: 1;
-}
-
-.hero-stat__label {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 400;
-    letter-spacing: 0.6px;
-    color: rgba(242, 242, 242, 0.58);
-    text-transform: uppercase;
-}
-
-.hero-stat svg {
-    color: var(--gold-light);
-    margin-bottom: 2px;
-}
-
-.hero-stat__sep {
-    width: 1px;
-    height: 40px;
-    background: rgba(191, 161, 37, 0.18);
-    flex-shrink: 0;
-    margin: 0 32px;
-}
-
 /* ── Animaciones ──────────────────────────────────────────── */
 @keyframes fadeUp {
     from {
@@ -1304,47 +1198,6 @@ button {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-/* ── Responsive hero ──────────────────────────────────────── */
-@media (max-width: 900px) {
-    .hero-top {
-        grid-template-columns: 1fr;
-        padding: 40px 32px 0;
-        gap: 24px;
-    }
-
-    .hero-bottom__stats {
-        padding: 18px 32px;
-        flex-wrap: wrap;
-        gap: 16px;
-    }
-
-    .hero-stat {
-        flex: 1 1 40%;
-    }
-
-    .hero-stat__sep {
-        display: none;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-top {
-        padding: 28px 20px 0;
-    }
-
-    .hero-headline {
-        font-size: clamp(2rem, 9vw, 2.8rem);
-    }
-
-    .hero-bottom__stats {
-        padding: 14px 20px;
-    }
-
-    .hero-stat {
-        flex: 1 1 100%;
     }
 }
 
@@ -1426,12 +1279,18 @@ button {
 
 @media (max-width: 480px) {
     .stats-bar__inner {
-        padding: 0 20px;
+        padding: 0 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
     }
-
     .stats-bar__stat {
-        flex: 1 1 100%;
-        padding: 16px 0;
+        flex: unset;
+        padding: 14px 10px;
+        border-bottom: 1px solid rgba(191, 161, 37, 0.08);
+    }
+    .stats-bar__stat:nth-child(odd) {
+        border-right: 1px solid rgba(191, 161, 37, 0.1);
     }
 }
 
@@ -2750,4 +2609,253 @@ button {
     font-weight: 300;
     max-width: 95%;
     margin: 0 auto;
+}
+
+/* ============================================================
+   RESPONSIVE MÓVIL — AJUSTES GENERALES (max-width: 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+
+    /* ── Navbar ── */
+    .navbar-left {
+        margin-left: 0;
+    }
+    .navbar-logo {
+        height: 60px;
+    }
+
+    /* ── Hero ── */
+    .hero-top {
+        padding: 14px 20px 0;
+    }
+    .hero-headline {
+        font-size: clamp(1.85rem, 7.8vw, 2.45rem);
+    }
+    .hero-rotator {
+        font-size: clamp(0.95rem, 4.5vw, 1.25rem);
+        margin-top: 10px;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar__inner {
+        padding: 0 20px;
+        flex-wrap: wrap;
+    }
+    .stats-bar__stat {
+        flex: 1 1 45%;
+        padding: 16px 0;
+    }
+    .stats-bar__sep {
+        display: none;
+    }
+
+    /* ── About ── */
+    .about-section {
+        padding: 60px 16px 80px;
+    }
+    .about-container {
+        gap: 32px;
+    }
+    .about-content h2 {
+        font-size: clamp(1.6rem, 6vw, 2.2rem);
+    }
+    .about-lead {
+        font-size: 1rem;
+    }
+
+    /* ── Location (Sucursal) ── */
+    .location-section {
+        padding: 60px 12px;
+    }
+    .location-lamina {
+        padding: 28px 20px;
+        min-height: auto;
+    }
+    .location-content-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    .location-text-side {
+        text-align: center;
+        align-items: center;
+    }
+    .location-title {
+        font-size: clamp(1.8rem, 7vw, 2.8rem);
+    }
+    .location-btn {
+        align-self: center;
+    }
+    .location-perks li {
+        justify-content: center;
+    }
+    .location-map-side {
+        min-height: 280px;
+    }
+
+    /* ── Sucursal zoom (info card) ── */
+    .info-card {
+        padding: 24px 20px;
+    }
+    .info-card h3 {
+        font-size: 1.5rem;
+    }
+    .info-card-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .btn-whatsapp,
+    .btn-mapa {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        padding: 12px 20px;
+    }
+    .sucursal-reveal-content {
+        margin-top: 200px;
+        padding: 0 12px;
+        gap: 24px;
+    }
+
+    /* ── Horario ── */
+    .horario-section {
+        padding: 60px 16px;
+    }
+    .schedule-row {
+        font-size: 1rem;
+        padding: 12px 14px;
+    }
+
+    /* ── Galería ── */
+    .gallery-section {
+        padding: 60px 0 10px;
+    }
+
+    /* ── Footer ── */
+    .footer-main-row {
+        padding: 0 20px;
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+    }
+    .footer-logo {
+        max-height: 120px;
+    }
+    .footer-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+    }
+    .footer-col {
+        min-width: unset;
+        width: 100%;
+    }
+    .footer-bottom-links {
+        gap: 16px;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* ============================================================
+   RESPONSIVE MÓVIL PEQUEÑO (max-width: 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+
+    /* ── Navbar ── */
+    .navbar-logo {
+        height: 50px;
+    }
+
+    /* ── Hero ── */
+    .hero-top {
+        padding: 12px 16px 0;
+    }
+    .hero-bottom {
+        padding: 0 16px max(44px, calc(env(safe-area-inset-bottom, 0px) + 38px));
+        margin-top: auto;
+    }
+    .hero-headline {
+        font-size: clamp(1.7rem, 9vw, 2.4rem);
+    }
+
+    /* ── Stats ── */
+    .stats-bar__inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 0 12px;
+    }
+    .stats-bar__stat {
+        flex: unset;
+        padding: 14px 10px;
+        border-bottom: 1px solid rgba(191, 161, 37, 0.08);
+    }
+    .stats-bar__stat:nth-child(odd) {
+        border-right: 1px solid rgba(191, 161, 37, 0.1);
+    }
+    .stats-bar__number {
+        font-size: 1.3rem;
+    }
+    .stats-bar__label {
+        font-size: 0.62rem;
+    }
+
+    /* ── Carousel ── */
+    .services-3d {
+        padding: 80px 12px 50px;
+    }
+    .carousel-header h2 {
+        font-size: 1.4rem;
+    }
+
+    /* ── About ── */
+    .about-section {
+        padding: 50px 14px 60px;
+    }
+    .about-section-title {
+        font-size: 1rem;
+        letter-spacing: 2px;
+        margin-bottom: 32px;
+    }
+    .about-story p {
+        font-size: 0.95rem;
+    }
+
+    /* ── Location ── */
+    .location-lamina {
+        padding: 20px 14px;
+        border-radius: 12px;
+    }
+    .location-description {
+        font-size: 0.95rem;
+    }
+    .location-perks li {
+        font-size: 0.95rem;
+    }
+    .sucursal-reveal-content {
+        margin-top: 160px;
+        padding: 0 10px;
+    }
+    .sucursal-section {
+        min-height: 600px;
+    }
+
+    /* ── Horario ── */
+    .section-title {
+        font-size: clamp(1.8rem, 7vw, 2.8rem);
+    }
+    .schedule-row {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
+    .scoreboard-time {
+        font-size: 2.5rem;
+    }
+
+    /* ── Footer ── */
+    .footer-slogan {
+        font-size: 0.9rem;
+    }
+    .site-footer {
+        padding: 50px 0 0;
+    }
 }

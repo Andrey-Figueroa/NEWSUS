@@ -1,4 +1,4 @@
-// main.js - Detailing Logic Completo (6 Pasos)
+// main.js - Detailing Logic Completo (Servicio a Domicilio) Bilingüe
 window.toggleInfo = function (event) {
     event.preventDefault();
     event.stopPropagation();
@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnPrev = document.getElementById('btn-prev');
     const btnNext = document.getElementById('btn-next');
 
+    const getActiveLang = () => document.documentElement.lang || localStorage.getItem('susamigos-lang') || 'es';
+
     // === COTIZADOR EN VIVO (PRECIOS DINÁMICOS) ===
     const cartTotalEl = document.getElementById('cart-total');
 
@@ -27,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'suv': { premium: 15500, gold: 20500, abrillantado: 25500, hidrosellado: 32500, ceramico: 'Cotizar', skip: 0 },
         '4x4': { premium: 16500, gold: 25500, abrillantado: 30500, hidrosellado: 35500, ceramico: 'Cotizar', skip: 0 },
         'moto': { premium: 6500, gold: 8500, abrillantado: 12500, hidrosellado: 15500, ceramico: 'Cotizar', skip: 0 },
+        'minibus': { premium: 19500, gold: 30500, abrillantado: 35500, hidrosellado: 40500, ceramico: 'Cotizar', skip: 0 },
         'microbus': { premium: 19500, gold: 30500, abrillantado: 35500, hidrosellado: 40500, ceramico: 'Cotizar', skip: 0 }
     };
 
@@ -35,12 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
         'suv': { ninguno: 0, silvines: 12000, vidrios: 30000, parabrisas: 10000, carroceria: 75000, motor: 7500, tapiceria: 60000, chasis: 7500, lluvia: 16000 },
         '4x4': { ninguno: 0, silvines: 12000, vidrios: 30000, parabrisas: 12500, carroceria: 80000, motor: 7500, tapiceria: 80000, chasis: 7500, lluvia: 16000 },
         'moto': { ninguno: 0, silvines: 'N/A', vidrios: 'N/A', parabrisas: 'N/A', carroceria: 'N/A', motor: 'N/A', tapiceria: 'N/A', chasis: 'N/A', lluvia: 'N/A' },
+        'minibus': { ninguno: 0, silvines: 12000, vidrios: 30000, parabrisas: 15000, carroceria: 90000, motor: 7500, tapiceria: 100000, chasis: 'N/A', lluvia: 'N/A' },
         'microbus': { ninguno: 0, silvines: 12000, vidrios: 30000, parabrisas: 15000, carroceria: 90000, motor: 7500, tapiceria: 100000, chasis: 'N/A', lluvia: 'N/A' }
     };
 
     const EXTRA_PRICES = {
         interior_detail: { nice: 0, trapo: 0, mate: 0, brillante: 0 },
-        interior_aroma: { limon: 0, frutos: 0, carro_nuevo: 0, ninguno: 0 },
+        interior_aroma: { manzana: 0, limon: 0, frutos: 0, carro_nuevo: 0, ninguno: 0 },
         interior_nice: { si: 0, no: 0 },
         extra: { ninguno: 0, cera: 2000, protector_int: 2000, protector_asientos: 4500, anti_empanante: 2500, repelente: 2500, sellador: 3500, partes_negras: 2000 }
     };
@@ -50,11 +54,21 @@ document.addEventListener('DOMContentLoaded', () => {
         'sedan': 1,
         'suv': 1.2,
         '4x4': 1.4,
+        'minibus': 1.6,
         'microbus': 1.6,
         'moto': 0.8
     };
 
+    function updatePlaceholders() {
+        const lang = getActiveLang();
+        document.querySelectorAll('[data-placeholder-es][data-placeholder-en]').forEach(el => {
+            const ph = el.getAttribute(`data-placeholder-${lang}`);
+            if (ph) el.placeholder = ph;
+        });
+    }
+
     function updatePackagePrices() {
+        const lang = getActiveLang();
         const vehicleInput = document.querySelector('input[name="vehicle"]:checked');
         if (!vehicleInput) return;
         const v = vehicleInput.value;
@@ -67,14 +81,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (pkg && VEHICLE_PRICES[v] && VEHICLE_PRICES[v][pkg] !== undefined) {
                 const val = VEHICLE_PRICES[v][pkg];
-                el.textContent = typeof val === 'number' ? (val === 0 ? '₡0' : '₡' + val.toLocaleString('es-CR')) : val;
+                if (typeof val === 'number') {
+                    el.textContent = val === 0 ? '₡0' : '₡' + val.toLocaleString('es-CR');
+                } else {
+                    el.textContent = (val === 'Cotizar' && lang === 'en') ? 'Quote' : val;
+                }
             } else if (sp && SPECIAL_PRICES[v] && SPECIAL_PRICES[v][sp] !== undefined) {
                 const val = SPECIAL_PRICES[v][sp];
                 const card = el.closest('.package-card');
                 const checkbox = card.querySelector('input');
 
                 if (val === 'N/A') {
-                    el.textContent = 'No se ofrece';
+                    el.textContent = lang === 'en' ? 'Not offered' : 'No se ofrece';
                     checkbox.disabled = true;
                     checkbox.checked = false;
                     card.style.opacity = '0.5';
@@ -126,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return total;
     }
 
-    // Comportamiento "Ninguno" en Especiales (Paso 4)
+    // Comportamiento "Ninguno" en Especiales (Paso 5)
     const specialNone = document.getElementById('special-none');
     const specialOthers = document.querySelectorAll('input[name="special"]:not([value="ninguno"])');
 
@@ -149,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Comportamiento "Ninguno" en Extras (Paso 5)
+    // Comportamiento "Ninguno" en Extras (Paso 6)
     const extraNone = document.getElementById('extra-none');
     const extraOthers = document.querySelectorAll('input[name="extra"]:not([value="ninguno"])');
 
@@ -181,26 +199,89 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // === INICIALIZAR SELECTOR DE DÍAS ===
+    // === VALIDADOR DE TELÉFONO ===
+    function isValidPhoneNumber(phone) {
+        if (!phone) return false;
+        const cleaned = phone.trim();
+        const digits = cleaned.replace(/\D/g, '');
+
+        if (digits.length < 8 || digits.length > 15) return false;
+        if (/^(\d)\1+$/.test(digits)) return false;
+        if (digits === '12345678' || digits === '87654321') return false;
+
+        if (digits.length === 8) {
+            return /^[245678]\d{7}$/.test(digits);
+        }
+
+        if (digits.length === 11 && digits.startsWith('506')) {
+            const localPart = digits.substring(3);
+            return /^[245678]\d{7}$/.test(localPart);
+        }
+
+        if (cleaned.startsWith('+') && digits.length >= 8 && digits.length <= 15) {
+            return true;
+        }
+
+        return false;
+    }
+
+    const phoneInput = document.getElementById('client-phone');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', (e) => {
+            let val = e.target.value;
+            phoneInput.classList.remove('input-error');
+
+            if (!val.startsWith('+')) {
+                const digits = val.replace(/\D/g, '').slice(0, 8);
+                if (digits.length > 4) {
+                    e.target.value = `${digits.slice(0, 4)}-${digits.slice(4)}`;
+                } else {
+                    e.target.value = digits;
+                }
+            }
+        });
+
+        phoneInput.addEventListener('blur', () => {
+            const val = phoneInput.value.trim();
+            if (val && !isValidPhoneNumber(val)) {
+                phoneInput.classList.add('input-error');
+            } else {
+                phoneInput.classList.remove('input-error');
+            }
+        });
+    }
+
+    // === INICIALIZAR SELECTOR DE DÍAS Y CALENDARIO ===
     let selectedDateStr = "";
+    let calendarViewDate = new Date();
+
     function initDateSelector() {
         const container = document.getElementById('date-scroll-container');
-        if(!container) return;
+        if (!container) return;
         
         container.innerHTML = '';
+        const lang = getActiveLang();
         const today = new Date();
-        const days = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
-        const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+
+        const days = lang === 'en'
+            ? ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+            : ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+        const months = lang === 'en'
+            ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            : ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+        const monthsLong = lang === 'en'
+            ? ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+            : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
         
         let firstAvailableSet = false;
 
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 5; i++) {
             const d = new Date(today);
             d.setDate(today.getDate() + i);
             
             let dayNameStr = days[d.getDay()];
-            if (i === 0) dayNameStr = "Hoy";
-            else if (i === 1) dayNameStr = "Mañana";
+            if (i === 0) dayNameStr = lang === 'en' ? "Today" : "Hoy";
+            else if (i === 1) dayNameStr = lang === 'en' ? "Tomorrow" : "Mañana";
 
             const dateNum = d.getDate();
             const monthStr = months[d.getMonth()];
@@ -211,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isSunday) {
                 card.classList.add('disabled');
                 card.innerHTML = `
-                    <span class="day-name">Cerrado</span>
+                    <span class="day-name">${lang === 'en' ? 'Closed' : 'Cerrado'}</span>
                     <span class="day-date">${dateNum}</span>
                     <span class="day-month">${monthStr}</span>
                 `;
@@ -222,9 +303,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="day-month">${monthStr}</span>
                 `;
                 
-                // Formatear string para el WhatsApp: Mañana (Jueves 15)
                 const fullDayName = days[d.getDay()];
-                const fullStr = i === 0 || i === 1 ? `${dayNameStr} (${fullDayName} ${dateNum})` : `${fullDayName} ${dateNum}`;
+                const fullStr = i === 0 || i === 1 
+                    ? (lang === 'en' ? `${dayNameStr} (${fullDayName}, ${monthStr} ${dateNum})` : `${dayNameStr} (${fullDayName} ${dateNum} de ${monthStr})`)
+                    : (lang === 'en' ? `${fullDayName}, ${monthStr} ${dateNum}` : `${fullDayName} ${dateNum} de ${monthStr}`);
 
                 if (!firstAvailableSet) {
                     card.classList.add('active');
@@ -240,6 +322,148 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             container.appendChild(card);
         }
+
+        // 6to elemento: "Otro" / "Other"
+        const otroCard = document.createElement('div');
+        otroCard.className = 'day-card';
+        otroCard.id = 'card-otro';
+        otroCard.innerHTML = `
+            <span class="day-name">${lang === 'en' ? 'Other' : 'Otro'}</span>
+            <span class="day-date" style="display: flex; justify-content: center; align-items: center; min-height: 26px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+            </span>
+            <span class="day-month">${lang === 'en' ? 'Choose' : 'Elegir'}</span>
+        `;
+        container.appendChild(otroCard);
+
+        // Referencias del modal
+        const modal = document.getElementById('calendar-modal');
+        const backdrop = document.getElementById('calendar-backdrop');
+        const btnClose = document.getElementById('cal-close');
+        const btnPrev = document.getElementById('cal-prev');
+        const btnNext = document.getElementById('cal-next');
+        const monthYearEl = document.getElementById('calendar-month-year');
+        const daysGridEl = document.getElementById('calendar-days-grid');
+
+        function openCalendar() {
+            if (!modal) return;
+            calendarViewDate = new Date();
+            renderCalendar(calendarViewDate);
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeCalendar() {
+            if (!modal) return;
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+
+        function renderCalendar(viewDate) {
+            if (!monthYearEl || !daysGridEl) return;
+            const curLang = getActiveLang();
+            const year = viewDate.getFullYear();
+            const month = viewDate.getMonth();
+            
+            monthYearEl.textContent = `${monthsLong[month]} ${year}`;
+
+            if (btnPrev) {
+                const isCurrentMonth = (year === today.getFullYear() && month <= today.getMonth());
+                btnPrev.disabled = isCurrentMonth;
+            }
+
+            const firstDayIndex = new Date(year, month, 1).getDay();
+            const totalDaysInMonth = new Date(year, month + 1, 0).getDate();
+
+            daysGridEl.innerHTML = '';
+
+            for (let i = 0; i < firstDayIndex; i++) {
+                const emptySlot = document.createElement('div');
+                emptySlot.className = 'cal-day cal-day--empty';
+                daysGridEl.appendChild(emptySlot);
+            }
+
+            const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
+
+            for (let day = 1; day <= totalDaysInMonth; day++) {
+                const cellDate = new Date(year, month, day);
+                const cellTime = cellDate.getTime();
+                const isSunday = cellDate.getDay() === 0;
+                const isPast = cellTime < todayStart;
+
+                const dayBtn = document.createElement('button');
+                dayBtn.type = 'button';
+                dayBtn.className = 'cal-day';
+                dayBtn.textContent = day;
+
+                if (isPast || isSunday) {
+                    dayBtn.classList.add('cal-day--disabled');
+                    dayBtn.disabled = true;
+                    if (isSunday) {
+                        dayBtn.classList.add('cal-day--sunday');
+                        dayBtn.title = curLang === 'en' ? 'Sundays closed' : 'Domingos cerrado';
+                    } else {
+                        dayBtn.title = curLang === 'en' ? 'Past date' : 'Fecha pasada';
+                    }
+                } else {
+                    dayBtn.classList.add('cal-day--selectable');
+                    
+                    const dayName = days[cellDate.getDay()];
+                    const monthName = months[month];
+                    const fullDateStr = curLang === 'en' ? `${dayName}, ${monthName} ${day}` : `${dayName} ${day} de ${monthName}`;
+
+                    if (selectedDateStr === fullDateStr) {
+                        dayBtn.classList.add('cal-day--selected');
+                    }
+
+                    dayBtn.addEventListener('click', () => {
+                        selectedDateStr = fullDateStr;
+
+                        otroCard.innerHTML = `
+                            <span class="day-name">${curLang === 'en' ? 'Other' : 'Otro'}</span>
+                            <span class="day-date">${day}</span>
+                            <span class="day-month">${monthName}</span>
+                        `;
+
+                        document.querySelectorAll('.day-card').forEach(c => c.classList.remove('active'));
+                        otroCard.classList.add('active');
+
+                        closeCalendar();
+                    });
+                }
+
+                daysGridEl.appendChild(dayBtn);
+            }
+        }
+
+        otroCard.addEventListener('click', openCalendar);
+        if (backdrop) backdrop.addEventListener('click', closeCalendar);
+        if (btnClose) btnClose.addEventListener('click', closeCalendar);
+
+        if (btnPrev) {
+            btnPrev.addEventListener('click', () => {
+                calendarViewDate.setMonth(calendarViewDate.getMonth() - 1);
+                renderCalendar(calendarViewDate);
+            });
+        }
+
+        if (btnNext) {
+            btnNext.addEventListener('click', () => {
+                calendarViewDate.setMonth(calendarViewDate.getMonth() + 1);
+                renderCalendar(calendarViewDate);
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+                closeCalendar();
+            }
+        });
     }
     initDateSelector();
 
@@ -252,68 +476,97 @@ document.addEventListener('DOMContentLoaded', () => {
         const total = calculateTotal();
         const summaryContainer = document.getElementById('summary-ticket');
         const btnWhatsApp = document.getElementById('btn-whatsapp');
+        const lang = getActiveLang();
 
-        let html = '<h4>Cotización de Servicio a Domicilio</h4>';
+        let html = `<h4>${lang === 'en' ? 'Home Service Quote Summary' : 'Cotización de Servicio a Domicilio'}</h4>`;
         
         const cPhone = document.getElementById('client-phone').value;
         const cName = document.getElementById('client-name').value;
         const cAddress = document.getElementById('client-address').value;
         const cTimeEl = document.querySelector('input[name="client_time"]:checked');
-        const cTime = cTimeEl ? cTimeEl.value : 'No seleccionada';
+        const cTime = cTimeEl ? cTimeEl.value : (lang === 'en' ? 'Not selected' : 'No seleccionada');
         
         const cPaymentEl = document.querySelector('input[name="client_payment"]:checked');
-        const cPayment = cPaymentEl ? cPaymentEl.value : 'No especificado';
+        let cPayment = cPaymentEl ? cPaymentEl.value : (lang === 'en' ? 'Not specified' : 'No especificado');
+        if (lang === 'en') {
+            if (cPayment === 'Efectivo') cPayment = 'Cash';
+            else if (cPayment === 'Tarjeta') cPayment = 'Credit/Debit Card';
+        }
 
-        let textMsj = 'Hola, me gustaría agendar un SERVICIO A DOMICILIO con la siguiente información:%0A%0A';
-        textMsj += '*DATOS DEL CLIENTE:*%0A';
-        textMsj += `- Nombre: ${cName}%0A`;
-        textMsj += `- Teléfono: ${cPhone}%0A`;
-        textMsj += `- Dirección: ${cAddress}%0A`;
-        textMsj += `- Fecha agendada: ${selectedDateStr}%0A`;
-        textMsj += `- Hora agendada: ${cTime}%0A`;
-        textMsj += `- Método de Pago: ${cPayment}%0A%0A`;
-        textMsj += '*DETALLES DEL SERVICIO:*%0A';
+        let textMsj = '';
+        if (lang === 'en') {
+            textMsj = 'Hello, I would like to book a HOME / WORKPLACE DETAILING SERVICE with the following information:%0A%0A';
+            textMsj += '*CLIENT DETAILS:*%0A';
+            textMsj += `- Name: ${cName}%0A`;
+            textMsj += `- Phone: ${cPhone}%0A`;
+            textMsj += `- Address: ${cAddress}%0A`;
+            textMsj += `- Scheduled Date: ${selectedDateStr}%0A`;
+            textMsj += `- Scheduled Time: ${cTime}%0A`;
+            textMsj += `- Payment Method: ${cPayment}%0A%0A`;
+            textMsj += '*SERVICE DETAILS:*%0A';
+        } else {
+            textMsj = 'Hola, me gustaría agendar un SERVICIO A DOMICILIO con la siguiente información:%0A%0A';
+            textMsj += '*DATOS DEL CLIENTE:*%0A';
+            textMsj += `- Nombre: ${cName}%0A`;
+            textMsj += `- Teléfono: ${cPhone}%0A`;
+            textMsj += `- Dirección: ${cAddress}%0A`;
+            textMsj += `- Fecha agendada: ${selectedDateStr}%0A`;
+            textMsj += `- Hora agendada: ${cTime}%0A`;
+            textMsj += `- Método de Pago: ${cPayment}%0A%0A`;
+            textMsj += '*DETALLES DEL SERVICIO:*%0A';
+        }
+
+        const includedStr = lang === 'en' ? 'Included' : 'Incluido';
 
         const addLine = (label, cost) => {
-            if (cost > 0 || typeof cost === 'string' || label.includes('Vehículo') || label.includes('Paquete') || label.includes('Interior') || label.includes('Aroma') || label.includes('Alfombras')) {
-                let fCost = '';
-                if (typeof cost === 'number' && cost > 0) fCost = '₡' + cost.toLocaleString('es-CR');
-                else if (typeof cost === 'string') fCost = cost;
-                else if (cost === 0 && !label.includes('Vehículo')) fCost = 'Incluido';
+            let fCost = '';
+            if (typeof cost === 'number' && cost > 0) fCost = '₡' + cost.toLocaleString('es-CR');
+            else if (typeof cost === 'string') fCost = cost;
+            else if (cost === 0 && !label.includes('Vehículo') && !label.includes('Vehicle')) fCost = includedStr;
 
-                html += `<div class="summary-row"><span>${label}</span> <span>${fCost}</span></div>`;
-                textMsj += `- ${label}: ${fCost}%0A`;
-            }
+            html += `<div class="summary-row"><span>${label}</span> <span>${fCost}</span></div>`;
+            textMsj += `- ${label}: ${fCost}%0A`;
         };
 
         const vInput = document.querySelector('input[name="vehicle"]:checked');
         const pInput = document.querySelector('input[name="package"]:checked');
 
+        const getElText = (containerEl) => {
+            if (!containerEl) return '';
+            const tagEl = containerEl.querySelector(`[data-${lang}]`) || containerEl.querySelector('.package-name, .vehicle-name');
+            if (tagEl) {
+                return tagEl.getAttribute(`data-${lang}`) || tagEl.textContent.trim();
+            }
+            return containerEl.textContent.trim();
+        };
+
         if (vInput) {
-            const vName = vInput.nextElementSibling.querySelector('.package-name, .vehicle-name').textContent.trim();
-            addLine('Vehículo: ' + vName, 0);
+            const vName = getElText(vInput.nextElementSibling);
+            addLine((lang === 'en' ? 'Vehicle: ' : 'Vehículo: ') + vName, 0);
         }
 
         if (pInput && pInput.value !== 'skip') {
-            const pName = pInput.nextElementSibling.querySelector('.package-name').textContent.trim();
-            addLine('Paquete: ' + pName, VEHICLE_PRICES[vInput.value][pInput.value]);
+            const pName = getElText(pInput.nextElementSibling);
+            const pCost = VEHICLE_PRICES[vInput.value][pInput.value];
+            const displayCost = (pCost === 'Cotizar' && lang === 'en') ? 'Quote' : pCost;
+            addLine((lang === 'en' ? 'Package: ' : 'Paquete: ') + pName, displayCost);
         }
 
         if (pInput && pInput.value !== 'skip') {
             const ind = document.querySelector('input[name="interior_detail"]:checked');
             if (ind) {
-                const name = ind.nextElementSibling.querySelector('.package-name').textContent.trim();
-                addLine('Interior: ' + name, EXTRA_PRICES.interior_detail[ind.value]);
+                const name = getElText(ind.nextElementSibling);
+                addLine((lang === 'en' ? 'Interior: ' : 'Interior: ') + name, EXTRA_PRICES.interior_detail[ind.value]);
             }
             const ina = document.querySelector('input[name="interior_aroma"]:checked');
             if (ina && ina.value !== 'ninguno') {
-                const name = ina.nextElementSibling.querySelector('.package-name').textContent.trim();
-                addLine('Aroma: ' + name, EXTRA_PRICES.interior_aroma[ina.value]);
+                const name = getElText(ina.nextElementSibling);
+                addLine((lang === 'en' ? 'Fragrance: ' : 'Aroma: ') + name, EXTRA_PRICES.interior_aroma[ina.value]);
             }
             const inn = document.querySelector('input[name="interior_nice"]:checked');
             if (inn && inn.value === 'si') {
-                const name = document.querySelector('input[name="interior_nice"]:checked').nextElementSibling.innerText.trim();
-                addLine('Alfombras: ' + name, EXTRA_PRICES.interior_nice[inn.value]);
+                const name = getElText(inn.nextElementSibling);
+                addLine((lang === 'en' ? 'Floor Mats: ' : 'Alfombras: ') + name, EXTRA_PRICES.interior_nice[inn.value]);
             }
         }
 
@@ -321,23 +574,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const mult = EXTRA_MULT[v] || 1;
 
         document.querySelectorAll('input[name="special"]:not([value="ninguno"]):checked').forEach(cb => {
-            const name = cb.nextElementSibling.querySelector('.package-name').textContent.trim();
-            addLine('Especial: ' + name, SPECIAL_PRICES[v][cb.value]);
+            const name = getElText(cb.nextElementSibling);
+            addLine((lang === 'en' ? 'Special: ' : 'Especial: ') + name, SPECIAL_PRICES[v][cb.value]);
         });
 
         document.querySelectorAll('input[name="extra"]:not([value="ninguno"]):checked').forEach(cb => {
-            const name = cb.nextElementSibling.querySelector('.package-name').textContent.trim();
-            addLine('Extra: ' + name, Math.round(EXTRA_PRICES.extra[cb.value] * mult));
+            const name = getElText(cb.nextElementSibling);
+            addLine((lang === 'en' ? 'Add-on: ' : 'Extra: ') + name, Math.round(EXTRA_PRICES.extra[cb.value] * mult));
         });
 
-        html += `<div class="summary-row total"><span>TOTAL ESTIMADO:</span> <span>₡${total.toLocaleString('es-CR')}</span></div>`;
-        textMsj += `%0ATOTAL ESTIMADO: ₡${total.toLocaleString('es-CR')}%0A%0A¡Quedo atento(a)!`;
+        const totalLabel = lang === 'en' ? 'ESTIMATED TOTAL:' : 'TOTAL ESTIMADO:';
+        html += `<div class="summary-row total"><span>${totalLabel}</span> <span>₡${total.toLocaleString('es-CR')}</span></div>`;
+        textMsj += `%0A${totalLabel} ₡${total.toLocaleString('es-CR')}%0A%0A` + (lang === 'en' ? 'Looking forward to your reply!' : '¡Quedo atento(a)!');
 
         summaryContainer.innerHTML = html;
         btnWhatsApp.href = `https://wa.me/50661515240?text=${textMsj}`;
     }
 
     function updateWizard() {
+        updatePackagePrices();
+        calculateTotal();
+
         track.style.transform = `translateX(-${(currentStep - 1) * 100}%)`;
         btnPrev.disabled = stepHistory.length <= 1;
 
@@ -345,7 +602,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btnNext.style.display = (currentStep === totalSteps) ? 'none' : 'block';
 
         if (currentStep === 4) {
-            // Lógica para deshabilitar Mate/Brillante si el paquete es Clásico (Por si se añade)
             const pkg = document.querySelector('input[name="package"]:checked');
             const isClasico = pkg && pkg.value === 'clasico';
             document.querySelectorAll('.cond-clasico').forEach(el => {
@@ -362,30 +618,92 @@ document.addEventListener('DOMContentLoaded', () => {
             generateSummary();
         }
 
-        // Ajustar la altura del viewport al paso actual para evitar espacios vacíos
         const viewport = document.querySelector('.wizard-viewport');
         const currentStepEl = document.getElementById(`step-${currentStep}`);
         if (viewport && currentStepEl) {
-            // Añadir un pequeño retraso para asegurar que el DOM se haya repintado si hubo cambios
             setTimeout(() => {
                 viewport.style.height = (currentStepEl.offsetHeight + 40) + 'px';
             }, 10);
         }
     }
 
+    // === MODAL DE ALERTA / VALIDACIÓN PERSONALIZADO ===
+    function showAlert(message, title = 'Atención', callback = null) {
+        const modal = document.getElementById('custom-alert-modal');
+        const msgEl = document.getElementById('custom-alert-message');
+        const titleEl = document.getElementById('custom-alert-title');
+        const btn = document.getElementById('custom-alert-btn');
+        const backdrop = document.getElementById('custom-alert-backdrop');
+
+        if (!modal) {
+            alert(message);
+            if (callback) callback();
+            return;
+        }
+
+        if (titleEl) titleEl.textContent = title;
+        if (msgEl) msgEl.textContent = message;
+
+        const closeModal = () => {
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            btn.removeEventListener('click', onOk);
+            backdrop.removeEventListener('click', onOk);
+            document.removeEventListener('keydown', onEsc);
+            if (callback) callback();
+        };
+
+        const onOk = () => closeModal();
+        const onEsc = (e) => { if (e.key === 'Escape') closeModal(); };
+
+        btn.addEventListener('click', onOk);
+        backdrop.addEventListener('click', onOk);
+        document.addEventListener('keydown', onEsc);
+
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        setTimeout(() => btn.focus(), 50);
+    }
+
     btnNext.addEventListener('click', () => {
+        const lang = getActiveLang();
         if (currentStep === 1) {
-            const phone = document.getElementById('client-phone').value.trim();
+            const phoneInputEl = document.getElementById('client-phone');
+            const phone = phoneInputEl.value.trim();
             const name = document.getElementById('client-name').value.trim();
             const address = document.getElementById('client-address').value.trim();
             const timeEl = document.querySelector('input[name="client_time"]:checked');
             
             if (!phone || !name || !address) {
-                alert('Por favor complete todos sus datos de contacto y dirección.');
+                showAlert(
+                    lang === 'en' ? 'Please complete all your contact and address details before continuing.' : 'Por favor complete todos sus datos de contacto y dirección antes de continuar.',
+                    lang === 'en' ? 'Incomplete Details' : 'Datos Incompletos'
+                );
                 return;
             }
+            if (!isValidPhoneNumber(phone)) {
+                phoneInputEl.classList.add('input-error');
+                showAlert(
+                    lang === 'en' ? 'Please enter a valid phone number (example: 8888-8888).' : 'Por favor ingrese un número de teléfono válido (ejemplo: 8888-8888).',
+                    lang === 'en' ? 'Invalid Phone' : 'Teléfono Inválido',
+                    () => { phoneInputEl.focus(); }
+                );
+                return;
+            } else {
+                phoneInputEl.classList.remove('input-error');
+            }
             if (!timeEl) {
-                alert('Por favor seleccione un bloque de hora (ej. 09:30 AM).');
+                showAlert(
+                    lang === 'en' ? 'Please select a time slot for your appointment (e.g. 09:30 AM).' : 'Por favor seleccione un bloque de hora para su servicio (ej. 09:30 AM).',
+                    lang === 'en' ? 'Time Required' : 'Hora Requerida'
+                );
+                return;
+            }
+            if (!selectedDateStr) {
+                showAlert(
+                    lang === 'en' ? 'Please select a scheduled date for your service.' : 'Por favor seleccione un día agendado para su servicio.',
+                    lang === 'en' ? 'Date Required' : 'Fecha Requerida'
+                );
                 return;
             }
             currentStep = 2;
@@ -393,7 +711,10 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (currentStep === 2) {
             const vehicleSelected = document.querySelector('input[name="vehicle"]:checked');
             if (!vehicleSelected) {
-                alert("Por favor, seleccione el tamaño de su vehículo.");
+                showAlert(
+                    lang === 'en' ? 'Please select your vehicle size to continue.' : 'Por favor seleccione el tamaño de su vehículo para continuar.',
+                    lang === 'en' ? 'Vehicle Required' : 'Seleccione Vehículo'
+                );
                 return;
             }
             currentStep = 3;
@@ -401,7 +722,10 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (currentStep === 3) {
             const packageSelected = document.querySelector('input[name="package"]:checked');
             if (!packageSelected) {
-                alert("Por favor, seleccione un paquete o decida saltar este paso.");
+                showAlert(
+                    lang === 'en' ? 'Please select a detailing package or choose to skip this step.' : 'Por favor seleccione un paquete de detallado o elija la opción de saltar este paso.',
+                    lang === 'en' ? 'Package Required' : 'Seleccione Paquete'
+                );
                 return;
             }
             if (packageSelected.value === 'skip') {
@@ -432,8 +756,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Inicializar la altura y el estado del wizard
+    // Escuchar cambios de idioma
+    window.addEventListener('languageChanged', () => {
+        updatePlaceholders();
+        initDateSelector();
+        updatePackagePrices();
+        calculateTotal();
+        if (currentStep === totalSteps) {
+            generateSummary();
+        }
+    });
+
+    // Inicializar
+    updatePlaceholders();
     setTimeout(() => {
         updateWizard();
     }, 50);
+
+    window.addEventListener('resize', () => {
+        updateWizard();
+    });
 });

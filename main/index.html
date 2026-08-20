@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="styles.css?v=18">
 </head>
 
 <body>
@@ -31,14 +31,14 @@
 
             <!-- CENTRO: Menú de navegación -->
             <ul class="navbar-menu" id="navbar-menu" role="menubar">
-                <li role="none"><a href="#" data-target="inicio" class="nav-link" role="menuitem">Inicio</a></li>
-                <li role="none"><a href="#" data-target="about" class="nav-link" role="menuitem">¿Quiénes Somos?</a></li>
+                <li role="none"><a href="#" data-target="inicio" class="nav-link" role="menuitem" data-es="Inicio" data-en="Home">Inicio</a></li>
+                <li role="none"><a href="#" data-target="about" class="nav-link" role="menuitem" data-es="¿Quiénes Somos?" data-en="About Us">¿Quiénes Somos?</a></li>
 
                 <!-- Dropdown Servicios -->
                 <li class="nav-item--dropdown" role="none">
                     <button class="nav-link nav-link--dropdown" aria-haspopup="true" aria-expanded="false"
                         id="servicios-btn" role="menuitem">
-                        Servicios
+                        <span data-es="Servicios" data-en="Services">Servicios</span>
                         <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none"
                             aria-hidden="true">
                             <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8"
@@ -47,17 +47,16 @@
                     </button>
                     <ul class="dropdown-menu" id="dropdown-menu" role="menu" aria-labelledby="servicios-btn">
                         <li role="none"><a href="#" data-page="detailing" class="dropdown-item"
-                                role="menuitem">Detailing</a></li>
+                                role="menuitem" data-es="Detailing" data-en="Detailing">Detailing</a></li>
                         <li role="none"><a href="#" data-page="mecanica" class="dropdown-item"
-                                role="menuitem">Mecánica</a></li>
-                        <li role="none"><a href="#" data-page="domicilio" class="dropdown-item" role="menuitem">Servicio a domicilio</a></li>
-                        <li role="none"><a href="#" style="pointer-events: none; opacity: 0.5;" class="dropdown-item" role="menuitem">Productos</a></li>
-                        <li role="none"><a href="#" data-page="promociones" class="dropdown-item" role="menuitem">Promociones</a></li>
+                                role="menuitem" data-es="Mecánica" data-en="Mechanics">Mecánica</a></li>
+                        <li role="none"><a href="#" data-page="domicilio" class="dropdown-item" role="menuitem" data-es="Servicio a domicilio" data-en="Home Service">Servicio a domicilio</a></li>
+                        <li role="none"><a href="#" data-page="promociones" class="dropdown-item" role="menuitem" data-es="Promociones" data-en="Promotions">Promociones</a></li>
                     </ul>
                 </li>
 
-                <li role="none"><a href="#" data-target="sucursal" class="nav-link" role="menuitem">Sucursal</a></li>
-                <li role="none"><a href="#" data-target="horario" class="nav-link" role="menuitem">Horario</a></li>
+                <li role="none"><a href="#" data-target="sucursal" class="nav-link" role="menuitem" data-es="Sucursal" data-en="Location">Sucursal</a></li>
+                <li role="none"><a href="#" data-target="horario" class="nav-link" role="menuitem" data-es="Horario" data-en="Hours">Horario</a></li>
 
             </ul>
 
@@ -71,7 +70,7 @@
                     rel="noopener noreferrer" class="nav-social-btn" id="nav-instagram" aria-label="Instagram">
                     <img src="../images/Iconos/instagram.svg" alt="Instagram" class="nav-social-icon">
                 </a>
-                <a href="#" data-target="contacto" class="nav-cta" id="nav-cta">Agendar Cita</a>
+                <a href="#" data-target="contacto" class="nav-cta" id="nav-cta" data-es="Agendar Cita" data-en="Book Appointment">Agendar Cita</a>
 
                 <!-- Hamburguesa (móvil) -->
                 <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false"
@@ -96,20 +95,19 @@
             </svg>
         </button>
         <nav class="mobile-menu__nav">
-            <a href="#" data-target="inicio" class="mobile-link">Inicio</a>
-            <a href="#" data-target="about" class="mobile-link">¿Quiénes Somos?</a>
-            <div class="mobile-link mobile-link--parent">Servicios</div>
+            <a href="#" data-target="inicio" class="mobile-link" data-es="Inicio" data-en="Home">Inicio</a>
+            <a href="#" data-target="about" class="mobile-link" data-es="¿Quiénes Somos?" data-en="About Us">¿Quiénes Somos?</a>
+            <div class="mobile-link mobile-link--parent" data-es="Servicios" data-en="Services">Servicios</div>
             <div class="mobile-submenu">
-                <a href="#" data-page="detailing" class="mobile-sublink">Detailing</a>
-                <a href="#" data-page="mecanica" class="mobile-sublink">Mecánica</a>
-                <a href="#" data-page="domicilio" class="mobile-sublink">Servicio a domicilio</a>
-                <a href="#" style="pointer-events: none; opacity: 0.5;" class="mobile-sublink">Productos</a>
-                <a href="#" data-page="promociones" class="mobile-sublink">Promociones</a>
+                <a href="#" data-page="detailing" class="mobile-sublink" data-es="Detailing" data-en="Detailing">Detailing</a>
+                <a href="#" data-page="mecanica" class="mobile-sublink" data-es="Mecánica" data-en="Mechanics">Mecánica</a>
+                <a href="#" data-page="domicilio" class="mobile-sublink" data-es="Servicio a domicilio" data-en="Home Service">Servicio a domicilio</a>
+                <a href="#" data-page="promociones" class="mobile-sublink" data-es="Promociones" data-en="Promotions">Promociones</a>
             </div>
-            <a href="#" data-target="sucursal" class="mobile-link">Sucursal</a>
-            <a href="#" data-target="horario" class="mobile-link">Horario</a>
+            <a href="#" data-target="sucursal" class="mobile-link" data-es="Sucursal" data-en="Location">Sucursal</a>
+            <a href="#" data-target="horario" class="mobile-link" data-es="Horario" data-en="Hours">Horario</a>
 
-            <a href="#" data-target="contacto" class="mobile-cta">Agendar Cita</a>
+            <a href="#" data-target="contacto" class="mobile-cta" data-es="Agendar Cita" data-en="Book Appointment">Agendar Cita</a>
         </nav>
     </aside>
 
@@ -123,7 +121,7 @@
             <!-- Columna izquierda: H1 grande -->
             <div class="hero-left">
                 <h1 class="hero-headline">
-                    <span data-es="El Cuidado que" data-en="The Care">El Cuidado que</span><br>
+                    <span data-es="El Cuidado que" data-en="The Care that">El Cuidado que</span><br>
                     <span data-es="tu Vehículo" data-en="Your Vehicle">tu Vehículo</span><br>
                     <span class="hero-headline__accent" data-es="Merece." data-en="Deserves.">Merece.</span>
                 </h1>
@@ -132,14 +130,14 @@
                 <div class="hero-rotator">
                     <div class="rotator-window">
                         <ul class="rotator-list" id="rotator-list">
-                            <li>Precisión</li>
-                            <li>Brillo</li>
-                            <li>Confianza</li>
-                            <li>Rendimiento</li>
-                            <li>Rapidez</li>
-                            <li>Garantía Impecable</li>
-                            <li>Cartago, Taras</li>
-                            <li>Los Mejores Precios</li>
+                            <li data-es="Precisión" data-en="Precision">Precisión</li>
+                            <li data-es="Brillo" data-en="Shine">Brillo</li>
+                            <li data-es="Confianza" data-en="Trust">Confianza</li>
+                            <li data-es="Rendimiento" data-en="Performance">Rendimiento</li>
+                            <li data-es="Rapidez" data-en="Speed">Rapidez</li>
+                            <li data-es="Garantía Impecable" data-en="Flawless Warranty">Garantía Impecable</li>
+                            <li data-es="Cartago, Taras" data-en="Cartago, Taras">Cartago, Taras</li>
+                            <li data-es="Los Mejores Precios" data-en="The Best Prices">Los Mejores Precios</li>
                         </ul>
                     </div>
                 </div>
@@ -163,45 +161,47 @@
                 </p>
             </div>
         </div>
-        <!-- ===== STATS SEPARATOR ===== -->
-        <section class="stats-bar" id="stats-bar" aria-label="Indicadores de confianza">
-            <div class="stats-bar__inner">
-                <div class="stats-bar__stat">
-                    <span class="stats-bar__number">+500</span>
-                    <span class="stats-bar__label" data-es="Clientes satisfechos" data-en="Satisfied clients">Clientes
-                        satisfechos</span>
-                </div>
-                <div class="stats-bar__sep"></div>
-                <div class="stats-bar__stat">
-                    <span class="stats-bar__number">+50.000</span>
-                    <span class="stats-bar__label" data-es="Vehículos atendidos" data-en="Vehicles serviced">Vehículos
-                        atendidos</span>
-                </div>
-                <div class="stats-bar__sep"></div>
-                <div class="stats-bar__stat">
-                    <span class="stats-bar__number">+10</span>
-                    <span class="stats-bar__label" data-es="Años de experiencia" data-en="Years of experience">Años de
-                        experiencia</span>
-                </div>
-                <div class="stats-bar__sep"></div>
-                <div class="stats-bar__stat">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                    <span class="stats-bar__label" data-es="Garantía en nuestros trabajos"
-                        data-en="Guaranteed work">Garantía en nuestros trabajos</span>
-                </div>
-            </div>
-        </section>
 
+    </section>
+
+    <!-- ===== STATS SEPARATOR ===== -->
+    <section class="stats-bar" id="stats-bar" aria-label="Indicadores de confianza">
+        <div class="stats-bar__inner">
+            <div class="stats-bar__stat">
+                <span class="stats-bar__number">+500</span>
+                <span class="stats-bar__label" data-es="Clientes satisfechos" data-en="Satisfied clients">Clientes
+                    satisfechos</span>
+            </div>
+            <div class="stats-bar__sep"></div>
+            <div class="stats-bar__stat">
+                <span class="stats-bar__number">+50.000</span>
+                <span class="stats-bar__label" data-es="Vehículos atendidos" data-en="Vehicles serviced">Vehículos
+                    atendidos</span>
+            </div>
+            <div class="stats-bar__sep"></div>
+            <div class="stats-bar__stat">
+                <span class="stats-bar__number">+10</span>
+                <span class="stats-bar__label" data-es="Años de experiencia" data-en="Years of experience">Años de
+                    experiencia</span>
+            </div>
+            <div class="stats-bar__sep"></div>
+            <div class="stats-bar__stat">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                <span class="stats-bar__label" data-es="Garantía en nuestros trabajos"
+                    data-en="Guaranteed work">Garantía en nuestros trabajos</span>
+            </div>
+        </div>
     </section>
 
     <!-- ===== CAROUSEL 3D SERVICIOS ===== -->
     <section id="servicios-carousel" class="services-3d" aria-label="Nuestros Servicios Destacados">
+
         <div class="carousel-header">
-            <h2>Vive la experiencia Sus Amigos.<br>Cuidamos tu carro por dentro y por fuera.</h2>
-            <button class="btn-pill" data-target="contacto">Agendar cita</button>
+            <h2 data-es="Vive la experiencia Sus Amigos.<br>Cuidamos tu carro por dentro y por fuera." data-en="Live the Sus Amigos experience.<br>We take care of your car inside and out.">Vive la experiencia Sus Amigos.<br>Cuidamos tu carro por dentro y por fuera.</h2>
+            <button class="btn-pill" data-target="contacto" data-es="Agendar cita" data-en="Book Appointment">Agendar cita</button>
         </div>
 
         <div class="carousel-container">
@@ -212,13 +212,13 @@
                         <video class="carousel-video" muted playsinline loop autoplay preload="metadata" poster="../images/laminas/1.webp">
                             <source src="../images/carrusel/video01.mp4" type="video/mp4">
                         </video>
-                        <button class="btn-escuchar" onclick="const v = this.previousElementSibling; v.muted = !v.muted; this.innerHTML = v.muted ? '<span class=\'icon\'>🔊</span> Escuchar' : '<span class=\'icon\'>🔇</span> Silenciar';">
-                            <span class="icon">🔊</span> Escuchar
+                        <button class="btn-escuchar" onclick="toggleVideoSound(this)">
+                            <span class="icon">🔊</span> <span class="btn-sound-text" data-es="Escuchar" data-en="Listen">Escuchar</span>
                         </button>
                     </div>
                     <div class="card-content">
-                        <h3>Abrillantado Premium</h3>
-                        <p>Pulido y encerado de la carrocería para eliminar imperfecciones leves, realzar el color y dejar un brillo intenso y uniforme en toda la pintura.</p>
+                        <h3 data-es="Abrillantado Premium" data-en="Premium Polishing">Abrillantado Premium</h3>
+                        <p data-es="Pulido y encerado de la carrocería para eliminar imperfecciones leves, realzar el color y dejar un brillo intenso y uniforme en toda la pintura." data-en="Body polishing and waxing to remove minor imperfections, enhance color, and leave an intense, uniform shine across the paint.">Pulido y encerado de la carrocería para eliminar imperfecciones leves, realzar el color y dejar un brillo intenso y uniforme en toda la pintura.</p>
                     </div>
                 </div>
 
@@ -227,13 +227,13 @@
                         <video class="carousel-video" muted playsinline loop autoplay preload="metadata" poster="../images/laminas/2.webp">
                             <source src="../images/carrusel/video02.mp4" type="video/mp4">
                         </video>
-                        <button class="btn-escuchar" onclick="const v = this.previousElementSibling; v.muted = !v.muted; this.innerHTML = v.muted ? '<span class=\'icon\'>🔊</span> Escuchar' : '<span class=\'icon\'>🔇</span> Silenciar';">
-                            <span class="icon">🔊</span> Escuchar
+                        <button class="btn-escuchar" onclick="toggleVideoSound(this)">
+                            <span class="icon">🔊</span> <span class="btn-sound-text" data-es="Escuchar" data-en="Listen">Escuchar</span>
                         </button>
                     </div>
                     <div class="card-content">
-                        <h3>Detallado Cerámico</h3>
-                        <p>Aplicación de recubrimiento de nanocerámica que sella la pintura, potencia el brillo y crea una capa protectora contra rayos UV, agua y contaminación, dejando tu carro con un acabado profundo y duradero.</p>
+                        <h3 data-es="Detallado Cerámico" data-en="Ceramic Coating">Detallado Cerámico</h3>
+                        <p data-es="Aplicación de recubrimiento de nanocerámica que sella la pintura, potencia el brillo y crea una capa protectora contra rayos UV, agua y contaminación, dejando tu carro con un acabado profundo y duradero." data-en="Application of nano-ceramic coating that seals paint, enhances gloss, and creates a protective shield against UV rays, water, and contaminants for a deep, durable finish.">Aplicación de recubrimiento de nanocerámica que sella la pintura, potencia el brillo y crea una capa protectora contra rayos UV, agua y contaminación, dejando tu carro con un acabado profundo y duradero.</p>
                     </div>
                 </div>
 
@@ -242,13 +242,13 @@
                         <video class="carousel-video" muted playsinline loop autoplay preload="metadata" poster="../images/laminas/3.webp">
                             <source src="../images/carrusel/video03.mp4" type="video/mp4">
                         </video>
-                        <button class="btn-escuchar" onclick="const v = this.previousElementSibling; v.muted = !v.muted; this.innerHTML = v.muted ? '<span class=\'icon\'>🔊</span> Escuchar' : '<span class=\'icon\'>🔇</span> Silenciar';">
-                            <span class="icon">🔊</span> Escuchar
+                        <button class="btn-escuchar" onclick="toggleVideoSound(this)">
+                            <span class="icon">🔊</span> <span class="btn-sound-text" data-es="Escuchar" data-en="Listen">Escuchar</span>
                         </button>
                     </div>
                     <div class="card-content">
-                        <h3>Descarbonización del Motor</h3>
-                        <p>Limpieza profunda de cámaras de combustión, válvulas e inyectores para eliminar residuos de carbón, recuperando potencia, mejorando el consumo de combustible y reduciendo emisiones.</p>
+                        <h3 data-es="Descarbonización del Motor" data-en="Engine Decarbonization">Descarbonización del Motor</h3>
+                        <p data-es="Limpieza profunda de cámaras de combustión, válvulas e inyectores para eliminar residuos de carbón, recuperando potencia, mejorando el consumo de combustible y reduciendo emisiones." data-en="Deep cleaning of combustion chambers, valves, and injectors to remove carbon buildup, restoring horsepower, improving fuel economy, and cutting emissions.">Limpieza profunda de cámaras de combustión, válvulas e inyectores para eliminar residuos de carbón, recuperando potencia, mejorando el consumo de combustible y reduciendo emisiones.</p>
                     </div>
                 </div>
 
@@ -257,13 +257,13 @@
                         <video class="carousel-video" muted playsinline loop autoplay preload="metadata" poster="../images/laminas/4.webp">
                             <source src="../images/carrusel/video04.mp4" type="video/mp4">
                         </video>
-                        <button class="btn-escuchar" onclick="const v = this.previousElementSibling; v.muted = !v.muted; this.innerHTML = v.muted ? '<span class=\'icon\'>🔊</span> Escuchar' : '<span class=\'icon\'>🔇</span> Silenciar';">
-                            <span class="icon">🔊</span> Escuchar
+                        <button class="btn-escuchar" onclick="toggleVideoSound(this)">
+                            <span class="icon">🔊</span> <span class="btn-sound-text" data-es="Escuchar" data-en="Listen">Escuchar</span>
                         </button>
                     </div>
                     <div class="card-content">
-                        <h3>Servicio Detailing a Domicilio</h3>
-                        <p>Llevamos el detallado hasta donde estés: mismo cuidado y productos premium, sin que tengas que mover tu rutina para mover tu carro.</p>
+                        <h3 data-es="Servicio Detailing a Domicilio" data-en="Mobile Detailing Service">Servicio Detailing a Domicilio</h3>
+                        <p data-es="Llevamos el detallado hasta donde estés: mismo cuidado y productos premium, sin que tengas que mover tu rutina para mover tu carro." data-en="We bring detailing right to your location: the same premium care and products without disrupting your daily routine.">Llevamos el detallado hasta donde estés: mismo cuidado y productos premium, sin que tengas que mover tu rutina para mover tu carro.</p>
                     </div>
                 </div>
 
@@ -272,13 +272,13 @@
                         <video class="carousel-video" muted playsinline loop autoplay preload="metadata" poster="../images/laminas/5.webp">
                             <source src="../images/carrusel/video05.mp4" type="video/mp4">
                         </video>
-                        <button class="btn-escuchar" onclick="const v = this.previousElementSibling; v.muted = !v.muted; this.innerHTML = v.muted ? '<span class=\'icon\'>🔊</span> Escuchar' : '<span class=\'icon\'>🔇</span> Silenciar';">
-                            <span class="icon">🔊</span> Escuchar
+                        <button class="btn-escuchar" onclick="toggleVideoSound(this)">
+                            <span class="icon">🔊</span> <span class="btn-sound-text" data-es="Escuchar" data-en="Listen">Escuchar</span>
                         </button>
                     </div>
                     <div class="card-content">
-                        <h3>Limpieza de Inyectores</h3>
-                        <p>Eliminación de residuos y depósitos en los inyectores de combustible para restaurar un rociado uniforme, mejorando el arranque, la aceleración y el rendimiento del motor.</p>
+                        <h3 data-es="Limpieza de Inyectores" data-en="Fuel Injector Cleaning">Limpieza de Inyectores</h3>
+                        <p data-es="Eliminación de residuos y depósitos en los inyectores de combustible para restaurar un rociado uniforme, mejorando el arranque, la aceleración y el rendimiento del motor." data-en="Removal of deposits and buildup in fuel injectors to restore optimal spray patterns, enhancing startup, acceleration, and engine performance.">Eliminación de residuos y depósitos en los inyectores de combustible para restaurar un rociado uniforme, mejorando el arranque, la aceleración y el rendimiento del motor.</p>
                     </div>
                 </div>
 
@@ -296,17 +296,17 @@
 
     <!-- ===== ABOUT US SECTION ===== -->
     <section id="about" class="about-section" aria-label="Sobre Nosotros">
-        <h3 class="about-section-title">¿Quiénes Somos?</h3>
+        <h3 class="about-section-title" data-es="¿Quiénes Somos?" data-en="About Us">¿Quiénes Somos?</h3>
         <div class="about-container">
             <div class="about-video-wrapper">
                 <img src="../images/Nosotros/imagen01.webp" alt="Equipo Sus Amigos" class="about-video" loading="lazy">
             </div>
             <div class="about-content">
-                <h2>Más que un taller, somos tu equipo de confianza</h2>
-                <p class="about-lead">Somos un centro de servicios automotrices en Cartago, Taras, especializado en mantenimiento y reparación mecánica, complementado con lavado y detailing para que tu vehículo salga andando y luciendo como se merece.</p>
+                <h2 data-es="Más que un taller, somos tu equipo de confianza" data-en="More than a shop, we are your trusted team">Más que un taller, somos tu equipo de confianza</h2>
+                <p class="about-lead" data-es="Somos un centro de servicios automotrices en Cartago, Taras, especializado en mantenimiento y reparación mecánica, complementado con lavado y detailing para que tu vehículo salga andando y luciendo como se merece." data-en="We are an automotive service center in Cartago, Taras, specializing in mechanical maintenance and repair, complemented by car wash and detailing so your vehicle runs and looks its absolute best.">Somos un centro de servicios automotrices en Cartago, Taras, especializado en mantenimiento y reparación mecánica, complementado con lavado y detailing para que tu vehículo salga andando y luciendo como se merece.</p>
                 <div class="about-story">
-                    <p>Diagnosticamos con equipo profesional, trabajamos con repuestos de calidad y te explicamos con claridad qué necesita tu carro y por qué sin letra pequeña ni sorpresas en la factura.</p>
-                    <p>Sabemos que confiar tu vehículo a un taller no es fácil. Por eso nuestro compromiso es simple: precios justos, trabajo garantizado y trato cercano, como si fuéramos tus propios amigos cuidando tu carro.</p>
+                    <p data-es="Diagnosticamos con equipo profesional, trabajamos con repuestos de calidad y te explicamos con claridad qué necesita tu carro y por qué sin letra pequeña ni sorpresas en la factura." data-en="We diagnose with professional equipment, work with quality parts, and explain clearly what your car needs and why — no fine print or surprises on your invoice.">Diagnosticamos con equipo profesional, trabajamos con repuestos de calidad y te explicamos con claridad qué necesita tu carro y por qué sin letra pequeña ni sorpresas en la factura.</p>
+                    <p data-es="Sabemos que confiar tu vehículo a un taller no es fácil. Por eso nuestro compromiso es simple: precios justos, trabajo garantizado y trato cercano, como si fuéramos tus propios amigos cuidando tu carro." data-en="We know trusting your vehicle with a shop isn't easy. That's why our commitment is simple: fair prices, guaranteed workmanship, and friendly service, as if friends were caring for your car.">Sabemos que confiar tu vehículo a un taller no es fácil. Por eso nuestro compromiso es simple: precios justos, trabajo garantizado y trato cercano, como si fuéramos tus propios amigos cuidando tu carro.</p>
                 </div>
             </div>
         </div>
@@ -318,20 +318,20 @@
             <div class="location-content-grid">
                 <!-- Columna Izquierda: Textos y CTA -->
                 <div class="location-text-side">
-                    <h2 class="location-title">Visítanos en <span class="text-gold">Cartago</span></h2>
-                    <p class="location-description">
+                    <h2 class="location-title" data-es="Visítanos en <span class='text-gold'>Cartago</span>" data-en="Visit Us in <span class='text-gold'>Cartago</span>">Visítanos en <span class="text-gold">Cartago</span></h2>
+                    <p class="location-description" data-es="Te esperamos en nuestra sucursal en <strong>Provincia de Cartago, Taras</strong>. Ven a conocernos y descubre por qué somos el centro automotriz de confianza para cuidar, proteger y consentir tu vehículo. Nuestro equipo experto está listo para brindarte el mejor servicio." data-en="We look forward to seeing you at our branch in <strong>Cartago Province, Taras</strong>. Come visit and discover why we are the trusted automotive center to care for, protect, and pamper your vehicle. Our expert team is ready to provide you with the best service.">
                         Te esperamos en nuestra sucursal en <strong>Provincia de Cartago, Taras</strong>.
                         Ven a conocernos y descubre por qué somos el centro automotriz de confianza para cuidar,
                         proteger y consentir tu vehículo. Nuestro equipo experto está listo para brindarte el mejor
                         servicio.
                     </p>
                     <ul class="location-perks">
-                        <li><span class="gold-dot"></span> Atención personalizada y experta</li>
-                        <li><span class="gold-dot"></span> Sala de espera cómoda con Wifi</li>
-                        <li><span class="gold-dot"></span> Fácil acceso y amplio parqueo</li>
+                        <li data-es="<span class='gold-dot'></span> Atención personalizada y experta" data-en="<span class='gold-dot'></span> Personalized and expert attention"><span class="gold-dot"></span> Atención personalizada y experta</li>
+                        <li data-es="<span class='gold-dot'></span> Sala de espera cómoda con Wifi" data-en="<span class='gold-dot'></span> Comfortable waiting room with Wi-Fi"><span class="gold-dot"></span> Sala de espera cómoda con Wifi</li>
+                        <li data-es="<span class='gold-dot'></span> Fácil acceso y amplio parqueo" data-en="<span class='gold-dot'></span> Easy access and spacious parking"><span class="gold-dot"></span> Fácil acceso y amplio parqueo</li>
                     </ul>
                     <a href="https://maps.app.goo.gl/nB95Y6GsAsPxbWK47" target="_blank" rel="noopener noreferrer"
-                        class="hero-cta hero-cta--primary location-btn">
+                        class="hero-cta hero-cta--primary location-btn" data-es="Abrir en Google Maps" data-en="Open in Google Maps">
                         Abrir en Google Maps
                     </a>
                 </div>
@@ -349,14 +349,14 @@
     <!-- ===== HORARIO SECTION ===== -->
     <section id="horario" class="horario-section" aria-label="Nuestro Horario">
         <div class="horario-container">
-            <h2 class="section-title">Horario de Atención</h2>
+            <h2 class="section-title" data-es="Horario de Atención" data-en="Business Hours">Horario de Atención</h2>
             <div class="horario-content">
                 <div class="horario-columns">
                     <!-- Marcador electrónico (JS lo actualizará) -->
                     <div class="scoreboard-container">
                         <div class="scoreboard">
                             <div class="scoreboard-inner">
-                                <div class="scoreboard-header" id="scoreboard-text">CARGANDO...</div>
+                                <div class="scoreboard-header" id="scoreboard-text" data-es="CARGANDO..." data-en="LOADING...">CARGANDO...</div>
                                 <div class="scoreboard-time" id="scoreboard-time">00:00:00</div>
                             </div>
                         </div>
@@ -365,18 +365,18 @@
                     <!-- Tabla de horarios -->
                     <div class="schedule-grid">
                         <div class="schedule-row">
-                            <span class="schedule-day">Lunes a Sábado</span>
-                            <span class="schedule-hours">7:00 a. m. – 5:00 p. m.</span>
+                            <span class="schedule-day" data-es="Lunes a Sábado" data-en="Monday to Saturday">Lunes a Sábado</span>
+                            <span class="schedule-hours" data-es="7:00 a. m. – 5:00 p. m." data-en="7:00 AM – 5:00 PM">7:00 a. m. – 5:00 p. m.</span>
                         </div>
                         <div class="schedule-row schedule-row-closed">
-                            <span class="schedule-day">Domingo</span>
-                            <span class="schedule-hours">Cerrado</span>
+                            <span class="schedule-day" data-es="Domingo" data-en="Sunday">Domingo</span>
+                            <span class="schedule-hours" data-es="Cerrado" data-en="Closed">Cerrado</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Nota sobre feriados -->
-                <p class="schedule-note">
+                <p class="schedule-note" data-es="<span class='gold-dot'></span> El horario puede variar por los feriados. Te recomendamos preguntar al número <a href='https://wa.me/50670491753?text=Hola,%20vengo%20del%20sitio%20web,%20quisiera%20m%C3%A1s%20informaci%C3%B3n' target='_blank' rel='noopener noreferrer' class='text-gold'>+506 7049-1753</a>" data-en="<span class='gold-dot'></span> Hours may vary on holidays. We recommend inquiring at <a href='https://wa.me/50670491753?text=Hi,%20I%20am%20visiting%20from%20the%20website,%20I%20would%20like%20more%20information' target='_blank' rel='noopener noreferrer' class='text-gold'>+506 7049-1753</a>">
                     <span class="gold-dot"></span> El horario puede variar por los feriados. Te recomendamos preguntar al número <a href="https://wa.me/50670491753?text=Hola,%20vengo%20del%20sitio%20web,%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" class="text-gold">+506 7049-1753</a>
                 </p>
             </div>
@@ -388,8 +388,8 @@
         <!-- ===== GALERÍA ===== -->
         <section class="gallery-section">
         <div class="gallery-header">
-            <h2>Nuestra Galería</h2>
-            <p>Conoce más sobre nuestras instalaciones y el trabajo que realizamos.</p>
+            <h2 data-es="Nuestra Galería" data-en="Our Gallery">Nuestra Galería</h2>
+            <p data-es="Conoce más sobre nuestras instalaciones y el trabajo que realizamos." data-en="Learn more about our facilities and the quality work we perform.">Conoce más sobre nuestras instalaciones y el trabajo que realizamos.</p>
         </div>
         <div class="gallery-grid">
             <!-- Imagen 1: Ancha (Ocupa 2 columnas) -->
@@ -453,7 +453,7 @@
                         </svg>
                     </a>
                     <strong>Taras, Cartago</strong>
-                    <span>V3J8+84, Provincia de Cartago</span>
+                    <span data-es="V3J8+84, Provincia de Cartago" data-en="V3J8+84, Cartago Province">V3J8+84, Provincia de Cartago</span>
                 </div>
                 <!-- Columna 3: Correo -->
                 <div class="footer-col">
@@ -463,7 +463,7 @@
                         </svg>
                     </span>
                     <strong>info@susamigos.com</strong>
-                    <span>Correo Electrónico</span>
+                    <span data-es="Correo Electrónico" data-en="Email Address">Correo Electrónico</span>
                 </div>
                 <!-- Columna 4: Horario -->
                 <div class="footer-col">
@@ -472,24 +472,23 @@
                             <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
                         </svg>
                     </a>
-                    <strong>Abierto Lunes a Sábado:</strong>
-                    <span>07:00 am - 05:00 pm</span>
+                    <strong data-es="Abierto Lunes a Sábado:" data-en="Open Monday to Saturday:">Abierto Lunes a Sábado:</strong>
+                    <span data-es="07:00 am - 05:00 pm" data-en="07:00 AM - 05:00 PM">07:00 am - 05:00 pm</span>
                 </div>
             </div>
         </div>
 
         <div class="footer-slogan-bar">
-            <p class="footer-slogan">Cuidamos tu auto como si fuera nuestro. ¡El mejor servicio garantizado!</p>
+            <p class="footer-slogan" data-es="Cuidamos tu auto como si fuera nuestro. ¡El mejor servicio garantizado!" data-en="We care for your car as if it were our own. Best service guaranteed!">Cuidamos tu auto como si fuera nuestro. ¡El mejor servicio garantizado!</p>
         </div>
 
-                <div class="footer-bottom-links">
-            <a href="#" data-target="about">🔗 ¿Quiénes Somos?</a>
-            <a href="#" data-target="sucursal">🔗 Ubicación</a>
-            <a href="#" data-page="detailing">🔗 Detailing</a>
-            <a href="#" data-page="mecanica">🔗 Mecánica</a>
-            <a href="#" data-page="domicilio">🔗 Servicio a domicilio</a>
-            <a href="#" style="pointer-events: none; opacity: 0.5;">🔗 Productos</a>
-            <a href="#" data-page="promociones">🔗 Promociones</a>
+        <div class="footer-bottom-links">
+            <a href="#" data-target="about" data-es="🔗 ¿Quiénes Somos?" data-en="🔗 About Us">🔗 ¿Quiénes Somos?</a>
+            <a href="#" data-target="sucursal" data-es="🔗 Ubicación" data-en="🔗 Location">🔗 Ubicación</a>
+            <a href="#" data-page="detailing" data-es="🔗 Detailing" data-en="🔗 Detailing">🔗 Detailing</a>
+            <a href="#" data-page="mecanica" data-es="🔗 Mecánica" data-en="🔗 Mechanics">🔗 Mecánica</a>
+            <a href="#" data-page="domicilio" data-es="🔗 Servicio a domicilio" data-en="🔗 Home Service">🔗 Servicio a domicilio</a>
+            <a href="#" data-page="promociones" data-es="🔗 Promociones" data-en="🔗 Promotions">🔗 Promociones</a>
         </div>
     </footer>
     </div>
@@ -497,7 +496,7 @@
     <!-- ===== WHATSAPP FLOTANTE ===== -->
     <a href="https://wa.me/50670491753?text=Hola,%20vengo%20del%20sitio%20web,%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer" class="whatsapp-widget"
         id="whatsapp-widget" aria-label="SusAmigos WhatsApp">
-        <span class="whatsapp-label">SusAmigos Whatsapp</span>
+        <span class="whatsapp-label" data-es="SusAmigos WhatsApp" data-en="SusAmigos WhatsApp">SusAmigos WhatsApp</span>
         <img src="../images/Iconos/whatsapp.svg" alt="WhatsApp" class="whatsapp-icon">
     </a>
     <!-- ===== LANGUAGE SWITCHER ===== -->
@@ -520,7 +519,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
 </body>
 
 </html>

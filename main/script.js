@@ -109,27 +109,99 @@
     }
 
     function closeLangDropdown() {
-        langSwitcher.classList.remove('open');
-        langBtn.setAttribute('aria-expanded', 'false');
+        if (langSwitcher) langSwitcher.classList.remove('open');
+        if (langBtn) langBtn.setAttribute('aria-expanded', 'false');
     }
 
     function applyLanguage(lang) {
+        if (!LANGS[lang]) lang = 'es';
+        document.documentElement.lang = lang;
+
         // Actualizar botón
-        langFlag.textContent = LANGS[lang].flag;
-        langName.textContent = LANGS[lang].name;
+        if (langFlag) langFlag.textContent = LANGS[lang].flag;
+        if (langName) langName.textContent = LANGS[lang].name;
 
         // Marcar opción activa
         langOptions.forEach(opt => {
             opt.classList.toggle('lang-option--active', opt.dataset.lang === lang);
         });
 
+        // Actualizar título de la página
+        document.title = lang === 'en' 
+            ? 'Sus Amigos – Premium Automotive Center' 
+            : 'Sus Amigos – Centro Automotriz Premium';
+
         // Traducir todos los elementos con data-es / data-en
         document.querySelectorAll('[data-es], [data-en]').forEach(el => {
-            const text = el.getAttribute('data-' + lang);
-            if (text) el.textContent = text;
+            const content = el.getAttribute('data-' + lang);
+            if (content !== null) {
+                if (content.includes('<') && content.includes('>')) {
+                    el.innerHTML = content;
+                } else {
+                    el.textContent = content;
+                }
+            }
         });
 
+        // Actualizar palabras del rotador
+        const rotatorList = document.getElementById('rotator-list');
+        if (rotatorList) {
+            const items = rotatorList.querySelectorAll('li');
+            items.forEach(li => {
+                const text = li.getAttribute('data-' + lang);
+                if (text) li.textContent = text;
+            });
+            if (items.length > 8) {
+                const first = items[0];
+                const clone = items[items.length - 1];
+                if (first && clone) {
+                    clone.textContent = first.textContent;
+                }
+            }
+        }
+
+        // Actualizar textos de botones de audio en carrusel
+        document.querySelectorAll('.btn-escuchar').forEach(btn => {
+            const video = btn.previousElementSibling;
+            const isMuted = video ? video.muted : true;
+            const textSpan = btn.querySelector('.btn-sound-text');
+            if (textSpan) {
+                textSpan.textContent = isMuted 
+                    ? (lang === 'en' ? 'Listen' : 'Escuchar') 
+                    : (lang === 'en' ? 'Mute' : 'Silenciar');
+            }
+        });
+
+        // Actualizar marcador de horario
+        if (typeof updateScheduleStatus === 'function') {
+            updateScheduleStatus();
+        }
+
+        // Actualizar modal de citas si ya está creado en el DOM
+        const appointmentModalTitle = document.querySelector('.appointment-modal h2');
+        if (appointmentModalTitle) {
+            appointmentModalTitle.textContent = lang === 'en' ? 'Choose your appointment type' : 'Elige tu tipo de cita';
+            const cards = document.querySelectorAll('.appointment-card');
+            if (cards.length >= 3) {
+                cards[0].querySelector('.appointment-card-title').textContent = 'Detailing';
+                cards[0].querySelector('.appointment-card-desc').textContent = lang === 'en' 
+                    ? 'Get a live quote for all services and send your request to our WhatsApp...' 
+                    : 'Cotiza en vivo todos los servicios y envianos tu cotizacion a nuestro whatssapp ....';
+
+                cards[1].querySelector('.appointment-card-title').textContent = lang === 'en' ? 'Mobile Service' : 'A Domicilio';
+                cards[1].querySelector('.appointment-card-desc').textContent = lang === 'en'
+                    ? 'Send us your preferred date/time and book your mobile service'
+                    : 'Envianos tu fecha/hora que deseas y agenda tu servicio a domicilio';
+
+                cards[2].querySelector('.appointment-card-title').textContent = lang === 'en' ? 'Mechanics' : 'Mecánica';
+                cards[2].querySelector('.appointment-card-desc').textContent = lang === 'en'
+                    ? 'Book your appointment at our branch for any vehicle needs'
+                    : 'Agenda tu cita en nuestra sucursal para las necesidades que tengas';
+            }
+        }
+
         localStorage.setItem('susamigos-lang', lang);
+        window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
         closeLangDropdown();
     }
 
@@ -223,22 +295,17 @@
 
         const onPointerMove = (e) => {
             const now = performance.now();
-            if (now - lastSpawnTime > 50) {
-                let clientX, clientY;
-                if (e.touches) {
-                    clientX = e.touches[0].clientX;
-                    clientY = e.touches[0].clientY;
-                } else {
-                    clientX = e.clientX;
-                    clientY = e.clientY;
+            if (now - lastSpawnTime > 25) {
+                const x = e.clientX || (e.touches && e.touches[0].clientX);
+                const y = e.clientY || (e.touches && e.touches[0].clientY);
+                if (x !== undefined && y !== undefined) {
+                    spawnBubble(x, y);
+                    lastSpawnTime = now;
                 }
-                spawnBubble(clientX, clientY);
-                lastSpawnTime = now;
             }
         };
 
-        let lastTime = performance.now();
-
+        let lastTime = 0;
         const render = (time) => {
             const deltaTime = time - lastTime;
             lastTime = time;
@@ -291,6 +358,26 @@
         lastTime = performance.now();
         render(lastTime);
     }
+
+    /* ── Función global de Audio de Video ────────────────────── */
+    window.toggleVideoSound = function(btn) {
+        const video = btn.previousElementSibling;
+        if (!video) return;
+        video.muted = !video.muted;
+        const isMuted = video.muted;
+        const lang = document.documentElement.lang || 'es';
+        const textSpan = btn.querySelector('.btn-sound-text');
+        const iconSpan = btn.querySelector('.icon');
+        if (iconSpan) {
+            iconSpan.textContent = isMuted ? '🔊' : '🔇';
+        }
+        if (textSpan) {
+            textSpan.textContent = isMuted 
+                ? (lang === 'en' ? 'Listen' : 'Escuchar') 
+                : (lang === 'en' ? 'Mute' : 'Silenciar');
+        }
+    };
+
     /* ── Carrusel 3D de Servicios ────────────────────────────── */
     const carouselTrack = document.getElementById('carousel-track');
     if (carouselTrack) {
@@ -316,12 +403,16 @@
         const dots = Array.from(dotsContainer.querySelectorAll('.dot'));
 
         function updateCarousel() {
+            const lang = document.documentElement.lang || 'es';
             // Silenciar todos los videos del carrusel al cambiar de lámina
             document.querySelectorAll('.carousel-video').forEach(v => {
                 v.muted = true;
                 const btn = v.nextElementSibling;
                 if (btn && btn.classList.contains('btn-escuchar')) {
-                    btn.innerHTML = '<span class="icon">🔊</span> Escuchar';
+                    const textSpan = btn.querySelector('.btn-sound-text');
+                    const iconSpan = btn.querySelector('.icon');
+                    if (iconSpan) iconSpan.textContent = '🔊';
+                    if (textSpan) textSpan.textContent = lang === 'en' ? 'Listen' : 'Escuchar';
                 }
             });
 
@@ -417,8 +508,8 @@
         
         // Touch Events
         carouselTrack.addEventListener('touchstart', dragStart, { passive: true });
-        window.addEventListener('touchmove', dragMove, { passive: true });
-        window.addEventListener('touchend', dragEnd);
+        carouselTrack.addEventListener('touchmove', dragMove, { passive: true });
+        carouselTrack.addEventListener('touchend', dragEnd);
 
         // Bloquear arrastre nativo en imágenes
         cards.forEach(card => {
@@ -471,6 +562,7 @@
     });
 
     function openAppointmentModal(depthPrefix) {
+        const lang = document.documentElement.lang || 'es';
         let modalOverlay = document.getElementById('appointment-overlay');
         if (!modalOverlay) {
             modalOverlay = document.createElement('div');
@@ -484,27 +576,27 @@
                             <line x1="6" y1="6" x2="18" y2="18"></line>
                         </svg>
                     </button>
-                    <h2>Elige tu tipo de cita</h2>
+                    <h2>${lang === 'en' ? 'Choose your appointment type' : 'Elige tu tipo de cita'}</h2>
                     <div class="appointment-options">
                         <a href="${depthPrefix}servicios/detailing/index.html" class="appointment-card">
                             <div class="appointment-card-bg" style="background-image: url('${depthPrefix}images/botones/detailing.webp')"></div>
                             <div class="appointment-card-content">
                                 <div class="appointment-card-title">Detailing</div>
-                                <div class="appointment-card-desc">Cotiza en vivo todos los servicios y envianos tu cotizacion a nuestro whatssapp ....</div>
+                                <div class="appointment-card-desc">${lang === 'en' ? 'Get a live quote for all services and send your request to our WhatsApp...' : 'Cotiza en vivo todos los servicios y envianos tu cotizacion a nuestro whatssapp ....'}</div>
                             </div>
                         </a>
                         <a href="${depthPrefix}servicios/domicilio/index.html" class="appointment-card">
                             <div class="appointment-card-bg" style="background-image: url('${depthPrefix}images/botones/domicilio.webp')"></div>
                             <div class="appointment-card-content">
-                                <div class="appointment-card-title">A Domicilio</div>
-                                <div class="appointment-card-desc">Envianos tu fecha/hora que deseas y agenda tu servicio a domicilio</div>
+                                <div class="appointment-card-title">${lang === 'en' ? 'Mobile Service' : 'A Domicilio'}</div>
+                                <div class="appointment-card-desc">${lang === 'en' ? 'Send us your preferred date/time and book your mobile service' : 'Envianos tu fecha/hora que deseas y agenda tu servicio a domicilio'}</div>
                             </div>
                         </a>
                         <a href="${depthPrefix}servicios/mecanica/index.html" class="appointment-card">
                             <div class="appointment-card-bg" style="background-image: url('${depthPrefix}images/botones/mecanica.webp')"></div>
                             <div class="appointment-card-content">
-                                <div class="appointment-card-title">Mecánica</div>
-                                <div class="appointment-card-desc">Agenda tu cita en nuestra sucursal para las necesidades que tengas</div>
+                                <div class="appointment-card-title">${lang === 'en' ? 'Mechanics' : 'Mecánica'}</div>
+                                <div class="appointment-card-desc">${lang === 'en' ? 'Book your appointment at our branch for any vehicle needs' : 'Agenda tu cita en nuestra sucursal para las necesidades que tengas'}</div>
                             </div>
                         </a>
                     </div>
@@ -532,6 +624,8 @@
         const textElement = document.getElementById('scoreboard-text');
         const timeElement = document.getElementById('scoreboard-time');
         if (!textElement || !timeElement) return;
+        
+        const lang = document.documentElement.lang || 'es';
         
         // Obtener hora actual en Costa Rica
         let crTimeString = new Date().toLocaleString("en-US", {timeZone: "America/Costa_Rica"});
@@ -572,10 +666,10 @@
         timeElement.textContent = timeStr;
         
         if (isOpen) {
-            textElement.textContent = "CERRAMOS EN";
+            textElement.textContent = lang === 'en' ? "CLOSING IN" : "CERRAMOS EN";
             timeElement.className = "scoreboard-time green-led";
         } else {
-            textElement.textContent = "ABRIMOS EN";
+            textElement.textContent = lang === 'en' ? "OPENING IN" : "ABRIMOS EN";
             timeElement.className = "scoreboard-time red-led";
         }
     }

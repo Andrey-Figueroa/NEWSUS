@@ -1,4 +1,4 @@
-// main.js - Detailing Logic Completo (6 Pasos)
+// main.js - Detailing Logic Completo (6 Pasos) Bilingüe
 window.toggleInfo = function (event) {
     event.preventDefault();
     event.stopPropagation();
@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const track = document.getElementById('wizard-track');
     const btnPrev = document.getElementById('btn-prev');
     const btnNext = document.getElementById('btn-next');
+
+    const getActiveLang = () => document.documentElement.lang || localStorage.getItem('susamigos-lang') || 'es';
 
     // === COTIZADOR EN VIVO (PRECIOS DINÁMICOS) ===
     const cartTotalEl = document.getElementById('cart-total');
@@ -40,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const EXTRA_PRICES = {
         interior_detail: { nice: 0, trapo: 0, mate: 0, brillante: 0 },
-        interior_aroma: { limon: 0, frutos: 0, carro_nuevo: 0, ninguno: 0 },
+        interior_aroma: { manzana: 0, limon: 0, frutos: 0, carro_nuevo: 0, ninguno: 0 },
         interior_nice: { si: 0, no: 0 },
         extra: { ninguno: 0, cera: 2000, protector_int: 2000, protector_asientos: 4500, anti_empanante: 2500, repelente: 2500, sellador: 3500, partes_negras: 2000 }
     };
@@ -55,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function updatePackagePrices() {
+        const lang = getActiveLang();
         const vehicleInput = document.querySelector('input[name="vehicle"]:checked');
         if (!vehicleInput) return;
         const v = vehicleInput.value;
@@ -67,14 +70,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (pkg && VEHICLE_PRICES[v] && VEHICLE_PRICES[v][pkg] !== undefined) {
                 const val = VEHICLE_PRICES[v][pkg];
-                el.textContent = typeof val === 'number' ? (val === 0 ? '₡0' : '₡' + val.toLocaleString('es-CR')) : val;
+                if (typeof val === 'number') {
+                    el.textContent = val === 0 ? '₡0' : '₡' + val.toLocaleString('es-CR');
+                } else {
+                    el.textContent = (val === 'Cotizar' && lang === 'en') ? 'Quote' : val;
+                }
             } else if (sp && SPECIAL_PRICES[v] && SPECIAL_PRICES[v][sp] !== undefined) {
                 const val = SPECIAL_PRICES[v][sp];
                 const card = el.closest('.package-card');
                 const checkbox = card.querySelector('input');
 
                 if (val === 'N/A') {
-                    el.textContent = 'No se ofrece';
+                    el.textContent = lang === 'en' ? 'Not offered' : 'No se ofrece';
                     checkbox.disabled = true;
                     checkbox.checked = false;
                     card.style.opacity = '0.5';
@@ -190,50 +197,68 @@ document.addEventListener('DOMContentLoaded', () => {
         const total = calculateTotal();
         const summaryContainer = document.getElementById('summary-ticket');
         const btnWhatsApp = document.getElementById('btn-whatsapp');
+        const lang = getActiveLang();
 
-        let html = '<h4>Cotización de Servicio</h4>';
-        let textMsj = 'Hola, me gustaría agendar un servicio de Detailing con la siguiente cotización:%0A%0A';
+        let html = `<h4>${lang === 'en' ? 'Service Quote Summary' : 'Cotización de Servicio'}</h4>`;
+        let textMsj = '';
+
+        if (lang === 'en') {
+            textMsj = 'Hello, I would like to book a Detailing service with the following quote:%0A%0A';
+        } else {
+            textMsj = 'Hola, me gustaría agendar un servicio de Detailing con la siguiente cotización:%0A%0A';
+        }
+
+        const includedStr = lang === 'en' ? 'Included' : 'Incluido';
 
         const addLine = (label, cost) => {
-            if (cost > 0 || typeof cost === 'string' || label.includes('Vehículo') || label.includes('Paquete') || label.includes('Interior') || label.includes('Aroma') || label.includes('Alfombras')) {
-                let fCost = '';
-                if (typeof cost === 'number' && cost > 0) fCost = '₡' + cost.toLocaleString('es-CR');
-                else if (typeof cost === 'string') fCost = cost;
-                else if (cost === 0 && !label.includes('Vehículo')) fCost = 'Incluido';
+            let fCost = '';
+            if (typeof cost === 'number' && cost > 0) fCost = '₡' + cost.toLocaleString('es-CR');
+            else if (typeof cost === 'string') fCost = cost;
+            else if (cost === 0 && !label.includes('Vehículo') && !label.includes('Vehicle')) fCost = includedStr;
 
-                html += `<div class="summary-row"><span>${label}</span> <span>${fCost}</span></div>`;
-                textMsj += `- ${label}: ${fCost}%0A`;
-            }
+            html += `<div class="summary-row"><span>${label}</span> <span>${fCost}</span></div>`;
+            textMsj += `- ${label}: ${fCost}%0A`;
         };
 
         const vInput = document.querySelector('input[name="vehicle"]:checked');
         const pInput = document.querySelector('input[name="package"]:checked');
 
+        const getElText = (containerEl) => {
+            if (!containerEl) return '';
+            const tagEl = containerEl.querySelector(`[data-${lang}]`) || containerEl.querySelector('.package-name, .vehicle-name');
+            if (tagEl) {
+                return tagEl.getAttribute(`data-${lang}`) || tagEl.textContent.trim();
+            }
+            return containerEl.textContent.trim();
+        };
+
         if (vInput) {
-            const vName = vInput.nextElementSibling.querySelector('.package-name, .vehicle-name').textContent.trim();
-            addLine('Vehículo: ' + vName, 0);
+            const vName = getElText(vInput.nextElementSibling);
+            addLine((lang === 'en' ? 'Vehicle: ' : 'Vehículo: ') + vName, 0);
         }
 
         if (pInput && pInput.value !== 'skip') {
-            const pName = pInput.nextElementSibling.querySelector('.package-name').textContent.trim();
-            addLine('Paquete: ' + pName, VEHICLE_PRICES[vInput.value][pInput.value]);
+            const pName = getElText(pInput.nextElementSibling);
+            const pCost = VEHICLE_PRICES[vInput.value][pInput.value];
+            const displayCost = (pCost === 'Cotizar' && lang === 'en') ? 'Quote' : pCost;
+            addLine((lang === 'en' ? 'Package: ' : 'Paquete: ') + pName, displayCost);
         }
 
         if (pInput && pInput.value !== 'skip') {
             const ind = document.querySelector('input[name="interior_detail"]:checked');
             if (ind) {
-                const name = ind.nextElementSibling.querySelector('.package-name').textContent.trim();
-                addLine('Interior: ' + name, EXTRA_PRICES.interior_detail[ind.value]);
+                const name = getElText(ind.nextElementSibling);
+                addLine((lang === 'en' ? 'Interior: ' : 'Interior: ') + name, EXTRA_PRICES.interior_detail[ind.value]);
             }
             const ina = document.querySelector('input[name="interior_aroma"]:checked');
             if (ina && ina.value !== 'ninguno') {
-                const name = ina.nextElementSibling.querySelector('.package-name').textContent.trim();
-                addLine('Aroma: ' + name, EXTRA_PRICES.interior_aroma[ina.value]);
+                const name = getElText(ina.nextElementSibling);
+                addLine((lang === 'en' ? 'Fragrance: ' : 'Aroma: ') + name, EXTRA_PRICES.interior_aroma[ina.value]);
             }
             const inn = document.querySelector('input[name="interior_nice"]:checked');
             if (inn && inn.value === 'si') {
-                const name = document.querySelector('input[name="interior_nice"]:checked').nextElementSibling.innerText.trim();
-                addLine('Alfombras: ' + name, EXTRA_PRICES.interior_nice[inn.value]);
+                const name = getElText(inn.nextElementSibling);
+                addLine((lang === 'en' ? 'Floor Mats: ' : 'Alfombras: ') + name, EXTRA_PRICES.interior_nice[inn.value]);
             }
         }
 
@@ -241,17 +266,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const mult = EXTRA_MULT[v] || 1;
 
         document.querySelectorAll('input[name="special"]:not([value="ninguno"]):checked').forEach(cb => {
-            const name = cb.nextElementSibling.querySelector('.package-name').textContent.trim();
-            addLine('Especial: ' + name, SPECIAL_PRICES[v][cb.value]);
+            const name = getElText(cb.nextElementSibling);
+            addLine((lang === 'en' ? 'Special: ' : 'Especial: ') + name, SPECIAL_PRICES[v][cb.value]);
         });
 
         document.querySelectorAll('input[name="extra"]:not([value="ninguno"]):checked').forEach(cb => {
-            const name = cb.nextElementSibling.querySelector('.package-name').textContent.trim();
-            addLine('Extra: ' + name, Math.round(EXTRA_PRICES.extra[cb.value] * mult));
+            const name = getElText(cb.nextElementSibling);
+            addLine((lang === 'en' ? 'Add-on: ' : 'Extra: ') + name, Math.round(EXTRA_PRICES.extra[cb.value] * mult));
         });
 
-        html += `<div class="summary-row total"><span>TOTAL ESTIMADO:</span> <span>₡${total.toLocaleString('es-CR')}</span></div>`;
-        textMsj += `%0ATOTAL ESTIMADO: ₡${total.toLocaleString('es-CR')}%0A%0A¡Quedo atento(a)!`;
+        const totalLabel = lang === 'en' ? 'ESTIMATED TOTAL:' : 'TOTAL ESTIMADO:';
+        html += `<div class="summary-row total"><span>${totalLabel}</span> <span>₡${total.toLocaleString('es-CR')}</span></div>`;
+        textMsj += `%0A${totalLabel} ₡${total.toLocaleString('es-CR')}%0A%0A` + (lang === 'en' ? 'Looking forward to your reply!' : '¡Quedo atento(a)!');
 
         summaryContainer.innerHTML = html;
         btnWhatsApp.href = `https://wa.me/50661515240?text=${textMsj}`;
@@ -265,7 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btnNext.style.display = (currentStep === totalSteps) ? 'none' : 'block';
 
         if (currentStep === 3) {
-            // Lógica para deshabilitar Mate/Brillante si el paquete es Clásico (Por si se añade)
             const pkg = document.querySelector('input[name="package"]:checked');
             const isClasico = pkg && pkg.value === 'clasico';
             document.querySelectorAll('.cond-clasico').forEach(el => {
@@ -283,10 +308,52 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // === MODAL DE ALERTA / VALIDACIÓN PERSONALIZADO ===
+    function showAlert(message, title = 'Atención', callback = null) {
+        const modal = document.getElementById('custom-alert-modal');
+        const msgEl = document.getElementById('custom-alert-message');
+        const titleEl = document.getElementById('custom-alert-title');
+        const btn = document.getElementById('custom-alert-btn');
+        const backdrop = document.getElementById('custom-alert-backdrop');
+
+        if (!modal) {
+            alert(message);
+            if (callback) callback();
+            return;
+        }
+
+        if (titleEl) titleEl.textContent = title;
+        if (msgEl) msgEl.textContent = message;
+
+        const closeModal = () => {
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            btn.removeEventListener('click', onOk);
+            backdrop.removeEventListener('click', onOk);
+            document.removeEventListener('keydown', onEsc);
+            if (callback) callback();
+        };
+
+        const onOk = () => closeModal();
+        const onEsc = (e) => { if (e.key === 'Escape') closeModal(); };
+
+        btn.addEventListener('click', onOk);
+        backdrop.addEventListener('click', onOk);
+        document.addEventListener('keydown', onEsc);
+
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        setTimeout(() => btn.focus(), 50);
+    }
+
     btnNext.addEventListener('click', () => {
+        const lang = getActiveLang();
         if (currentStep === 1) {
             if (!document.querySelector('input[name="vehicle"]:checked')) {
-                alert("Por favor, seleccione un tipo de vehículo para continuar.");
+                showAlert(
+                    lang === 'en' ? 'Please select a vehicle type to continue.' : 'Por favor, seleccione un tipo de vehículo para continuar.',
+                    lang === 'en' ? 'Vehicle Required' : 'Vehículo Requerido'
+                );
                 return;
             }
             currentStep = 2;
@@ -294,7 +361,10 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (currentStep === 2) {
             const packageSelected = document.querySelector('input[name="package"]:checked');
             if (!packageSelected) {
-                alert("Por favor, seleccione un paquete o decida saltar este paso.");
+                showAlert(
+                    lang === 'en' ? 'Please select a package or choose to skip this step.' : 'Por favor, seleccione un paquete o decida saltar este paso.',
+                    lang === 'en' ? 'Package Required' : 'Paquete Requerido'
+                );
                 return;
             }
             if (packageSelected.value === 'skip') {
@@ -322,6 +392,15 @@ document.addEventListener('DOMContentLoaded', () => {
             stepHistory.pop();
             currentStep = stepHistory[stepHistory.length - 1];
             updateWizard();
+        }
+    });
+
+    // Escuchar cambio de idioma
+    window.addEventListener('languageChanged', () => {
+        updatePackagePrices();
+        calculateTotal();
+        if (currentStep === totalSteps) {
+            generateSummary();
         }
     });
 });

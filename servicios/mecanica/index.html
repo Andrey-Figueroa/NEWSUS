@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sus Amigos – Mecánica</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../main/styles.css?v=2">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../main/styles.css?v=8">
+    <link rel="stylesheet" href="style.css?v=3">
     <style>
         body {
             background-color: #000;
@@ -39,14 +39,14 @@
 
             <!-- CENTRO: Menú de navegación -->
             <ul class="navbar-menu" id="navbar-menu" role="menubar">
-                <li role="none"><a href="#" data-target="inicio" class="nav-link" role="menuitem">Inicio</a></li>
-                <li role="none"><a href="#" data-target="about" class="nav-link" role="menuitem">¿Quiénes Somos?</a></li>
+                <li role="none"><a href="#" data-target="inicio" class="nav-link" role="menuitem" data-es="Inicio" data-en="Home">Inicio</a></li>
+                <li role="none"><a href="#" data-target="about" class="nav-link" role="menuitem" data-es="¿Quiénes Somos?" data-en="About Us">¿Quiénes Somos?</a></li>
 
                 <!-- Dropdown Servicios -->
                 <li class="nav-item--dropdown" role="none">
                     <button class="nav-link nav-link--dropdown" aria-haspopup="true" aria-expanded="false"
                         id="servicios-btn" role="menuitem">
-                        Servicios
+                        <span data-es="Servicios" data-en="Services">Servicios</span>
                         <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none"
                             aria-hidden="true">
                             <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8"
@@ -54,16 +54,15 @@
                         </svg>
                     </button>
                     <ul class="dropdown-menu" id="dropdown-menu" role="menu" aria-labelledby="servicios-btn">
-                        <li role="none"><a href="#" data-page="detailing" class="dropdown-item" role="menuitem">Detailing</a></li>
-                        <li role="none"><a href="#" data-page="mecanica" class="dropdown-item" role="menuitem">Mecánica</a></li>
-                        <li role="none"><a href="#" data-page="domicilio" class="dropdown-item" role="menuitem">Servicio a domicilio</a></li>
-                        <li role="none"><a href="#" style="pointer-events: none; opacity: 0.5;" class="dropdown-item" role="menuitem">Productos</a></li>
-                        <li role="none"><a href="#" data-page="promociones" class="dropdown-item" role="menuitem">Promociones</a></li>
+                        <li role="none"><a href="#" data-page="detailing" class="dropdown-item" role="menuitem" data-es="Detailing" data-en="Detailing">Detailing</a></li>
+                        <li role="none"><a href="#" data-page="mecanica" class="dropdown-item" role="menuitem" data-es="Mecánica" data-en="Mechanics">Mecánica</a></li>
+                        <li role="none"><a href="#" data-page="domicilio" class="dropdown-item" role="menuitem" data-es="Servicio a domicilio" data-en="Home Service">Servicio a domicilio</a></li>
+                        <li role="none"><a href="#" data-page="promociones" class="dropdown-item" role="menuitem" data-es="Promociones" data-en="Promotions">Promociones</a></li>
                     </ul>
                 </li>
 
-                <li role="none"><a href="#" data-target="sucursal" class="nav-link" role="menuitem">Sucursal</a></li>
-                <li role="none"><a href="#" data-target="horario" class="nav-link" role="menuitem">Horario</a></li>
+                <li role="none"><a href="#" data-target="sucursal" class="nav-link" role="menuitem" data-es="Sucursal" data-en="Location">Sucursal</a></li>
+                <li role="none"><a href="#" data-target="horario" class="nav-link" role="menuitem" data-es="Horario" data-en="Hours">Horario</a></li>
 
             </ul>
 
@@ -77,7 +76,7 @@
                     rel="noopener noreferrer" class="nav-social-btn" id="nav-instagram" aria-label="Instagram">
                     <img src="../../images/Iconos/instagram.svg" alt="Instagram" class="nav-social-icon">
                 </a>
-                <a href="#" data-target="contacto" class="nav-cta" id="nav-cta">Agendar Cita</a>
+                <a href="#" data-target="contacto" class="nav-cta" id="nav-cta" data-es="Agendar Cita" data-en="Book Appointment">Agendar Cita</a>
 
                 <!-- Hamburguesa (móvil) -->
                 <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false"
@@ -102,20 +101,19 @@
             </svg>
         </button>
         <nav class="mobile-menu__nav">
-            <a href="#" data-target="inicio" class="mobile-link">Inicio</a>
-            <a href="#" data-target="about" class="mobile-link">¿Quiénes Somos?</a>
-            <div class="mobile-link mobile-link--parent">Servicios</div>
+            <a href="#" data-target="inicio" class="mobile-link" data-es="Inicio" data-en="Home">Inicio</a>
+            <a href="#" data-target="about" class="mobile-link" data-es="¿Quiénes Somos?" data-en="About Us">¿Quiénes Somos?</a>
+            <div class="mobile-link mobile-link--parent" data-es="Servicios" data-en="Services">Servicios</div>
             <div class="mobile-submenu">
-                <a href="#" data-page="detailing" class="mobile-sublink">Detailing</a>
-                <a href="#" data-page="mecanica" class="mobile-sublink">Mecánica</a>
-                <a href="#" data-page="domicilio" class="mobile-sublink">Servicio a domicilio</a>
-                <a href="#" style="pointer-events: none; opacity: 0.5;" class="mobile-sublink">Productos</a>
-                <a href="#" data-page="promociones" class="mobile-sublink">Promociones</a>
+                <a href="#" data-page="detailing" class="mobile-sublink" data-es="Detailing" data-en="Detailing">Detailing</a>
+                <a href="#" data-page="mecanica" class="mobile-sublink" data-es="Mecánica" data-en="Mechanics">Mecánica</a>
+                <a href="#" data-page="domicilio" class="mobile-sublink" data-es="Servicio a domicilio" data-en="Home Service">Servicio a domicilio</a>
+                <a href="#" data-page="promociones" class="mobile-sublink" data-es="Promociones" data-en="Promotions">Promociones</a>
             </div>
-            <a href="#" data-target="sucursal" class="mobile-link">Sucursal</a>
-            <a href="#" data-target="horario" class="mobile-link">Horario</a>
+            <a href="#" data-target="sucursal" class="mobile-link" data-es="Sucursal" data-en="Location">Sucursal</a>
+            <a href="#" data-target="horario" class="mobile-link" data-es="Horario" data-en="Hours">Horario</a>
 
-            <a href="#" data-target="contacto" class="mobile-cta">Agendar Cita</a>
+            <a href="#" data-target="contacto" class="mobile-cta" data-es="Agendar Cita" data-en="Book Appointment">Agendar Cita</a>
         </nav>
     </aside>
 
@@ -124,98 +122,225 @@
         
         <!-- HEADER / TÍTULO -->
         <header class="mecanica-header">
-            <h1 class="service-title-gold">Centro de Mecánica</h1>
-            <p class="mecanica-subtitle">Cuidamos el corazón de tu vehículo</p>
+            <h1 class="service-title-gold" data-es="Centro de Mecánica" data-en="Mechanics Center">Centro de Mecánica</h1>
+            <p class="mecanica-subtitle" data-es="Cuidamos el corazón de tu vehículo" data-en="We take care of the heart of your vehicle">Cuidamos el corazón de tu vehículo</p>
         </header>
 
         <!-- SERVICIO ESTRELLA -->
         <section class="mecanica-hero">
             <div class="hero-content">
-                <span class="hero-badge">Servicio Estrella</span>
-                <h2>Mantenimiento General</h2>
-                <p>El servicio más completo para mantener tu vehículo en óptimas condiciones y evitar daños costosos a futuro.</p>
-                <button class="btn-gold" id="btn-agendar-hero">Agenda tu cita ya</button>
+                <span class="hero-badge" data-es="Servicio Estrella" data-en="Star Service">Servicio Estrella</span>
+                <h2 data-es="Mantenimiento General" data-en="General Maintenance">Mantenimiento General</h2>
+                <p data-es="El servicio más completo para mantener tu vehículo en óptimas condiciones y evitar daños costosos a futuro." data-en="The most complete service to keep your vehicle in optimal condition and prevent costly future damages.">El servicio más completo para mantener tu vehículo en óptimas condiciones y evitar daños costosos a futuro.</p>
+                <button class="btn-gold" id="btn-agendar-hero" data-es="Agenda tu cita ya" data-en="Book your appointment now">Agenda tu cita ya</button>
             </div>
             <div class="hero-image">
-                <video controls muted playsinline class="hero-video">
-                    <source src="../../videos/mantenimientoGeneral.mov">
+                <video controls muted playsinline preload="metadata" class="hero-video">
+                    <source src="../../videos/video11.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
                 </video>
             </div>
         </section>
 
-        <!-- EXPLORADOR DE SERVICIOS -->
-        <section class="mecanica-explorer" id="mecanica-explorer">
-            <h3 class="section-subtitle">Explora nuestros servicios</h3>
-            <div class="carousel-container">
-                <button class="carousel-btn" id="mecanica-carousel-prev" aria-label="Anterior">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-                </button>
-                <div class="carousel-track" id="mecanica-carousel-track">
-                    <!-- Tarjetas generadas por JS -->
+        <!-- CATÁLOGO Y COTIZADOR ESTILO TIENDA ONLINE -->
+        <section class="mecanica-catalog" id="mecanica-catalog">
+            <div class="catalog-header-bar">
+                <div class="catalog-title-group">
+                    <span class="hero-badge" data-es="Cotizador Interactivo" data-en="Interactive Quoter">Cotizador Interactivo</span>
+                    <h3 class="catalog-main-title" data-es="Explora Nuestros Servicios" data-en="Explore Our Services">Explora Nuestros Servicios</h3>
+                    <p class="catalog-subtitle" data-es="Busca y añade los servicios mecánicos que necesitas a tu cotización en vivo." data-en="Search and add the mechanical services you need to your live quote.">Busca y añade los servicios mecánicos que necesitas a tu cotización en vivo.</p>
                 </div>
-                <button class="carousel-btn" id="mecanica-carousel-next" aria-label="Siguiente">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                
+                <!-- BOTÓN CARRITO EN BARRA -->
+                <button type="button" class="catalog-cart-btn" id="btn-open-cart" aria-label="Ver servicios agregados">
+                    <div class="cart-btn-icon-wrap">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="cart-badge-count" id="cart-badge-count">0</span>
+                    </div>
+                    <span class="cart-btn-text" data-es="Ver Mi Cotización" data-en="View My Quote">Ver Mi Cotización</span>
                 </button>
             </div>
-        </section>
 
-        <!-- VISTA DE DETALLE DE CATEGORÍA -->
-        <section class="mecanica-details" id="mecanica-details" style="display: none;">
-            <button class="btn-breadcrumb" id="btn-back-categories">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                Volver a Categorías
-            </button>
-            <div class="details-header">
-                <h3 class="details-title" id="details-category-title">Detalles Mecánicos</h3>
-                <p class="details-subtitle">Seleccione los servicios específicos para esta categoría.</p>
+            <!-- CONTROLES: BÚSQUEDA Y FILTROS -->
+            <div class="catalog-controls">
+                <div class="catalog-search-wrap">
+                    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="mecanica-search-input" class="catalog-search-input" placeholder="Buscar servicio (ej. aceite, frenos, bujías, batería, A/C)..." data-placeholder-es="Buscar servicio (ej. aceite, frenos, bujías, batería, A/C)..." data-placeholder-en="Search service (e.g. oil, brakes, spark plugs, battery, A/C)..." autocomplete="off">
+                    <button type="button" id="catalog-search-clear" class="catalog-search-clear" aria-label="Limpiar búsqueda" style="display:none;">&times;</button>
+                </div>
+
+                <!-- FILTROS DE CATEGORÍAS -->
+                <div class="catalog-filter-pills" id="catalog-filter-pills">
+                    <button type="button" class="filter-pill active" data-category="all" data-es="Todos" data-en="All">Todos</button>
+                    <button type="button" class="filter-pill" data-category="llantas" data-es="Llantas" data-en="Tires">Llantas</button>
+                    <button type="button" class="filter-pill" data-category="frenos" data-es="Sistema de Frenos" data-en="Brake System">Sistema de Frenos</button>
+                    <button type="button" class="filter-pill" data-category="lubricacion" data-es="Lubricación y Fluidos" data-en="Lubrication & Fluids">Lubricación y Fluidos</button>
+                    <button type="button" class="filter-pill" data-category="motor" data-es="Motor" data-en="Engine">Motor</button>
+                    <button type="button" class="filter-pill" data-category="electrico" data-es="Sistema Eléctrico" data-en="Electrical System">Sistema Eléctrico</button>
+                    <button type="button" class="filter-pill" data-category="ac" data-es="Aire Acondicionado" data-en="Air Conditioning">Aire Acondicionado</button>
+                </div>
             </div>
-            <div class="subservices-grid" id="subservices-grid">
-                <!-- Tarjetas generadas dinámicamente -->
+
+            <!-- ENCABEZADO DE RESULTADOS -->
+            <div class="catalog-results-info">
+                <span id="catalog-results-count">Mostrando todos los servicios</span>
             </div>
-            <div class="details-action">
-                <button class="btn-gold" id="btn-agendar-category" disabled>Agendar Servicios Seleccionados</button>
+            
+            <!-- CUADRÍCULA DE SERVICIOS -->
+            <div class="catalog-grid" id="catalog-grid">
+                <!-- Tarjetas de servicios generadas dinámicamente -->
             </div>
         </section>
     </main>
 
-    <!-- BOTÓN GLOBAL DE AGENDAR -->
-    <button class="btn-floating-agendar" id="btn-floating-agendar" style="display: none;">
-        <span class="agendar-count" id="agendar-count">0</span>
-        Agendar Servicios
+    <!-- BOTÓN FLOTANTE DEL CARRITO -->
+    <button class="btn-floating-agendar" id="btn-floating-agendar" style="display: none;" aria-label="Ver cotización">
+        <div class="floating-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="agendar-count" id="agendar-count">0</span>
+        </div>
+        <span class="floating-btn-text" data-es="Ver Cotización" data-en="View Quote">Ver Cotización</span>
     </button>
+
+    <!-- VENTANA MODAL DEL CARRITO / COTIZACIÓN -->
+    <div class="cart-modal-overlay" id="cart-modal-overlay" aria-hidden="true">
+        <div class="cart-modal-backdrop" id="cart-modal-backdrop"></div>
+        <div class="cart-modal-card">
+            <div class="cart-modal-header">
+                <div class="cart-modal-title-group">
+                    <div class="cart-modal-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f0c14b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="cart-modal-title" data-es="Servicios para Cotizar" data-en="Services to Quote">Servicios para Cotizar</h3>
+                        <p class="cart-modal-subtitle" id="cart-modal-subtitle">0 servicios seleccionados</p>
+                    </div>
+                </div>
+                <button type="button" class="cart-modal-close" id="cart-modal-close" aria-label="Cerrar ventana">&times;</button>
+            </div>
+
+            <div class="cart-modal-body" id="cart-modal-body">
+                <!-- Items agregados o estado vacío -->
+            </div>
+
+            <div class="cart-modal-footer">
+                <button type="button" class="cart-clear-btn" id="btn-clear-cart" data-es="Vaciar Lista" data-en="Clear List">Vaciar Lista</button>
+                <button type="button" class="cart-checkout-btn" id="btn-checkout-cart">
+                    <span data-es="Continuar a Agendar Cita" data-en="Continue to Book Appointment">Continuar a Agendar Cita</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE ALERTA PERSONALIZADO -->
+    <div class="custom-alert-modal" id="custom-alert-modal" aria-hidden="true">
+        <div class="custom-alert-backdrop" id="custom-alert-backdrop"></div>
+        <div class="custom-alert-card">
+            <div class="custom-alert-icon">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#f0c14b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+            </div>
+            <h4 class="custom-alert-title" id="custom-alert-title">Atención</h4>
+            <p class="custom-alert-message" id="custom-alert-message">Mensaje de alerta</p>
+            <button type="button" class="custom-alert-btn" id="custom-alert-btn">OK</button>
+        </div>
+    </div>
+
+    <!-- MODAL CALENDARIO PARA DÍA AGENDADO -->
+    <div class="calendar-modal" id="calendar-modal" aria-hidden="true">
+        <div class="calendar-modal-backdrop" id="calendar-backdrop"></div>
+        <div class="calendar-modal-content">
+            <div class="calendar-modal-header">
+                <h4 class="calendar-title" id="calendar-month-year"></h4>
+                <div class="calendar-nav-btns">
+                    <button type="button" class="calendar-nav-btn" id="cal-prev" aria-label="Mes anterior">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <button type="button" class="calendar-nav-btn" id="cal-next" aria-label="Mes siguiente">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                    <button type="button" class="calendar-close-btn" id="cal-close" aria-label="Cerrar">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="calendar-weekdays">
+                <span class="cal-weekday cal-sun" data-es="Dom" data-en="Sun">Dom</span>
+                <span class="cal-weekday" data-es="Lun" data-en="Mon">Lun</span>
+                <span class="cal-weekday" data-es="Mar" data-en="Tue">Mar</span>
+                <span class="cal-weekday" data-es="Mié" data-en="Wed">Mié</span>
+                <span class="cal-weekday" data-es="Jue" data-en="Thu">Jue</span>
+                <span class="cal-weekday" data-es="Vie" data-en="Fri">Vie</span>
+                <span class="cal-weekday" data-es="Sáb" data-en="Sat">Sáb</span>
+            </div>
+            <div class="calendar-days-grid" id="calendar-days-grid">
+                <!-- Días generados por JS -->
+            </div>
+            <div class="calendar-legend">
+                <span class="cal-legend-item"><span class="cal-dot cal-dot--disabled"></span> <span data-es="Domingos cerrados" data-en="Sundays closed">Domingos cerrados</span></span>
+                <span class="cal-legend-item"><span class="cal-dot cal-dot--available"></span> <span data-es="Disponible" data-en="Available">Disponible</span></span>
+            </div>
+        </div>
+    </div>
 
     <!-- MODAL DE AGENDAMIENTO -->
     <div class="modal-overlay" id="appointment-modal">
         <div class="modal-box">
             <button class="modal-close" id="modal-close" aria-label="Cerrar modal">&times;</button>
-            <h3 class="modal-title" id="modal-title">Agendar Mantenimiento General</h3>
-            <p class="modal-subtitle">Comienza tu reservación seleccionando fecha y hora.</p>
+            <h3 class="modal-title" id="modal-title" data-es="Agendar Servicios de Mecánica" data-en="Book Mechanical Services">Agendar Servicios de Mecánica</h3>
+            <p class="modal-subtitle" data-es="Completa tus datos y selecciona fecha y hora para tu cita." data-en="Complete your details and select date and time for your appointment.">Completa tus datos y selecciona fecha y hora para tu cita.</p>
             
             <form class="appointment-form" id="appointment-form">
                 <div class="form-group">
-                    <label>Nombre Completo</label>
-                    <input type="text" id="client-name" class="custom-input" placeholder="Tu nombre" required>
+                    <label data-es="Nombre Completo" data-en="Full Name">Nombre Completo</label>
+                    <input type="text" id="client-name" class="custom-input" placeholder="Tu nombre y apellidos" data-placeholder-es="Tu nombre y apellidos" data-placeholder-en="Your full name" required>
                 </div>
                 
                 <div class="form-group">
-                    <label>Vehículo (Marca y Modelo)</label>
-                    <input type="text" id="client-vehicle" class="custom-input" placeholder="Ej. Honda CR-V" required>
+                    <label data-es="Vehículo (Marca y Modelo)" data-en="Vehicle (Make & Model)">Vehículo (Marca y Modelo)</label>
+                    <input type="text" id="client-vehicle" class="custom-input" placeholder="Ej. Toyota Corolla / Hyundai Tucson" data-placeholder-es="Ej. Toyota Corolla / Hyundai Tucson" data-placeholder-en="E.g. Toyota Corolla / Hyundai Tucson" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Año del Vehículo</label>
-                    <input type="number" id="client-year" class="custom-input" placeholder="Ej. 2018" required>
+                    <label data-es="Año del Vehículo" data-en="Vehicle Year">Año del Vehículo</label>
+                    <input type="number" id="client-year" class="custom-input" placeholder="Ej. 2020" data-placeholder-es="Ej. 2020" data-placeholder-en="E.g. 2020" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Selecciona el Día</label>
+                    <label data-es="Selecciona el Día" data-en="Select Date">Selecciona el Día</label>
                     <div class="date-scroll-container" id="date-scroll-container">
-                        <!-- Generado por JS (7 días) -->
+                        <!-- Generado por JS -->
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Selecciona la Hora</label>
+                    <label data-es="Selecciona la Hora" data-en="Select Time">Selecciona la Hora</label>
                     <div class="time-grid" id="time-grid">
                         <label class="time-btn">
                             <input type="radio" name="client_time" value="07:00 AM">
@@ -252,7 +377,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn-gold btn-submit-modal">Solicitar por WhatsApp</button>
+                <button type="submit" class="btn-gold btn-submit-modal" data-es="Solicitar Cita por WhatsApp" data-en="Request Appointment via WhatsApp">Solicitar Cita por WhatsApp</button>
             </form>
         </div>
     </div>
@@ -274,8 +399,6 @@
         </div>
     </div>
 
-    <script src="../../main/script.js"></script>
-    <script src="main.js"></script>
     <!-- ===== FOOTER ===== -->
     <footer class="site-footer">
         <div class="footer-main-row">
@@ -297,38 +420,39 @@
                         <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                     </span>
                     <strong>Taras, Cartago</strong>
-                    <span>V3J8+84, Provincia de Cartago</span>
+                    <span data-es="V3J8+84, Provincia de Cartago" data-en="V3J8+84, Cartago Province">V3J8+84, Provincia de Cartago</span>
                 </div>
                 <div class="footer-col">
                     <span class="footer-icon-link">
                         <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                     </span>
                     <strong>info@susamigos.com</strong>
-                    <span>Correo Electronico</span>
+                    <span data-es="Correo Electrónico" data-en="Email Address">Correo Electrónico</span>
                 </div>
                 <div class="footer-col">
                     <span class="footer-icon-link">
                         <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
                     </span>
-                    <strong>Abierto Lunes a Sabado:</strong>
-                    <span>07:00 am - 05:00 pm</span>
+                    <strong data-es="Abierto Lunes a Sábado:" data-en="Open Monday to Saturday:">Abierto Lunes a Sábado:</strong>
+                    <span data-es="07:00 am - 05:00 pm" data-en="07:00 AM - 05:00 PM">07:00 am - 05:00 pm</span>
                 </div>
             </div>
         </div>
         <div class="footer-slogan-bar">
-            <p class="footer-slogan">Cuidamos tu auto como si fuera nuestro. El mejor servicio garantizado!</p>
+            <p class="footer-slogan" data-es="Cuidamos tu auto como si fuera nuestro. ¡El mejor servicio garantizado!" data-en="We care for your car as if it were our own. Best service guaranteed!">Cuidamos tu auto como si fuera nuestro. ¡El mejor servicio garantizado!</p>
         </div>
-                <div class="footer-bottom-links">
-            <a href="#" data-target="about">🔗 ¿Quiénes Somos?</a>
-            <a href="#" data-target="sucursal">🔗 Ubicación</a>
-            <a href="#" data-page="detailing">🔗 Detailing</a>
-            <a href="#" data-page="mecanica">🔗 Mecánica</a>
-            <a href="#" data-page="domicilio">🔗 Servicio a domicilio</a>
-            <a href="#" style="pointer-events: none; opacity: 0.5;">🔗 Productos</a>
-            <a href="#" data-page="promociones">🔗 Promociones</a>
+        <div class="footer-bottom-links">
+            <a href="#" data-target="about" data-es="🔗 ¿Quiénes Somos?" data-en="🔗 About Us">🔗 ¿Quiénes Somos?</a>
+            <a href="#" data-target="sucursal" data-es="🔗 Ubicación" data-en="🔗 Location">🔗 Ubicación</a>
+            <a href="#" data-page="detailing" data-es="🔗 Detailing" data-en="🔗 Detailing">🔗 Detailing</a>
+            <a href="#" data-page="mecanica" data-es="🔗 Mecánica" data-en="🔗 Mechanics">🔗 Mecánica</a>
+            <a href="#" data-page="domicilio" data-es="🔗 Servicio a domicilio" data-en="🔗 Home Service">🔗 Servicio a domicilio</a>
+            <a href="#" data-page="promociones" data-es="🔗 Promociones" data-en="🔗 Promotions">🔗 Promociones</a>
         </div>
     </footer>
 
+    <script src="../../main/script.js?v=9"></script>
+    <script src="main.js?v=9"></script>
 </body>
 </html>
 
