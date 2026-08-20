@@ -679,4 +679,31 @@
         updateScheduleStatus();
     }
 
+    /* ── 7. Carga bajo demanda de Google Maps (IntersectionObserver) ── */
+    const lazyMaps = document.querySelectorAll('.lazy-map');
+    if (lazyMaps.length > 0) {
+        if ('IntersectionObserver' in window) {
+            const mapObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const iframe = entry.target;
+                        if (iframe.dataset.src) {
+                            iframe.src = iframe.dataset.src;
+                            iframe.removeAttribute('data-src');
+                        }
+                        observer.unobserve(iframe);
+                    }
+                });
+            }, { rootMargin: '250px 0px' });
+
+            lazyMaps.forEach(map => mapObserver.observe(map));
+        } else {
+            lazyMaps.forEach(map => {
+                if (map.dataset.src) {
+                    map.src = map.dataset.src;
+                }
+            });
+        }
+    }
+
 })();
