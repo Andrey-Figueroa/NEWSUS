@@ -4,7 +4,7 @@
   "redirects": [
     {
       "source": "/system",
-      "destination": "/system/login/",
+      "destination": "/system/login",
       "permanent": true
     }
   ],
@@ -18,29 +18,11 @@
         },
         {
           "key": "X-Frame-Options",
-          "value": "DENY"
+          "value": "SAMEORIGIN"
         },
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
-        }
-      ]
-    },
-    {
-      "source": "/images/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)\\.(css|js|webp|png|jpg|jpeg|svg|ico|woff2|woff)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
         }
       ]
     }
