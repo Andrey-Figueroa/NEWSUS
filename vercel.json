@@ -1,4 +1,8 @@
 {
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "framework": null,
+  "installCommand": "",
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
