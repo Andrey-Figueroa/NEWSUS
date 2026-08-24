@@ -41,6 +41,12 @@
     color: #f0c14b;
 }
 
+.form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+}
+
 .custom-input {
     padding: 0.8rem;
     border-radius: 8px;
@@ -49,6 +55,11 @@
     color: #fff;
     font-family: inherit;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+select.custom-input option {
+    background: #222;
+    color: #fff;
 }
 
 .custom-input:focus {

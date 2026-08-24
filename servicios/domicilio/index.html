@@ -218,8 +218,31 @@
                                 <input type="text" id="client-name" placeholder="Nombre completo del cliente" data-placeholder-es="Nombre completo del cliente" data-placeholder-en="Client's full name" class="custom-input">
                             </div>
                             <div class="form-group">
-                                <label for="client-address" data-es="Dirección del Domicilio" data-en="Home / Work Address">Dirección del Domicilio</label>
-                                <input type="text" id="client-address" placeholder="Provincia, Cantón, Señas..." data-placeholder-es="Provincia, Cantón, Señas..." data-placeholder-en="Province, Canton, Street directions..." class="custom-input">
+                                <label for="client-email" data-es="Correo Electrónico" data-en="Email Address">Correo Electrónico</label>
+                                <input type="email" id="client-email" placeholder="ejemplo@correo.com" data-placeholder-es="ejemplo@correo.com" data-placeholder-en="example@email.com" class="custom-input">
+                            </div>
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label for="client-provincia" data-es="Provincia" data-en="Province">Provincia</label>
+                                    <select id="client-provincia" class="custom-input">
+                                        <option value="" data-es="Seleccione..." data-en="Select...">Seleccione...</option>
+                                        <option value="San José">San José</option>
+                                        <option value="Alajuela">Alajuela</option>
+                                        <option value="Cartago">Cartago</option>
+                                        <option value="Heredia">Heredia</option>
+                                        <option value="Guanacaste">Guanacaste</option>
+                                        <option value="Puntarenas">Puntarenas</option>
+                                        <option value="Limón">Limón</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="client-canton" data-es="Cantón" data-en="Canton">Cantón</label>
+                                    <input type="text" id="client-canton" placeholder="Ej. Cartago" data-placeholder-es="Ej. Cartago" data-placeholder-en="E.g. Cartago" class="custom-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="client-address" data-es="Dirección Exacta" data-en="Exact Address">Dirección Exacta</label>
+                                <input type="text" id="client-address" placeholder="Señas exactas del lugar..." data-placeholder-es="Señas exactas del lugar..." data-placeholder-en="Exact address / landmarks..." class="custom-input">
                             </div>
                             <div class="form-group">
                                 <label data-es="Método de pago" data-en="Payment Method">Método de pago</label>
@@ -770,7 +793,7 @@
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M12.031 0C5.383 0 0 5.383 0 12.031c0 2.12.548 4.195 1.593 6.015L.305 23.364l5.44-1.428A11.966 11.966 0 0 0 12.031 24c6.648 0 12.031-5.383 12.031-12.031C24.062 5.383 18.679 0 12.031 0zm0 21.996c-1.802 0-3.57-.484-5.127-1.408l-.367-.218-3.805 1 .998-3.71-.24-.38a9.982 9.982 0 0 1-1.527-5.32C1.934 6.486 6.42 2 12.031 2c5.61 0 10.096 4.486 10.096 10.096 0 5.61-4.486 10.096-10.096 10.096zm5.532-7.556c-.303-.153-1.796-.888-2.073-.99-.278-.102-.48-.153-.683.152-.202.305-.783.99-.96 1.194-.176.204-.353.23-.656.076-.303-.152-1.282-.472-2.443-1.506-.902-.803-1.51-1.795-1.686-2.1-.177-.305-.019-.47.133-.62.137-.137.303-.356.455-.534.152-.178.203-.305.303-.508.102-.203.05-.38-.025-.533-.076-.152-.683-1.646-.935-2.253-.247-.594-.497-.514-.683-.524-.176-.01-.378-.01-.58-.01s-.532.076-.81.38c-.278.305-1.062 1.037-1.062 2.527s1.087 2.932 1.238 3.136c.152.204 2.14 3.267 5.183 4.58.723.313 1.287.5 1.727.64.726.23 1.386.198 1.905.12.583-.087 1.796-.733 2.05-1.442.253-.709.253-1.316.177-1.442-.077-.126-.279-.202-.582-.355z"/>
                                 </svg>
-                                <span data-es="Enviar por WhatsApp" data-en="Send via WhatsApp">Enviar por WhatsApp</span>
+                                <span data-es="Enviar cotización por WhatsApp al (506) 7049-1753" data-en="Send quote via WhatsApp to (506) 7049-1753">Enviar cotización por WhatsApp al (506) 7049-1753</span>
                             </a>
                             <a href="#" class="btn-checkout btn-schedule">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -823,7 +846,7 @@
                     <span class="footer-icon-link">
                         <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                     </span>
-                    <strong>info@susamigos.com</strong>
+                    <a href="mailto:info@susamigoscentrodeservicios.com" class="footer-icon-link"><strong>info@susamigoscentrodeservicios.com</strong></a>
                     <span data-es="Correo Electrónico" data-en="Email Address">Correo Electrónico</span>
                 </div>
                 <div class="footer-col">

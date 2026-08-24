@@ -1022,13 +1022,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const lang = getActiveLang();
             
             const name = document.getElementById('client-name').value.trim();
+            const email = document.getElementById('client-email').value.trim();
             const vehicle = document.getElementById('client-vehicle').value.trim();
             const year = document.getElementById('client-year').value.trim();
             const timeEl = document.querySelector('input[name="client_time"]:checked');
             
-            if (!name || !vehicle || !year) {
+            if (!name || !email || !vehicle || !year) {
                 showAlert(
-                    lang === 'en' ? 'Please complete all your contact and vehicle information.' : 'Por favor complete todos sus datos de contacto y vehículo.',
+                    lang === 'en' ? 'Please complete all your contact, email, and vehicle information.' : 'Por favor complete todos sus datos de contacto, correo y vehículo.',
                     lang === 'en' ? 'Incomplete Details' : 'Datos Incompletos'
                 );
                 return;
@@ -1057,6 +1058,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 textMsj = 'Hello, I would like to request a quote / book an appointment for MECHANICS with the following details:%0A%0A';
                 textMsj += '*CLIENT DETAILS:*%0A';
                 textMsj += `- Name: ${name}%0A`;
+                textMsj += `- Email: ${email}%0A`;
                 textMsj += `- Vehicle: ${vehicle}%0A`;
                 textMsj += `- Year: ${year}%0A`;
                 textMsj += `- Scheduled Date: ${selectedDateStr}%0A`;
@@ -1075,6 +1077,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 textMsj = 'Hola, me gustaría solicitar una cotización / agendar cita de MECÁNICA con la siguiente información:%0A%0A';
                 textMsj += '*DATOS DEL CLIENTE:*%0A';
                 textMsj += `- Nombre: ${name}%0A`;
+                textMsj += `- Correo: ${email}%0A`;
                 textMsj += `- Vehículo: ${vehicle}%0A`;
                 textMsj += `- Año: ${year}%0A`;
                 textMsj += `- Fecha agendada: ${selectedDateStr}%0A`;

@@ -25,19 +25,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // PRECIOS BASE POR VEHÍCULO
     const VEHICLE_PRICES = {
-        'sedan': { premium: 13500, gold: 17500, abrillantado: 20500, hidrosellado: 25500, ceramico: 'Cotizar', skip: 0 },
-        'suv': { premium: 15500, gold: 20500, abrillantado: 25500, hidrosellado: 32500, ceramico: 'Cotizar', skip: 0 },
-        '4x4': { premium: 16500, gold: 25500, abrillantado: 30500, hidrosellado: 35500, ceramico: 'Cotizar', skip: 0 },
+        'sedan': { premium: 13500, gold: 35500, abrillantado: 22500, hidrosellado: 40000, ceramico: 'Cotizar', skip: 0 },
+        'suv': { premium: 15500, gold: 40500, abrillantado: 25500, hidrosellado: 45000, ceramico: 'Cotizar', skip: 0 },
+        '4x4': { premium: 16500, gold: 45500, abrillantado: 26500, hidrosellado: 45000, ceramico: 'Cotizar', skip: 0 },
         'moto': { premium: 6500, gold: 8500, abrillantado: 12500, hidrosellado: 15500, ceramico: 'Cotizar', skip: 0 },
-        'minibus': { premium: 19500, gold: 30500, abrillantado: 35500, hidrosellado: 40500, ceramico: 'Cotizar', skip: 0 }
+        'minibus': { premium: 17500, gold: 50500, abrillantado: 29500, hidrosellado: 50000, ceramico: 'Cotizar', skip: 0 }
     };
 
     const SPECIAL_PRICES = {
-        'sedan': { ninguno: 0, silvines: 12000, vidrios: 30000, parabrisas: 10000, carroceria: 70000, motor: 7500, tapiceria: 50000, chasis: 7500, lluvia: 16000 },
-        'suv': { ninguno: 0, silvines: 12000, vidrios: 30000, parabrisas: 10000, carroceria: 75000, motor: 7500, tapiceria: 60000, chasis: 7500, lluvia: 16000 },
-        '4x4': { ninguno: 0, silvines: 12000, vidrios: 30000, parabrisas: 12500, carroceria: 80000, motor: 7500, tapiceria: 80000, chasis: 7500, lluvia: 16000 },
+        'sedan': { ninguno: 0, silvines: 13000, vidrios: 30000, parabrisas: 13000, carroceria: 70000, motor: 7500, tapiceria: 40000, chasis: 14000, lluvia: 25000 },
+        'suv': { ninguno: 0, silvines: 13000, vidrios: 30000, parabrisas: 13000, carroceria: 70000, motor: 7500, tapiceria: 42500, chasis: 15000, lluvia: 26500 },
+        '4x4': { ninguno: 0, silvines: 13000, vidrios: 30000, parabrisas: 13000, carroceria: 70000, motor: 7500, tapiceria: 45000, chasis: 16000, lluvia: 27500 },
         'moto': { ninguno: 0, silvines: 'N/A', vidrios: 'N/A', parabrisas: 'N/A', carroceria: 'N/A', motor: 'N/A', tapiceria: 'N/A', chasis: 'N/A', lluvia: 'N/A' },
-        'minibus': { ninguno: 0, silvines: 12000, vidrios: 30000, parabrisas: 15000, carroceria: 90000, motor: 7500, tapiceria: 100000, chasis: 'N/A', lluvia: 'N/A' }
+        'minibus': { ninguno: 0, silvines: 13000, vidrios: 30000, parabrisas: 13000, carroceria: 90000, motor: 9500, tapiceria: 55000, chasis: 17500, lluvia: 29500 }
     };
 
     const EXTRA_PRICES = {
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
         textMsj += `%0A${totalLabel} ₡${total.toLocaleString('es-CR')}%0A%0A` + (lang === 'en' ? 'Looking forward to your reply!' : '¡Quedo atento(a)!');
 
         summaryContainer.innerHTML = html;
-        btnWhatsApp.href = `https://wa.me/50661515240?text=${textMsj}`;
+        btnWhatsApp.href = `https://wa.me/50670491753?text=${textMsj}`;
     }
 
     function updateWizard() {
