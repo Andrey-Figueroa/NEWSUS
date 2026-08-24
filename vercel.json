@@ -1,28 +1,6 @@
 {
   "cleanUrls": true,
-  "trailingSlash": true,
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/main/index.html"
-    },
-    {
-      "source": "/styles.css",
-      "destination": "/main/styles.min.css"
-    },
-    {
-      "source": "/styles.min.css",
-      "destination": "/main/styles.min.css"
-    },
-    {
-      "source": "/script.js",
-      "destination": "/main/script.min.js"
-    },
-    {
-      "source": "/script.min.js",
-      "destination": "/main/script.min.js"
-    }
-  ],
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/system",
@@ -58,7 +36,7 @@
       ]
     },
     {
-      "source": "/(.*).(css|js|webp|png|jpg|jpeg|svg|ico|woff2|woff)",
+      "source": "/(.*)\\.(css|js|webp|png|jpg|jpeg|svg|ico|woff2|woff)",
       "headers": [
         {
           "key": "Cache-Control",

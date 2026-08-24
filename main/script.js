@@ -539,20 +539,12 @@
         if (!link) return;
         
         e.preventDefault();
-        
-        const path = window.location.pathname;
-        let depthPrefix = '';
-        if (path.includes('/servicios/')) {
-            depthPrefix = '../../';
-        } else if (path.includes('/main/')) {
-            depthPrefix = '../';
-        }
 
         if (link.hasAttribute('data-target')) {
             const targetId = link.getAttribute('data-target');
 
             if (targetId === 'contacto' && (link.classList.contains('nav-cta') || link.classList.contains('mobile-cta') || link.classList.contains('btn-pill'))) {
-                openAppointmentModal(depthPrefix);
+                openAppointmentModal();
                 return;
             }
 
@@ -564,15 +556,15 @@
                     closeMobileMenu();
                 }
             } else {
-                window.location.href = depthPrefix + 'main/index.html#' + targetId;
+                window.location.href = '/#' + targetId;
             }
         } else if (link.hasAttribute('data-page')) {
             const page = link.getAttribute('data-page');
-            window.location.href = depthPrefix + 'servicios/' + page + '/index.html';
+            window.location.href = '/servicios/' + page + '/index.html';
         }
     });
 
-    function openAppointmentModal(depthPrefix) {
+    function openAppointmentModal() {
         const lang = document.documentElement.lang || 'es';
         let modalOverlay = document.getElementById('appointment-overlay');
         if (!modalOverlay) {
@@ -589,22 +581,22 @@
                     </button>
                     <h2>${lang === 'en' ? 'Choose your appointment type' : 'Elige tu tipo de cita'}</h2>
                     <div class="appointment-options">
-                        <a href="${depthPrefix}servicios/detailing/index.html" class="appointment-card">
-                            <div class="appointment-card-bg" style="background-image: url('${depthPrefix}images/botones/detailing.webp')"></div>
+                        <a href="/servicios/detailing/index.html" class="appointment-card">
+                            <div class="appointment-card-bg" style="background-image: url('/images/botones/detailing.webp')"></div>
                             <div class="appointment-card-content">
                                 <div class="appointment-card-title">Detailing</div>
                                 <div class="appointment-card-desc">${lang === 'en' ? 'Get a live quote for all services and send your request to our WhatsApp...' : 'Cotiza en vivo todos los servicios y envianos tu cotizacion a nuestro whatssapp ....'}</div>
                             </div>
                         </a>
-                        <a href="${depthPrefix}servicios/domicilio/index.html" class="appointment-card">
-                            <div class="appointment-card-bg" style="background-image: url('${depthPrefix}images/botones/domicilio.webp')"></div>
+                        <a href="/servicios/domicilio/index.html" class="appointment-card">
+                            <div class="appointment-card-bg" style="background-image: url('/images/botones/domicilio.webp')"></div>
                             <div class="appointment-card-content">
                                 <div class="appointment-card-title">${lang === 'en' ? 'Mobile Service' : 'A Domicilio'}</div>
                                 <div class="appointment-card-desc">${lang === 'en' ? 'Send us your preferred date/time and book your mobile service' : 'Envianos tu fecha/hora que deseas y agenda tu servicio a domicilio'}</div>
                             </div>
                         </a>
-                        <a href="${depthPrefix}servicios/mecanica/index.html" class="appointment-card">
-                            <div class="appointment-card-bg" style="background-image: url('${depthPrefix}images/botones/mecanica.webp')"></div>
+                        <a href="/servicios/mecanica/index.html" class="appointment-card">
+                            <div class="appointment-card-bg" style="background-image: url('/images/botones/mecanica.webp')"></div>
                             <div class="appointment-card-content">
                                 <div class="appointment-card-title">${lang === 'en' ? 'Mechanics' : 'Mecánica'}</div>
                                 <div class="appointment-card-desc">${lang === 'en' ? 'Book your appointment at our branch for any vehicle needs' : 'Agenda tu cita en nuestra sucursal para las necesidades que tengas'}</div>
